@@ -1,0 +1,1 @@
+vim status --ignored -s
