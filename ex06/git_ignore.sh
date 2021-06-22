@@ -1,1 +1,1 @@
-vim status --ignored -s
+git status --ignored -s
