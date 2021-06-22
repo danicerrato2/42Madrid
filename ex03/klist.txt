@@ -1,5 +1,0 @@
-Credentials cache: API:5680
-        Principal: dcerrato@42MADRID.COM
-
-  Issued                Expires               Principal
-Jun 21 11:49:26 2021  Jun 21 21:49:26 2021  krbtgt/42MADRID.COM@42MADRID.COM
