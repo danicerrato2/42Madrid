@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 20:32:11 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/25 21:25:35 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/26 15:48:09 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void	ft_print_comb(void)
 {
+	int		i;
+	int		flag;
 	char	number[3];
-	int 	i;
 
 	i = 0;
 	while (i < 3)
@@ -24,9 +25,21 @@ void	ft_print_comb(void)
 	while (number[0] <= '7')
 	{
 		write (1, number, 3);
-		if(number[0] < '7')
+		if (number[0] < '7')
 			write (1, ", ", 2);
-		
+		i = 2;
+		flag = 1;
+		while (flag)
+		{
+			number[i]++;
+			if (number[i] > '9' - (2 - i))
+			{
+				number[i] = number[i - 1] + 2;
+				i--;
+			}
+			else
+				flag = 0;
+		}	
 	}
 }
 
