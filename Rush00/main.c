@@ -6,13 +6,13 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 11:33:13 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/26 13:39:21 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/26 18:30:08 by agogolev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	rush(int columnas, int filas);
+void	rush(int column, int line);
 
 int	main(void)
 {
