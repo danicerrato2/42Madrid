@@ -1,51 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_comb.c                                    :+:      :+:    :+:   */
+/*   ft_print_combn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/25 20:32:11 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/27 11:26:12 by dcerrato         ###   ########.fr       */
+/*   Created: 2021/06/27 11:15:12 by dcerrato          #+#    #+#             */
+/*   Updated: 2021/06/27 13:45:16 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-void	ft_ini_comb(char lower, char *number)
+void	ft_ini_combn(int digits, int lower, char *number)
 {
 	int	i;
 
-	i = 0;
-	while (i < 3)
+	i = lower;
+	while (i < digits)
 	{
-		number[i] = lower + i;
+		number[i] = number[lower] + (i - lower);
 		i++;
 	}
 }
 
-void	ft_print_comb(void)
+void	ft_print_combn(int n)
 {
 	int		i;
-	char	number[3];
+	char	number[10];
 
-	ft_ini_comb('0', number);
-	while (number[0] < '9' - 2)
+	if ((n < 1) || (n > 10))
+		return ;
+	number[0] = '0';
+	ft_ini_combn(n, 0, number);
+	while (number[0] < '9' - (n - 1))
 	{
-		write (1, number, 3);
+		write (1, number, n);
 		write (1, ", ", 2);
-		i = 2;
+		i = n - 1;
 		number[i]++;
-		while (number[i] > '9' - (2 - i) && i > 0)
+		while (number[i] > '9' - ((n - 1) - i))
 		{
-			number[i] = number[i - 1] + 2;
 			i--;
-			if (i > 0)
-				number[i]++;
+			number[i]++;
 		}
-		if (i == 0)
-			ft_ini_comb(number[0] + 1, number);
+		if (i != n - 1)
+			ft_ini_combn(n, i, number);
 	}
-	write (1, number, 3);
+	write (1, number, n);
 }
