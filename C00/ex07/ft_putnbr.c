@@ -6,26 +6,44 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 11:12:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/27 17:12:45 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/27 19:05:58 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
+void	print_digits(int nb)
+{
+	int		i;
+	char	digit[10];
+
+	i = 0;
+	while (nb > 9)
+	{
+		digit[i] = '0' + nb % 10;
+		i++;
+		nb /= 10;
+	}
+	while (i >= 0)
+	{
+		write (1, &digit[i], 1);
+		i--;
+	}
+}
+
 void 	ft_putnbr(int nb)
 {
-	char	digit;
-
 	if (nb < 0)
 	{
 		write (1, "-", 1);
-		nb *= (-1);
+		if (nb == -2147483648)
+		{
+			write (1, "2", 1);
+			nb = 147483648;
+		}
+		else
+			nb *= (-1);
 	}
-	while (nb > 9)
-	{
-		digit = '0' + nb % 10;
-		write (1, &digit, 1),
-		nb /= 10;
-	}
+	print_digits(nb);
 }

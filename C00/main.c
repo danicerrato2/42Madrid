@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 void ft_putchar(char c);
@@ -46,8 +47,10 @@ int main(int argc, char *args[]){
 			break;
 		case 7:
 			ft_putnbr(42);
-			printf("\n");
-			ft_putnbr(-55);
+			write (1, "\n", 1);
+			ft_putnbr(-33456);
+			write (1, "\n", 1);
+			ft_putnbr(-2147483648);
 			break;
 		case 8:
 			ft_print_combn(atoi(args[2]));
