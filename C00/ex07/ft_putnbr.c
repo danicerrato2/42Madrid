@@ -25,6 +25,7 @@ void	print_digits(int nb)
 		i++;
 		nb /= 10;
 	}
+	digit[i] = '0' + nb;
 	while (i >= 0)
 	{
 		write (1, &digit[i], 1);
