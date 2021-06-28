@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
+/*   ft_print_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 15:35:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 17:51:42 by dcerrato         ###   ########.fr       */
+/*   Created: 2021/06/28 17:40:16 by dcerrato          #+#    #+#             */
+/*   Updated: 2021/06/28 17:55:26 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_uppercase(char *str)
+void	*ft_print_memory(void *addr, unsigned int size)
 {
-	if (str == NULL)
-		return (1);
-	return (1);
+	if (addr == NULL || size <= 0)
+		return (NULL);
+	return (NULL);
 }

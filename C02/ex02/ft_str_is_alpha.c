@@ -6,13 +6,15 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:17:15 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 15:31:16 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:51:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_str_is_alpha(char *str)
 {
 	if (str == NULL)
 		return (1);
-	return 1;
+	return (1);
 }

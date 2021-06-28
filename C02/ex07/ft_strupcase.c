@@ -6,9 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:38:54 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 15:39:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:52:08 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 char	*ft_strupcase(char *str)
 {

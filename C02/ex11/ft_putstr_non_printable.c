@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 15:35:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 17:51:42 by dcerrato         ###   ########.fr       */
+/*   Created: 2021/06/28 17:39:03 by dcerrato          #+#    #+#             */
+/*   Updated: 2021/06/28 17:52:59 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_str_is_uppercase(char *str)
+void	ft_putstr_non_printable(char *str)
 {
-	if (str == NULL)
-		return (1);
-	return (1);
+	if (str == NULL || str != NULL)
+		return ;
 }

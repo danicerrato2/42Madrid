@@ -6,9 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:41:19 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 15:44:04 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:52:33 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 char	*ft_strcapitalize(char *str)
 {

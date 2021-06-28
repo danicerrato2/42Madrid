@@ -6,9 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:35:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 15:38:29 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/28 17:51:54 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_str_is_printable(char *str)
 {
