@@ -6,15 +6,20 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:35:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 17:51:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/29 17:53:39 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	ft_str_is_uppercase(char *str)
 {
-	if (str == NULL)
-		return (1);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < 'A' || str[i] > 'Z')
+			return (0);
+		i++;
+	}
 	return (1);
 }

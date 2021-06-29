@@ -6,15 +6,20 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:34:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 17:51:19 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/06/29 17:47:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	ft_str_is_numeric(char *str)
 {
-	if (str == NULL)
-		return (1);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
 	return (1);
 }
