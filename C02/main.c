@@ -15,13 +15,15 @@ char *ft_strlowcase(char *str);
 char *ft_strcapitalize(char *str);
 unsigned int ft_strlcpy(char *dest, char *src, unsigned int size);
 void ft_putstr_non_printable(char *str);
-//void *ft_print_memory(void *addr, unsigned int size);
+void *ft_print_memory(void *addr, unsigned int size);
 
 int main(int argc, char *args[]){
 
 	char src[] = {'H', 'o', 'l', 'a', '\0'}, dest[6], dest2[10], nonprint1 = 10, nonprint2 = 127, str[] = {'h', '0', 'l', 'A', '_', '\0'}, str2[] = {'H', '0', 'L', 'a', '\0'};
-	char capi[62] = "sAlUt, cOmmEnt\ntU vAs ? 42mOts qUArAntE-dEUx; cInqUAntE+Et+Un";
+	char capi[40] = ".Ehdnmbd}I#a~Jp@F ?Dyi%:Lofu:8q`*N6xts[";
+	char *hexa = "\n\t\1";
 	unsigned int tam = 0;
+	char ex12[93] = "Bonjour les aminches\t\t\tc est fo\nu\ttout\tce qu on peut faire avec\t\t\tprint_memory\t\t\t\tlol\tlol\t ";
 
 	if(argc != 2){
 		printf("Error en argumentos\n");
@@ -96,11 +98,11 @@ int main(int argc, char *args[]){
 		case 11:
 			printf("Non printable: ");
 			fflush(stdout);
-			ft_putstr_non_printable(capi);
+			ft_putstr_non_printable(hexa);
 			printf("\n");
 			break;
 		case 12:
+			ft_print_memory(ex12, 92);
 			break;
 	}
-
 }
