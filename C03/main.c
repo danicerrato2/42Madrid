@@ -3,25 +3,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *ft_strcpy(char *dest, char *src);
-char *ft_strncpy(char *dest, char *src, unsigned int n);
-int ft_str_is_alpha(char *str);
-int ft_str_is_numeric(char *str);
-int ft_str_is_lowercase(char *str);
-int ft_str_is_uppercase(char *str);
-int ft_str_is_printable(char *str);
-char *ft_strupcase(char *str);
-char *ft_strlowcase(char *str);
-char *ft_strcapitalize(char *str);
-unsigned int ft_strlcpy(char *dest, char *src, unsigned int size);
-void ft_putstr_non_printable(char *str);
-//void *ft_print_memory(void *addr, unsigned int size);
-
+int	ft_strcmp(char *s1, char *s2);
+int ft_strncmp(char *s1, char *s2, unsigned int n);
+char *ft_strcat(char *dest, char *src);
+char *ft_strncat(char *dest, char *src, unsigned int nb);
+/*char *ft_strstr(char *str, char *to_find);
+unsigned int ft_strlcat(char *dest, char *src, unsigned int size);
+*/
 int main(int argc, char *args[]){
 
-	char src[] = {'H', 'o', 'l', 'a', '\0'}, dest[6], dest2[10], nonprint1 = 10, nonprint2 = 127, str[] = {'h', '0', 'l', 'A', '_', '\0'}, str2[] = {'H', '0', 'L', 'a', '\0'};
-	char capi[62] = "sAlUt, cOmmEnt\ntU vAs ? 42mOts qUArAntE-dEUx; cInqUAntE+Et+Un";
-	unsigned int tam = 0;
+	char dest[20] = "Hola ", src[10] = "mundo_";
 
 	if(argc != 2){
 		printf("Error en argumentos\n");
@@ -30,74 +21,44 @@ int main(int argc, char *args[]){
 
 	switch (atoi(args[1])){
 		case 0:
-			ft_strcpy(dest, src);
-			printf("el src era \"%s\" y el dest es \"%s\"\n", src, dest);
+			printf("Resultado esperado = 0 (%d)\n", ft_strcmp("", ""));
+			printf("Resultado esperado = 0 (%d)\n", ft_strcmp("lo que quieras", "lo que quieras"));
+			printf("Resultado esperado > 0 (%d)\n", ft_strcmp("pepito", "pepa"));
+			printf("Resultado esperado < 0 (%d)\n", ft_strcmp("grillo", "grito"));
+            printf("Resultado esperado > 0 (%d)\n", ft_strcmp("papaya", "papa"));
+            printf("Resultado esperado < 0 (%d)\n", ft_strcmp("tinto", "tintoreria"));
 			break;
 		case 1:
-			ft_strncpy(dest, src, 4);
-			printf("el src era \"%s\" y el dest es \"%s\" con n = 4\n", src, dest);
-			ft_strncpy(dest2, src, 10);
-			printf("el src era \"%s\" y el dest es \"%s\" con n = 10\n", src, dest2);
+            printf("Resultado esperado = 0 (%d)\n", ft_strncmp("lo que quieras tu", "lo que quiera yo", 13));
+            printf("Resultado esperado > 0 (%d)\n", ft_strncmp("pepito", "pepa", 4));
+            printf("Resultado esperado < 0 (%d)\n", ft_strncmp("grillo", "grito", 5));
+            printf("Resultado esperado > 0 (%d)\n", ft_strncmp("papaya", "papa", 6));
+            printf("Resultado esperado < 0 (%d)\n", ft_strncmp("tinto", "tintoreria", 10));
 			break;
 		case 2:
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_alpha("HoLa"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_alpha("H0lA"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_alpha("Ho|a"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_alpha("Ho[a"));
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_alpha(dest));
+			printf("dest era \"%s\" y src es \"%s\", ahora dest es: ", dest, src);
+			ft_strcat(dest, src);
+			printf("%s\n", dest);
 			break;
 		case 3:
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_numeric("1234567890"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_numeric("0123S6"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_numeric("012345&7"));
-            printf("Este caso debe devolver 1 (%d)\n", ft_str_is_numeric(dest));
+            ft_strncat(dest, src, 3);
+			printf("Salida esperada \"Hola mun\" (%s)\n", dest);
 			break;
 		case 4:
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_lowercase("hola"));
-            printf("Este caso debe devolver 0 (%d)\n", ft_str_is_lowercase("hoLa"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_lowercase("ho|a"));
-            printf("Este caso debe devolver 1 (%d)\n", ft_str_is_lowercase(dest));
 			break;
 		case 5:
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_uppercase("HOLA"));
-            printf("Este caso debe devolver 0 (%d)\n", ft_str_is_uppercase("HOlA"));
-			printf("Este caso debe devolver 0 (%d)\n", ft_str_is_uppercase("HO1A"));
-            printf("Este caso debe devolver 1 (%d)\n", ft_str_is_uppercase(dest));
 			break;
 		case 6:
-			printf("Este caso debe devolver 1 (%d)\n", ft_str_is_printable("! \"#$%%&\'()*+,-./:;<=>?@[\\]^_`{|}~"));
-            printf("Este caso debe devolver 0 (%d)\n", ft_str_is_printable(&nonprint1));
-            printf("Este caso debe devolver 0 (%d)\n", ft_str_is_printable(&nonprint2));
-            printf("Este caso debe devolver 1 (%d)\n", ft_str_is_printable(dest));
 			break;
 		case 7:
-			ft_strupcase(str);
-			printf("Todo mayus: \"%s\"\n", str);
 			break;
 		case 8:
-			ft_strlowcase(str2);
-			printf("Todo minus: \"%s\"\n", str2);
 			break;
 		case 9:
-			printf("Capitalize: \"%s\"\n", ft_strcapitalize(capi));
 			break;
 		case 10:
-			tam = ft_strlcpy(dest2, str, 0);
-			printf("Salida esperada un 6 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
-			tam = ft_strlcpy(dest2, str, 1);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
-			tam = ft_strlcpy(dest2, str, 4);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0l\": \"%s\"\n", tam, dest2);
-			tam = ft_strlcpy(dest2, str, 6);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest2);
-			tam = ft_strlcpy(dest, str, 10);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest);
 			break;
 		case 11:
-			printf("Non printable: ");
-			fflush(stdout);
-			ft_putstr_non_printable(capi);
-			printf("\n");
 			break;
 		case 12:
 			break;

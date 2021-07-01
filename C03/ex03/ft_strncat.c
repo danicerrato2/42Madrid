@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 13:45:35 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/01 10:13:50 by dcerrato         ###   ########.fr       */
+/*   Created: 2021/06/30 13:40:19 by dcerrato          #+#    #+#             */
+/*   Updated: 2021/07/01 14:13:42 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	if (dest == NULL || src == NULL || size <= 0)
-		return (0);
-	return (0);
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0' && j < nb)
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }

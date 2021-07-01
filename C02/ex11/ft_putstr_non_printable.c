@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:39:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/30 17:40:22 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:57:33 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_putstr_non_printable(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] < 32 || str[i] == 127)
+		if (str[i] < 32 || str[i] > 126)
 			print_non_printable(str[i]);
 		else
 			write (1, &str[i], 1);

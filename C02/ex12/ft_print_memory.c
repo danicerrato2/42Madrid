@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:40:16 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/30 19:56:53 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/01 12:52:11 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,46 +41,35 @@ void	ft_putchar(char c)
 	write (1, &c, 1);
 }
 
-void	ft_print_hexa(char *dir)
+void	ft_print_hexa(char *dir, unsigned int tam)
 {
-	int	i;
-	int	flag;
+	unsigned int	i;
 
 	i = 0;
-	flag = 1;
 	while (i < 16)
 	{
-		if (flag == 0 && i % 2 == 1)
-			write (1, " ", 1);
-		else if (flag == 1 && *(dir + i) != '\0')
+		if (i < tam)
 		{	
 			ft_putchar("0123456789abcdef"[*(dir + i) / 16]);
 			ft_putchar("0123456789abcdef"[*(dir + i) % 16]);
 		}
-		else if (flag == 1)
-		{
-			flag = 0;
-			write (1, "00", 2);
-		}
+		else if (i % 2 == 1)
+			write (1, " ", 1);
 		if (i % 2 == 1)
 			write (1, " ", 1);
 		i++;
 	}
 }
 
-void	ft_print_text(char *dir)
+void	ft_print_text(char *dir, unsigned int tam)
 {
-	int	i;
-	int	flag;
+	unsigned int	i;
 
 	i = 0;
-	flag = 1;
-	while (i < 16 && flag == 1)
+	while (i < tam)
 	{
-		if (dir[i] < 32 || dir[i] == 127)
+		if (dir[i] < 32 || dir[i] > 126)
 		{
-			if (dir[i] == 0)
-				flag = 0;
 			write (1, ".", 1);
 		}
 		else
@@ -92,15 +81,22 @@ void	ft_print_text(char *dir)
 void	*ft_print_memory(void *addr, unsigned int size)
 {
 	unsigned int	i;
+	unsigned int	tam;
+	char			*dir;
 
 	if (size <= 0)
 		return (addr);
+	dir = addr;
 	i = 0;
 	while (i < size)
 	{
-		ft_print_addr((unsigned long)addr + i);
-		ft_print_hexa((char *)addr + i);
-		ft_print_text((char *)addr + i);
+		if (size - i > 16)
+			tam = 16;
+		else
+			tam = size - i;
+		ft_print_addr((unsigned long)dir + i);
+		ft_print_hexa(dir + i, tam);
+		ft_print_text(dir + i, tam);
 		write (1, "\n", 1);
 		i += 16;
 	}

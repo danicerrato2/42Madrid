@@ -6,13 +6,24 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 13:35:06 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/30 13:36:52 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:07:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	if (s1[i] != '\0' && s2[i] == '\0')
+		return (s1[i]);
+	if (s1[i] == '\0' && s2[i] != '\0')
+		return (0 - s2[i]);
+	return (0);
 }

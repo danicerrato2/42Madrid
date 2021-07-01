@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 15:44:28 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/30 13:58:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:46:39 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		}
 		dest[i] = '\0';
 	}
-	return (count + 1);
+	return (count);
 }

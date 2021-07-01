@@ -23,7 +23,9 @@ int main(int argc, char *args[]){
 	char capi[40] = ".Ehdnmbd}I#a~Jp@F ?Dyi%:Lofu:8q`*N6xts[";
 	char *hexa = "\n\t\1";
 	unsigned int tam = 0;
-	char ex12[93] = "Bonjour les aminches\t\t\tc est fo\nu\ttout\tce qu on peut faire avec\t\t\tprint_memory\t\t\t\tlol\tlol\t ";
+	char ex12[93] = "Bonjour les aminches\t\t\tc est fo\nu\ttout\tce qu on peut faire avec\t\t\tprint_memory\t\t\t\tlol\tlol\t";
+	char pruebas = 'P';
+	void *p = &pruebas;
 
 	if(argc != 2){
 		printf("Error en argumentos\n");
@@ -85,15 +87,15 @@ int main(int argc, char *args[]){
 			break;
 		case 10:
 			tam = ft_strlcpy(dest2, str, 0);
-			printf("Salida esperada un 6 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
+			printf("Salida esperada un 5 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
 			tam = ft_strlcpy(dest2, str, 1);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
+            printf("Salida esperada un 5 (%u) y cadena esperada \"\": \"%s\"\n", tam, dest2);
 			tam = ft_strlcpy(dest2, str, 4);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0l\": \"%s\"\n", tam, dest2);
+            printf("Salida esperada un 5 (%u) y cadena esperada \"h0l\": \"%s\"\n", tam, dest2);
 			tam = ft_strlcpy(dest2, str, 6);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest2);
+            printf("Salida esperada un 5 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest2);
 			tam = ft_strlcpy(dest, str, 10);
-            printf("Salida esperada un 6 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest);
+            printf("Salida esperada un 5 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest);
 			break;
 		case 11:
 			printf("Non printable: ");
@@ -102,7 +104,10 @@ int main(int argc, char *args[]){
 			printf("\n");
 			break;
 		case 12:
-			ft_print_memory(ex12, 92);
+			ft_print_memory(ex12, 91);
+			printf("\n\n");
+			fflush(stdout);
+			ft_print_memory(p, 1);
 			break;
 	}
 }

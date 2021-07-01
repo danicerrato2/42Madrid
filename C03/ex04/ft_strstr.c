@@ -6,13 +6,15 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 13:43:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/30 13:49:24 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/01 10:13:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 char	*ft_strstr(char *str, char *to_find)
 {
-	if (str == NULL || to_find == NULL)
+	if (str == NULL || to_find == NULL)
 		return (NULL);
 	return (NULL);
 }
