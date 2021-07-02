@@ -98,7 +98,7 @@ int main(int argc, char *args[]){
             printf("Salida esperada un 5 (%u) y cadena esperada \"h0lA_\": \"%s\"\n", tam, dest);
 			break;
 		case 11:
-			printf("Non printable: ");
+			printf("Salida esperada \"\\0a\\09\\01\\80\\d3\\e2: ");
 			fflush(stdout);
 			ft_putstr_non_printable(hexa);
 			printf("\n");
@@ -109,6 +109,7 @@ int main(int argc, char *args[]){
 			fflush(stdout);
 			ft_print_memory(p, 1);
 			printf("\n\n");
+			printf("Salida esperada hexa \"0a09 0180 d3e2 00  \": ");
 			fflush(stdout);
 			ft_print_memory(hexa, 7);
 			break;
