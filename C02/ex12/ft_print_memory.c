@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:40:16 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/02 10:48:20 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/02 14:41:31 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_print_hexa(char *dir, unsigned int tam)
 	while (i < tam)
 	{
 		if (*(dir + i) < 0)
-			uchar = 127 + *(dir + i) * (-1);
+			uchar = 256 + *(dir + i);
 		else
 			uchar = *(dir + i);
 		ft_putchar("0123456789abcdef"[uchar / 16]);

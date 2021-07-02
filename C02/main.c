@@ -21,7 +21,7 @@ int main(int argc, char *args[]){
 
 	char src[] = {'H', 'o', 'l', 'a', '\0'}, dest[6], dest2[10], nonprint1 = 10, nonprint2 = 127, str[] = {'h', '0', 'l', 'A', '_', '\0'}, str2[] = {'H', '0', 'L', 'a', '\0'};
 	char capi[40] = ".Ehdnmbd}I#a~Jp@F ?Dyi%:Lofu:8q`*N6xts[";
-	char hexa[5] = {'\n', '\t', '\1' , -128, '\0'};
+	char hexa[7] = {'\n', '\t', '\1' , -128, -45, -30, '\0'};
 	unsigned int tam = 0;
 	char ex12[93] = "Bonjour les aminches\t\t\tc est fo\nu\ttout\tce qu on peut faire avec\t\t\tprint_memory\t\t\t\tlol\tlol\t";
 	char pruebas = 'P';
@@ -110,7 +110,7 @@ int main(int argc, char *args[]){
 			ft_print_memory(p, 1);
 			printf("\n\n");
 			fflush(stdout);
-			ft_print_memory(hexa, 5);
+			ft_print_memory(hexa, 7);
 			break;
 	}
 }

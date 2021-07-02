@@ -6,11 +6,12 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:39:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/02 10:14:26 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/02 14:41:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 void	print_non_printable(char c)
 {
@@ -18,7 +19,7 @@ void	print_non_printable(char c)
 	unsigned char	uchar;
 
 	if (c < 0)
-		uchar = 127 + c * (-1);
+		uchar = 256	+ c;
 	else
 		uchar = c;
 	write (1, "\\", 1);
