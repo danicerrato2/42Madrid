@@ -7,12 +7,14 @@ int	ft_strcmp(char *s1, char *s2);
 int ft_strncmp(char *s1, char *s2, unsigned int n);
 char *ft_strcat(char *dest, char *src);
 char *ft_strncat(char *dest, char *src, unsigned int nb);
-/*char *ft_strstr(char *str, char *to_find);
+char *ft_strstr(char *str, char *to_find);
 unsigned int ft_strlcat(char *dest, char *src, unsigned int size);
-*/
+
 int main(int argc, char *args[]){
 
 	char dest[20] = "Hola ", src[10] = "mundo_";
+	char str[23] = "Daniel Cerrato Sánchez", repe[19] = "holhhoolaholaadios", to_find[6] = "ato S", to_find_repe[5] = "hola";
+	unsigned int ret;
 
 	if(argc != 2){
 		printf("Error en argumentos\n");
@@ -45,8 +47,14 @@ int main(int argc, char *args[]){
 			printf("Salida esperada \"Hola mun\" (%s)\n", dest);
 			break;
 		case 4:
+			printf("Salida esperada \"ato Sánchez\" (%s)\n", ft_strstr(str, to_find));
+			printf("Salida esperada \"holaadios\" (%s)\n", ft_strstr(repe, to_find_repe));
 			break;
 		case 5:
+			ret = ft_strlcat(dest, src, 8);
+			printf("Salida esperada \"Hola mu\" (%s) y return 10 (%d)\n", dest, ret);
+			ret = ft_strlcat(dest, src, 20);
+			printf("Salida esperada \"Hola mumundo_\" (%s) y return 12 (%d)\n", dest, ret);
 			break;
 		case 6:
 			break;
@@ -63,5 +71,4 @@ int main(int argc, char *args[]){
 		case 12:
 			break;
 	}
-
 }
