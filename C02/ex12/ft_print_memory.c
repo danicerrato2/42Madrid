@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 17:40:16 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/01 12:52:11 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/02 10:48:20 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_print_addr(unsigned long dir)
 	write (1, ": ", 2);
 }
 
-void	ft_putchar(char c)
+void	ft_putchar(unsigned char c)
 {
 	write (1, &c, 1);
 }
@@ -44,19 +44,26 @@ void	ft_putchar(char c)
 void	ft_print_hexa(char *dir, unsigned int tam)
 {
 	unsigned int	i;
+	unsigned char	uchar;
 
 	i = 0;
-	while (i < 16)
+	while (i < tam)
 	{
-		if (i < tam)
-		{	
-			ft_putchar("0123456789abcdef"[*(dir + i) / 16]);
-			ft_putchar("0123456789abcdef"[*(dir + i) % 16]);
-		}
-		else if (i % 2 == 1)
-			write (1, " ", 1);
+		if (*(dir + i) < 0)
+			uchar = 127 + *(dir + i) * (-1);
+		else
+			uchar = *(dir + i);
+		ft_putchar("0123456789abcdef"[uchar / 16]);
+		ft_putchar("0123456789abcdef"[uchar % 16]);
 		if (i % 2 == 1)
 			write (1, " ", 1);
+		i++;
+	}
+	while (i < 16)
+	{
+		write(1, "  ", 2);
+		if (i % 2 == 1)
+			write(1, " ", 1);
 		i++;
 	}
 }
@@ -68,7 +75,7 @@ void	ft_print_text(char *dir, unsigned int tam)
 	i = 0;
 	while (i < tam)
 	{
-		if (dir[i] < 32 || dir[i] > 126)
+		if (dir[i] < 32 || dir[i] == 127)
 		{
 			write (1, ".", 1);
 		}
