@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	fill_towers(int views[4][4], int matrix[4][4]);
+int	fill_4_towers(int views[4][4], int matrix[4][4]);
 
 void	split_str(int views[4][4], char *str, int count)
 {
@@ -77,9 +77,17 @@ int	main(int argc, char *args[])
 		write (1, "Error\n", 6);
 		return (-1);
 	}
-	if (split(args[1], views) <= 0 || fill_towers(views, matrix) <= 0)
+	if (split(args[1], views) <= 0 || fill_4_towers(views, matrix) <= 0)
 	{
 		write (1, "Error\n", 6);
 		return (-1);
+	}
+	for (int i = 0; i < 4; i++){
+		for (int j = 0; j < 4; j++){
+			if (matrix[i][j] >= 1 && matrix[i][j] <= 4)
+				printf("%d ", matrix[i][j]);
+			else printf("0 ");
+		}
+		printf("\n");
 	}
 }
