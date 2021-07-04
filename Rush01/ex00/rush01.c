@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	fill_4_towers(int views[4][4], int matrix[4][4]);
+void	fill_3_2_1_towers(int views[4][4], int matrix[4][4]);	
+void	fill_4_towers(int views[4][4], int matrix[4][4]);
 
 void	split_str(int views[4][4], char *str, int count)
 {
@@ -67,6 +68,31 @@ int	split(char *str, int views[4][4])
 	return (1);
 }
 
+void	print_matrix(int matrix[4][4])
+{
+	int	i;
+	int	j;
+	char	c;
+	
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (matrix[i][j] >= 1 && matrix[i][j] <= 4)
+				c = '0' + matrix[i][j];
+			else
+				c = '0';
+			write(1, &c, 1);
+			write(1, " ", 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
 int	main(int argc, char *args[])
 {
 	int	matrix[4][4];
@@ -77,17 +103,12 @@ int	main(int argc, char *args[])
 		write (1, "Error\n", 6);
 		return (-1);
 	}
-	if (split(args[1], views) <= 0 || fill_4_towers(views, matrix) <= 0)
+	if (split(args[1], views) <= 0)
 	{
 		write (1, "Error\n", 6);
 		return (-1);
 	}
-	for (int i = 0; i < 4; i++){
-		for (int j = 0; j < 4; j++){
-			if (matrix[i][j] >= 1 && matrix[i][j] <= 4)
-				printf("%d ", matrix[i][j]);
-			else printf("0 ");
-		}
-		printf("\n");
-	}
+	fill_4_towers(views, matrix);
+	fill_3_2_1_towers(views, matrix);
+	print_matrix(matrix);
 }
