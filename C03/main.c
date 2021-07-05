@@ -52,9 +52,9 @@ int main(int argc, char *args[]){
 			break;
 		case 5:
 			ret = ft_strlcat(dest, src, 8);
-			printf("Salida esperada \"Hola mu\" (%s) y return 10 (%d)\n", dest, ret);
+			printf("Salida esperada \"Hola mu\" (%s) y return 11 (%d)\n", dest, ret);
 			ret = ft_strlcat(dest, src, 20);
-			printf("Salida esperada \"Hola mumundo_\" (%s) y return 12 (%d)\n", dest, ret);
+			printf("Salida esperada \"Hola mumundo_\" (%s) y return 13 (%d)\n", dest, ret);
 			break;
 		case 6:
 			break;
