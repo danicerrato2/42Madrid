@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 10:18:10 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/03 13:08:05 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/05 08:56:04 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	fill_3_2_1_towers(int views[4][4], int matrix[4][4]);	
 void	fill_4_towers(int views[4][4], int matrix[4][4]);
+void	fill_sudoku(int matrix[4][4], int number);
 
 void	split_str(int views[4][4], char *str, int count)
 {
@@ -70,10 +71,10 @@ int	split(char *str, int views[4][4])
 
 void	print_matrix(int matrix[4][4])
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	c;
-	
+
 	i = 0;
 	while (i < 4)
 	{
@@ -109,6 +110,7 @@ int	main(int argc, char *args[])
 		return (-1);
 	}
 	fill_4_towers(views, matrix);
+	fill_sudoku(matrix, 4);
 	fill_3_2_1_towers(views, matrix);
 	print_matrix(matrix);
 }

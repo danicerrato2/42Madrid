@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_3_towers.c                                    :+:      :+:    :+:   */
+/*   fill_3_2_1_towers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:05:53 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/03 13:21:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/05 08:32:52 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <stdio.h>
 
 void	fill_sudoku(int matrix[4][4], int number);
-int	find_number_in_row(int matrix[4][4], int row, int number);
-int	find_number_in_column(int matrix[4][4], int column, int number);
+int		find_number_in_row(int matrix[4][4], int row, int number);
+int		find_number_in_column(int matrix[4][4], int column, int number);
 
 void	fill_3_with_2(int views[4][4], int matrix[4][4])
 {
@@ -45,7 +45,6 @@ void	fill_3_with_2(int views[4][4], int matrix[4][4])
 		i++;
 	}
 }
-
 
 void	fill_2_towers(int views[4][4], int matrix[4][4])
 {

@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:05:53 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/03 13:21:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/05 09:14:27 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,19 @@ void	fill_sudoku(int matrix[4][4], int number);
 void	fill_4_with_4(int i, int j, int matrix[4][4])
 {
 	int	k;
-	
-	if (i % 2 == 0)
+
+	k = 0;
+	while (k < 4)
 	{
-		k = 0;
-		while (k < 4)
-		{
-			if (i == 0)
-				matrix[k][j] = k + 1;
-			else
-				matrix[j][k] = k + 1;
-			k++;
-		}
-	}
-	else
-	{
-		k = 3;
-		while (k >= 0)
-		{
-			if (i == 1)
-				matrix[k][j] = 4 - k;
-			else
-				matrix[j][k] = 4 - k;
-			k--;
-		}
+		if (i == 0)
+			matrix[k][j] = k + 1;
+		else if (i == 1)
+			matrix[k][j] = 4 - k;
+		else if (i == 2)
+			matrix[j][k] = k + 1;
+		else if (i == 3)
+			matrix[j][k] = 4 - k;
+		k++;
 	}
 }
 
@@ -76,7 +65,7 @@ void	fill_4_towers(int views[4][4], int matrix[4][4])
 	int	i;
 	int	j;
 	int	condition;
-	
+
 	condition = 1;
 	while (condition < 3)
 	{
@@ -98,5 +87,4 @@ void	fill_4_towers(int views[4][4], int matrix[4][4])
 		}
 		condition++;
 	}
-	fill_sudoku(matrix, 4);
 }

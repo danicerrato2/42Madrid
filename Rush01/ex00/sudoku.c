@@ -6,14 +6,14 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:05:53 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/03 13:21:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/05 08:52:07 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	find_number_in_row(int matrix[4][4], int row, int number)
 {
 	int	j;
-	
+
 	j = 0;
 	while (j < 4)
 	{
@@ -27,7 +27,7 @@ int	find_number_in_row(int matrix[4][4], int row, int number)
 int	find_number_in_column(int matrix[4][4], int column, int number)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < 4)
 	{
@@ -42,7 +42,7 @@ void	fill_sudoku(int matrix[4][4], int number)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < 4)
 	{
