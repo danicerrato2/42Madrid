@@ -8,7 +8,7 @@ void ft_putstr(char *str);
 void ft_putnbr(int nb);
 int ft_atoi(char *str);
 void ft_putnbr_base(int nbr, char *base);
-//int ft_atoi_base(char *str, char *base); 
+int ft_atoi_base(char *str, char *base); 
 
 int main(int argc, char *args[]){
 
@@ -51,6 +51,8 @@ int main(int argc, char *args[]){
 			write(1, "\n", 1);
 			break;
 		case 5:
+			printf("Valor esperado 11192 (%d)\n", ft_atoi_base("CODIGO", "0CODIG"));
+			printf("Valor esperado -1614142 (%d)\n", ft_atoi_base("  ---+--CORRECTO", "0TEROC"));
 			break;
 		case 6:
 			break;
