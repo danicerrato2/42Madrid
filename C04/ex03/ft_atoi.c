@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 11:02:47 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/05 12:20:15 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:23:09 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_atoi(char *str)
 	int	signo;
 
 	i = 0;
-	while (str[i] == ' ')
+	while ((str[i] > 8 && str[i] < 14) || str[i] == ' ')
 		i++;
 	signo = 1;
 	while (str[i] == '-' || str[i] == '+')

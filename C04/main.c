@@ -34,20 +34,18 @@ int main(int argc, char *args[]){
 		   	write(1, "\n", 1);
 			break;
 		case 3:
-			printf("Salida esperada -51234 (%d)\n", ft_atoi("---+--+051234bn3"));
+			printf("Salida esperada -51234 (%d)\n", ft_atoi("  \t\v\n---+--+051234bn3"));
 			break;
 		case 4:
 			ft_putnbr_base(11192, "0CODIG");
 			write(1, "\n", 1);
 			ft_putnbr_base(1614142, "0TEROC");
 			write(1, "\n", 1);
-			ft_putnbr_base(2147483647, "0123456789ABCEDF");
+			ft_putnbr_base(-2147483647, "0123456789");
 			write(1, "\n", 1);
 			ft_putnbr_base(-2147483648, "0123456789ABCEDF");
             write(1, "\n", 1);
-			ft_putnbr_base(-1, "0123456789ABCEDF");
-			write(1, "\n", 1);
-			ft_putnbr_base(-1, "01");
+			ft_putnbr_base(-42, "01");
 			write(1, "\n", 1);
 			break;
 		case 5:

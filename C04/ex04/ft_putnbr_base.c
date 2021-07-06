@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 13:01:49 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/05 14:28:20 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:43:33 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,14 @@ void	ft_putnbr_base(int nbr, char *base)
 	if (num_base == -1)
 		return ;
 	if (nbr < 0)
-		unbr = 4294967296 + nbr;
+	{
+		write(1, "-", 1);
+		unbr = (-1) * nbr;
+	}
 	else
 		unbr = nbr;
 	i = 0;
-	while (unbr > (unsigned int) num_base)
+	while (unbr >= (unsigned int) num_base)
 	{
 		number[i] = unbr % num_base;
 		unbr /= num_base;
