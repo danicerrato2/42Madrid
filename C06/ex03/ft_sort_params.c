@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:24:40 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/06 18:43:03 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/07 14:13:52 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	int		j;
 	char	*aux;
 
-	if (argc > 2)
+	if (argc >= 2)
 	{
 		i = argc - 1;
 		while (i >= 1)
