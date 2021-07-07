@@ -11,7 +11,7 @@ int ft_fibonacci(int index);
 int ft_sqrt(int nb);
 int ft_is_prime(int nb);
 int ft_find_next_prime(int nb);
-//int ft_ten_queens_puzzle(void);
+int ft_ten_queens_puzzle(void);
 
 int main(int argc, char *args[]){
 
@@ -77,6 +77,7 @@ int main(int argc, char *args[]){
 			printf("Salida esperada 97 (%d)\n", ft_find_next_prime(91));
 			break;
 		case 8:
+			printf("Solucion esperada 724 (%d)\n", ft_ten_queens_puzzle());
 			break;
 		case 9:
 			break;
