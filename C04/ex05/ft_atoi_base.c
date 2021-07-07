@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 09:51:20 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/06 17:43:30 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/07 18:46:42 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	comprobar_base_atoi(char *base)
 	while (base[i] != '\0')
 	{
 		if (base[i] == '+' || base[i] == '-')
+			return (-1);
+		else if ((base[i] > 8 && base[i] < 14) || base[i] == ' ')
 			return (-1);
 		j = i - 1;
 		while (j >= 0)
@@ -87,5 +89,5 @@ int	ft_atoi_base(char *str, char *base)
 		i++;
 	}
 	number = calculate_number(base, str + i, num_base);
-	return (number *= signo);
+	return (number * signo);
 }
