@@ -60,6 +60,7 @@ int main(int argc, char *args[]){
 			printf("Salida esperada 1 (%d)\n", ft_sqrt(1));
 			printf("Salida esperada 12 (%d)\n", ft_sqrt(144));
 			printf("Salida esperada 0 (%d)\n", ft_sqrt(120));
+			printf("Salida esperada 0 (%d)\n", ft_sqrt(2147483647));
 			break;
 		case 6:
 			printf("Salida esperada 0 (%d)\n", ft_is_prime(-3));
@@ -67,6 +68,7 @@ int main(int argc, char *args[]){
 			printf("Salida esperada 0 (%d)\n", ft_is_prime(1));
 			printf("Salida esperada 1 (%d)\n", ft_is_prime(97));
 			printf("Salida esperada 0 (%d)\n", ft_is_prime(91));
+			printf("Salida esperada 1 (%d)\n", ft_is_prime(2147483647));
 			break;
 		case 7:
 			printf("Salida esperada 2 (%d)\n", ft_find_next_prime(-3));
@@ -75,6 +77,7 @@ int main(int argc, char *args[]){
 			printf("Salida esperada 2 (%d)\n", ft_find_next_prime(2));
 			printf("Salida esperada 5 (%d)\n", ft_find_next_prime(4));
 			printf("Salida esperada 97 (%d)\n", ft_find_next_prime(91));
+			printf("Salida esperada 21474836487 (%d)\n", ft_find_next_prime(2147483647));
 			break;
 		case 8:
 			printf("Solucion esperada 724 (%d)\n", ft_ten_queens_puzzle());

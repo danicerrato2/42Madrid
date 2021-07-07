@@ -6,22 +6,27 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:59:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/06 14:22:41 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/07 20:03:31 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int	ft_sqrt(int nb)
 {
-	int	i;
+	double	sqrt;
+	double	temp;
 
 	if (nb < 0)
 		return (-1);
-	i = 0;
-	while (i * i <= nb)
+	sqrt = nb / 2.0;
+	temp = 0;
+	while (sqrt != temp)
 	{
-		if (i * i == nb)
-			return (i);
-		i++;
+		temp = sqrt;
+		sqrt = (nb / temp + temp) / 2.0;
 	}
+	if (sqrt - (int)sqrt == 0.0)
+		return (sqrt);
 	return (0);
 }
