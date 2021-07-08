@@ -6,11 +6,12 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:41:20 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/08 15:11:38 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/08 17:55:20 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int	comprobar_base(char *base)
 {
@@ -73,9 +74,10 @@ int	calculate_number(char *base, char *str, int num_base)
 char	*ft_put_in_base(int nbr, char *base, int num_base)
 {
 	unsigned int	unbr;
-	char			number[34];
 	int				i;
+	char			*number;
 
+	number = (char *)malloc(34 * sizeof(char));
 	i = 0;
 	if (nbr < 0)
 	{
@@ -90,7 +92,6 @@ char	*ft_put_in_base(int nbr, char *base, int num_base)
 		unbr /= num_base;
 		i++;
 	}
-	number[i] = '\0';
 	while (i-- >= 0 && number[i] != '-')
 	{
 		number[i] = base[(int)number[i]];
@@ -101,11 +102,11 @@ char	*ft_put_in_base(int nbr, char *base, int num_base)
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int	i;
-	int	sign;
-	int	nbase_from;
-	int	nbase_to;
-	int	number;
+	int		i;
+	int		sign;
+	int		nbase_from;
+	int		nbase_to;
+	int		number;
 
 	nbase_from = comprobar_base(base_from);
 	nbase_to = comprobar_base(base_to);

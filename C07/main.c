@@ -7,9 +7,8 @@ char *ft_strdup(char *src);
 int *ft_range(int min, int max);
 int ft_ultimate_range(int **range, int min, int max);
 char *ft_strjoin(int size, char **strs, char *sep);
-/*char *ft_convert_base(char *nbr, char *base_from, char *base_to);
-char **ft_split(char *str, char *charset);
-*/
+char *ft_convert_base(char *nbr, char *base_from, char *base_to);
+//char **ft_split(char *str, char *charset);
 
 int main(int argc, char *args[]){
 
@@ -78,6 +77,8 @@ int main(int argc, char *args[]){
 			printf("Salida esperada \"Hola - que - tal?\" (%s)\n", ft_strjoin(14, strs, " - "));
 			break;
 		case 4:
+			dest = ft_convert_base("-1101101", "01", "0123456789ABCDEF");
+			printf("Salida esperada \"6D\" (%s)\n", dest);
 			break;
 		case 5:
 			break;
