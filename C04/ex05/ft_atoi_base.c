@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 09:51:20 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/07 18:46:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/08 09:47:05 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	comprobar_base_atoi(char *base)
 	{
 		if (base[i] == '+' || base[i] == '-')
 			return (-1);
-		else if ((base[i] > 8 && base[i] < 14) || base[i] == ' ')
+		else if ((base[i] > 8 && base[i] < 14) || base[i] == ' ')
 			return (-1);
 		j = i - 1;
 		while (j >= 0)
