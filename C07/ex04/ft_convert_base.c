@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:41:20 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/08 17:55:20 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/09 14:37:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,48 @@ int	comprobar_base(char *base)
 	return (i);
 }
 
-int	is_in_base(char c, char *base)
-{
-	int	i;
-
-	i = 0;
-	while (base[i] != '\0')
-	{
-		if (c == base[i])
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 int	calculate_number(char *base, char *str, int num_base)
 {
 	int	number;
 	int	i;
-	int	value;
+	int	j;
+	int	flag;
 
 	number = 0;
 	i = 0;
-	value = is_in_base(str[i], base);
-	while (value != -1)
+	flag = 0;
+	while (flag == 0)
 	{
-		number = num_base * number + value;
+		j = 0;
+		while (base[j] != '\0' && j != -1)
+		{
+			if (str[i] == base[j])
+			{
+				number = num_base * number + j;
+				j = -2;
+			}
+			j++;
+		}
+		if (j != -1)
+			flag = 1;
 		i++;
-		value = is_in_base(str[i], base);
 	}
 	return (number);
+}
+
+void	reverse_number(char *number, int size)
+{
+	char	aux;
+	int		i;
+
+	i = 0;
+	while (i < size / 2)
+	{
+		aux = number[i];
+		number[i] = number[size - 1 - i];
+		number[size - 1 - i] = aux;
+		i++;
+	}
 }
 
 char	*ft_put_in_base(int nbr, char *base, int num_base)
@@ -76,27 +88,27 @@ char	*ft_put_in_base(int nbr, char *base, int num_base)
 	unsigned int	unbr;
 	int				i;
 	char			*number;
+	int				sign;
 
 	number = (char *)malloc(34 * sizeof(char));
-	i = 0;
+	sign = 1;
 	if (nbr < 0)
 	{
-		number[i++] = '-';
+		sign = 0;
 		unbr = (-1) * nbr;
 	}
 	else
 		unbr = nbr;
-	while (unbr >= 0)
+	i = 0;
+	while (unbr > (unsigned int)num_base)
 	{
-		number[i] = unbr % num_base;
+		number[i++] = base[unbr % num_base];
 		unbr /= num_base;
-		i++;
 	}
-	while (i-- >= 0 && number[i] != '-')
-	{
-		number[i] = base[(int)number[i]];
-		i--;
-	}
+	number[i++] = base[unbr];
+	if (sign == 0)
+		number[i++] = '-';
+	reverse_number(number, i);
 	return (number);
 }
 

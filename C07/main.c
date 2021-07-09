@@ -78,7 +78,11 @@ int main(int argc, char *args[]){
 			break;
 		case 4:
 			dest = ft_convert_base("-1101101", "01", "0123456789ABCDEF");
-			printf("Salida esperada \"6D\" (%s)\n", dest);
+			printf("Salida esperada \"-6D\" (%s)\n", dest);
+			dest = ft_convert_base("30", "0123456789abcdef", "0123456789");
+            printf("Salida esperada \"48\" (%s)\n", dest);
+			dest = ft_convert_base("0", "0123456789", "abcdef");
+			printf("Salida esperada \"a\" (%s)\n", dest);
 			break;
 		case 5:
 			break;
