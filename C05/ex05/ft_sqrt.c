@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:59:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/07 20:03:31 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/09 11:08:34 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_sqrt(int nb)
 	double	temp;
 
 	if (nb < 0)
-		return (-1);
+		return (0);
 	sqrt = nb / 2.0;
 	temp = 0;
 	while (sqrt != temp)

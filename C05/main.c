@@ -55,7 +55,7 @@ int main(int argc, char *args[]){
             printf("Salida esperada 55 (%d)\n", ft_fibonacci(10));
 			break;
 		case 5:
-			printf("Salida esperada -1 (%d)\n", ft_sqrt(-3));
+			printf("Salida esperada 0 (%d)\n", ft_sqrt(-3));
 			printf("Salida esperada 0 (%d)\n", ft_sqrt(0));
 			printf("Salida esperada 1 (%d)\n", ft_sqrt(1));
 			printf("Salida esperada 12 (%d)\n", ft_sqrt(144));
