@@ -1,7 +1,17 @@
-all: rush-02
+SRCS = rush_02.c string.c translate_number.c
+OBJS = ${SRCS: .c =.o}
+NAME = rush_02
+CC = cc
+rm = rm -f
+CFLAGS = -Wall -Wextra -Werror
 
-rush-02:
-	cc -Wall -Werror -Wextra -o rush-02 *.c
+${NAME}:
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
-fclean:
-	rm rush-02
+all: ${NAME}
+
+clean:	
+	rm ${OBJS}
+
+fclean: clean
+	${RM} ${NAME}

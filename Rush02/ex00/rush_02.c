@@ -6,55 +6,43 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:40:08 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/10 18:55:34 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/11 17:33:17 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
 #include <stdio.h>
 
-char	*translate_number(int num_size, char *num, char *dic);
-void	print_number(char *str);
-char	*concat(char *str, char last, int size);
-char	*read_line(int fd);
+#include "rush_02.h"
 
-char	*safe_word(char *line)
+struct s_dicc
 {
-	int		i;
-	char	*word;
+	char			*number_and_word[2];
+	struct s_dicc	*next;
+};
 
-	i = 0;
-	word = NULL;
-	while (line[i] != '\0')
+void	free_dictionary(struct s_dicc *entry)
+{
+	struct s_dicc	*aux;
+
+	while (entry->next != NULL)
 	{
-		if (line[i] < 32 || line[i] == 127)
-			return (NULL);
-		if (line[i] != ' ' || line[i - 1] != ' ')
-		{
-			size++;
-			concat(word, line[i], size);
-		}
-		i++;
+		aux = entry->next;
+		free(entry);
+		entry = aux;
 	}
-	return (word);
+	free(entry);
 }
 
-int	check_line(char	*line, t_dicc *entry)
+int	check_line(char *line, struct s_dicc *entry)
 {
-	int				i;
-	unsigned int	num;
-	char			*word;
+	int		i;
+	char	*key_and_value[2];
 
 	i = 0;
-	num = 0;
-	while (line[i] >= '0' && line[i] <= '9')
-	{
-		num = num * 10 + line[i] - '0';
-		i++;
-	}
-	if (i == 0)
+	if (line[0] == '\0')
+		return (0);
+	key_and_value[0] = safe_number(line, &i);
+	if (key_and_value[0] == NULL)
 		return (-1);
 	while (line[i] == ' ')
 		i++;
@@ -62,80 +50,79 @@ int	check_line(char	*line, t_dicc *entry)
 		return (-1);
 	while (line[i] == ' ')
 		i++;
-	word = safe_word(&line[i]);
-	if (word == NULL)
+	key_and_value[1] = safe_word(line, &i);
+	if (key_and_value[1] == NULL)
 		return (-1);
-	entry = malloc(sizeof(t_dicc));
-	entry->number = num;
-	entry->word = word;
+	entry->number_and_word[0] = key_and_value[0];
+	entry->number_and_word[1] = key_and_value[1];
+	entry->next = NULL;
 	return (0);
 }
 
-int	check_dictionary(char *dic)
+int	check_dictionary(char *dic, struct s_dicc *entry)
 {
-	int		fd;
-	char	*line;
-	int		num;
-	t_dicc	*entry;
+	int				fd;
+	char			*line;
+	struct s_dicc	*aux;
 
 	fd = open(dic, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	line = read_line(fd, entry);
-	while (line != NULL)
-	{	
-		line = read_line(fd, entry->next);
+	line = read_line(fd);
+	aux = entry;
+	while (line != NULL && check_line(line, aux) != -1)
+	{
+		if (line[0] != '\0')
+		{
+			free(line);
+			aux->next = malloc(sizeof(struct s_dicc));
+			aux = aux->next;
+		}
+		line = read_line(fd);
 	}
+	aux->next = NULL;
 	close(fd);
+	if (line == NULL)
+		return (0);
+	free(line);
 	return (-1);
 }
 
-int	check_number(char *str)
+void	checker(char *num_and_dicc[2], struct s_dicc *entry)
 {
-	int			i;
-	long long	number;
+	int	num_size;
 
-	if (str == NULL)
-		return (-1);
-	i = 0;
-	number = 0;
-	while (str[i] != '\0')
+	if (check_number(num_and_dicc[0], &num_size) != -1)
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (-1);
-		number = number * 10 + str[i] - '0';
-		if (number > 4294967295)
-			return (-1);
-		i++;
+		if (check_dictionary(num_and_dicc[1], entry) != -1)
+		{
+			print_number(translate_number(num_size, num_and_dicc[0], entry));
+			return ;
+		}
+		else
+			write (1, "Dict ", 5);
 	}
-	return (i);
+	write(1, "Error\n", 6);
 }
 
 int	main(int argc, char *args[])
 {
-	int		num_size;
-	char	*number;
-	char	*dicc;
+	char			*num_and_dicc[2];
+	struct s_dicc	*entry;
 
-	number = NULL;
+	num_and_dicc[0] = NULL;
 	if (argc == 2)
 	{
-		number = args[1];
-		dicc = "numbers.dict";
+		num_and_dicc[0] = args[1];
+		num_and_dicc[1] = "numbers.dict";
 	}
 	else if (argc == 3)
 	{
-		dicc = args[1];
-		number = args[2];
+		num_and_dicc[0] = args[2];
+		num_and_dicc[1] = args[1];
 	}
-	num_size = check_number(number);
-	if (num_size == -1)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-	if (check_dictionary(dicc) != -1)
-		print_number(translate_number(num_size, number, dicc));
-	else
-		write (1, "Dict Error\n", 11);
+	entry = malloc(sizeof(struct s_dicc));
+	entry->next = NULL;
+	checker(num_and_dicc, entry);
+	free_dictionary(entry);
 }
