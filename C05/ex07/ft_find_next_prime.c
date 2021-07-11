@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:50:09 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/07 20:11:25 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/11 12:49:23 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_prime(int nb)
 		return (0);
 	sqrt = get_sqrt_prime(nb);
 	i = 2;
-	while (i < sqrt)
+	while (i <= sqrt)
 	{
 		if (nb % i == 0)
 			return (0);
