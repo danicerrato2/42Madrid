@@ -1,14 +1,15 @@
-SRCS = rush_02.c string.c translate_number.c
-OBJS = ${SRCS: .c =.o}
-NAME = rush_02
+SRCS = rush_02.c string.c translate_number.c search.c
+OBJS = ${SRCS:.c=.o}
+NAME = rush-02
 CC = cc
 rm = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-${NAME}:
-	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-all: ${NAME}
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
 clean:	
 	rm ${OBJS}

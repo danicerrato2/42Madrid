@@ -6,19 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 10:40:08 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/11 17:33:17 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/11 21:11:35 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "rush_02.h"
-
-struct s_dicc
-{
-	char			*number_and_word[2];
-	struct s_dicc	*next;
-};
 
 void	free_dictionary(struct s_dicc *entry)
 {
