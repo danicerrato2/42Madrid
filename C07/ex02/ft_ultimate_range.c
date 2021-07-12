@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 19:41:05 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/08 11:08:22 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/12 17:43:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_ultimate_range(int **range, int min, int max)
 
 	if (min >= max)
 	{
-		range = NULL;
+		*range = 0;
 		return (0);
 	}
 	new_range = (int *)malloc((max - min) * sizeof(int));
