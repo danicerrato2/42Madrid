@@ -1,4 +1,4 @@
-SRCS = main.c init_board.c manage_file.c
+SRCS = main.c init_board.c manage_file.c handle_board.c resolve_table.c
 OBJS = ${SRCS:.c=.o}
 NAME = bsq
 CC = cc

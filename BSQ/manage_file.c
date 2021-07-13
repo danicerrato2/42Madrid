@@ -6,11 +6,11 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:10:27 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/12 20:19:36 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:10:11 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "board.h"
+#include "bsq.h"
 
 int	fill_board(int fd, char *board)
 {
@@ -40,8 +40,9 @@ int	open_file(char *file, t_b *table)
 	if (fd < 0)
 		return (print_map_error());
 	sz = fill_board(fd, board);
-	table->board = init_board(board);
+	table->file_c = board;
+	table->board = init_board(board, table);
 	if (sz <= 0 || close(fd) < 0)
 		return (print_map_error());
-	return (1);
+	return (0);
 }

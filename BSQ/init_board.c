@@ -6,11 +6,11 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 16:16:58 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/12 20:01:18 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/13 15:19:06 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "board.h"
+#include "bsq.h"
 
 int	calculate_lines(char *board)
 {
@@ -63,25 +63,36 @@ char	*board_line(char *board, int c, int nc)
 	return (line);
 }
 
-char	**init_board(char *board)
+void	read_first_line(char *board, t_b *table)
+{
+	int	i;
+
+	i = 0;
+	while (board[i] != '\n')
+		i++;
+	table->filled = board[i - 1];
+	table->block = board[i - 2];
+	table->empty = board[i - 3];
+}
+
+char	**init_board(char *board, t_b *table)
 {
 	int		i;
-	int		l;
-	int		c;
 	int		r;
 	char	**bi_board;
 
 	i = 0;
 	r = 0;
-	l = calculate_lines(board);
-	c = calculate_columns(board);
-	bi_board = (char **)malloc(sizeof(char **) * l);
+	read_first_line(board, table);
+	table->rows = calculate_lines(board);
+	table->columns = calculate_columns(board);
+	bi_board = (char **)malloc(sizeof(char **) * table->rows);
 	if (bi_board == NULL)
 		return (NULL);
-	while (i < l)
+	while (i < table->rows)
 	{
-		bi_board[i] = board_line(board, r, c);
-		r += c + 1;
+		bi_board[i] = board_line(board, r, table->columns);
+		r += table->columns + 1;
 		i++;
 	}
 	return (bi_board);
