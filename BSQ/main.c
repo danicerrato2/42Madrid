@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:03:39 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/13 20:01:01 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:47:08 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	t_b	table;
+	t_s winner;
 
 	i = 1;
 	while (i < argc)
 	{
 		if (open_file(argv[i], &table) == 0 && handle_board(&table) == 0)
 		{
-			resolve_table(&table);
+			resolve_table(&table, &winner);
+			put_winner_in_table(&table, &winner);
 			print_table(&table);
 		}
 		i++;
