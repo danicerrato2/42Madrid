@@ -75,7 +75,8 @@ int main(int argc, char *args[]){
                 printf("Range nulo incorrecto\n");
 			break;
 		case 3:
-			printf("Salida esperada \"Hola - que - tal?\" (%s)\n", ft_strjoin(14, strs, " - "));
+			printf("Salida esperada \"Hola - que - tal?\" (%s)\n", ft_strjoin(3, strs, " - "));
+			printf("Salida esperada \"Holaquetal?\" (%s)\n", ft_strjoin(3, strs, ""));
 			break;
 		case 4:
 			dest = ft_convert_base("-1101101", "01", "0123456789ABCDEF");
