@@ -6,21 +6,43 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:10:27 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/14 17:15:22 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 18:55:34 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-int	fill_board(int fd, char *board)
+void	concat(char *dest, char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+}
+
+char	*fill_board(int fd)
 {
 	int		sz;
+	char	*board;
 
+	board = (char *)malloc(sizeof(char) * 1000);
 	sz = read(fd, board, 1000);
 	if (sz == 0)
-		return (print_map_error());
+	{
+		print_map_error();
+		return (NULL);
+	}
 	board[sz] = '\0';
-	return (sz);
+	return (board);
 }
 
 int	print_map_error(void)
@@ -32,17 +54,17 @@ int	print_map_error(void)
 int	open_file(char *file, t_b *table)
 {
 	int		fd;
-	int		sz;
 	char	*board;
 
-	board = (char *)malloc(sizeof(char) * 1000);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (print_map_error());
-	sz = fill_board(fd, board);
+	board = fill_board(fd);
+	if (board == NULL)
+		return (print_map_error());
 	table->file_c = board;
 	table->board = init_board(board, table);
-	if (sz <= 0 || close(fd) < 0)
+	if (close(fd) < 0 || table->board == NULL)
 		return (print_map_error());
 	return (0);
 }

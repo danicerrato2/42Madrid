@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 11:46:56 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/14 16:27:14 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 19:20:30 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,21 @@ int	check_lines(char *board)
 	return (0);
 }
 
+int	check_board_caracters(char *board, t_b *table)
+{
+	int	i;
+
+	i = 0;
+	while (board[i] != '\0')
+	{
+		if (board[i] != table->block && board[i] != table->empty && \
+				board[i] != '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	handle_board(t_b *table)
 {
 	int		i;
@@ -87,5 +102,8 @@ int	handle_board(t_b *table)
 	error = check_repeated_chars_and_non_print(table->file_c, table);
 	table->file_c = ignore_first_line(table->file_c);
 	error = error || check_lines(table->file_c);
-	return (error);
+	error = error || check_board_caracters(table->file_c, table);
+	if (error == 1)
+		return (print_map_error());
+	return (0);
 }
