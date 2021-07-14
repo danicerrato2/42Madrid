@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:03:39 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/14 19:22:31 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 20:04:18 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	no_arguments(t_b *table)
 	char	buffer[1000];
 	char	board[1000];
 
-	while (read(0, buffer, 1000) && buffer[0] != '\n')
+	while (read(0, buffer, 1000))
 		concat(board, buffer);
 	if (board[0] == '\0')
 	{
