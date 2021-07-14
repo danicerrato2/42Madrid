@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:03:39 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/13 20:47:08 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:28:28 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,30 @@
 
 void	print_table(t_b *table)
 {
-	printf("Rows = %d, Columns = %d\n", table->rows, table->columns);
-	printf("Empty = %c, Block = %c, Filled = %c\n", table->empty, table->block, table->filled);
-	for (int i = 0; i < table->rows; i++)
-		printf("%s", table->board[i]);
+	int	i;
+
+	i = 0;
+	while (i < table->rows)
+	{
+		write(1, table->board[i], table->columns + 1);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	int	i;
 	t_b	table;
-	t_s winner;
+	t_s	winner;
 
 	i = 1;
 	while (i < argc)
 	{
 		if (open_file(argv[i], &table) == 0 && handle_board(&table) == 0)
 		{
+			winner.size = 0;
+			winner.col = 1000000000;
+			winner.row = 1000000000;
 			resolve_table(&table, &winner);
 			put_winner_in_table(&table, &winner);
 			print_table(&table);

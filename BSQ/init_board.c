@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 16:16:58 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/13 15:19:06 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:05:30 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,20 @@ char	*board_line(char *board, int c, int nc)
 	char	*line;
 
 	x = 0;
-	line = (char *)malloc(sizeof(char) * nc);
+	line = (char *)malloc(sizeof(char) * (nc + 1));
 	if (line == NULL)
 		return (NULL);
 	while (*board != '\n')
 		board++;
 	board++;
-	while (board[c] != '\n')
+	while (board[c] != '\n' && board[c] != '\0')
 	{
 		line[x] = board[c];
 		x++;
 		c++;
 	}
-	line[x] = '\n';
+	line[x++] = '\n';
+	line[x] = '\0';
 	return (line);
 }
 

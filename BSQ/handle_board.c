@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 11:46:56 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/13 19:41:40 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:27:14 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,6 @@ int	check_lines(char *board)
 	return (0);
 }
 
-/*int	are_correct_chars(char *board, t_b *table)
-{
-	int		i;
-	int		one_empty;
-	int		are_ok;
-
-	i = 0;
-	one_empty = 1;
-	are_ok = 1;
-	while (board[i] != '\0' && are_ok == 1)
-	{
-		if (board[i] != table->empty || board[i] != '\n')
-		i++;
-	}
-	return (1);
-}*/
-
 int	handle_board(t_b *table)
 {
 	int		i;
@@ -102,13 +85,7 @@ int	handle_board(t_b *table)
 
 	i = 0;
 	error = check_repeated_chars_and_non_print(table->file_c, table);
-	//printf("ERR1: %d\n", error);
 	table->file_c = ignore_first_line(table->file_c);
 	error = error || check_lines(table->file_c);
-	//printf("ERR2: %d\n", error);
-	/*printf("CHECK: %d\n", error);*/
-	//error = error || are_correct_chars(board, table);
-	//printf("ERROR: %d\n", error);
-	//printf("%s", board);
 	return (error);
 }
