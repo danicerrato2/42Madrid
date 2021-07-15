@@ -77,6 +77,7 @@ int main(int argc, char *args[]){
 		case 3:
 			printf("Salida esperada \"Hola - que - tal?\" (%s)\n", ft_strjoin(3, strs, " - "));
 			printf("Salida esperada \"Holaquetal?\" (%s)\n", ft_strjoin(3, strs, ""));
+			printf("Salida esperada \"Hola - que - tal?\" (%s)\n", ft_strjoin(0, NULL, " - "));
 			break;
 		case 4:
 			dest = ft_convert_base("-1101101", "01", "0123456789ABCDEF");
@@ -84,6 +85,8 @@ int main(int argc, char *args[]){
 			dest = ft_convert_base("30", "0123456789abcdef", "0123456789");
             printf("Salida esperada \"48\" (%s)\n", dest);
 			dest = ft_convert_base("0", "0123456789", "abcdef");
+			printf("Salida esperada \"a\" (%s)\n", dest);
+			dest = ft_convert_base("0234a5", "0123456789", "0123456789");
 			printf("Salida esperada \"a\" (%s)\n", dest);
 			break;
 		case 5:

@@ -11,8 +11,5 @@ int main(int argc, char *argv[])
 	if (argc < 2)
 		return (-1);
 	tabla = ft_strs_to_tab(argc - 1, &argv[1]);
-	tabla[0].size = 8;
-	tabla[3].str = "hola";
-	tabla[2].copy = "pepe";
 	ft_show_tab(tabla);
 }
