@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 19:21:55 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/14 19:21:34 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 20:51:04 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_board
 {
@@ -47,5 +48,6 @@ int		check_size(int row, int size, t_b *table);
 void	check_distance(int row, int col, int size, t_s *winner);
 int		check_position(int row, int col, int col_ini, t_b *table);
 void	concat(char *dest, char *src);
+int		check_first_line(char *board);
 
 #endif

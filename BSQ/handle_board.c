@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 11:46:56 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/14 20:07:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/15 10:16:48 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,25 @@ int	check_lines(char *board)
 	int		sl;
 	int		i;
 	int		c;
+	int		x;
 
 	sl = 0;
 	c = 0;
 	i = 0;
-	while (*board != '\n')
+	while (board[i] != '\n')
 	{
-		board++;
+		i++;
 		sl++;
 	}
-	sl++;
-	board++;
-	while (*board != '\0')
+	x = i + 1;
+	while (board[x] != '\0')
 	{
-		if (*board == '\n')
-			if (c + 1 != sl)
-				return (1);
+		if (board[x] == '\n' && c != sl)
+			return (1);
 		c++;
-		if (*board == '\n')
+		if (board[x] == '\n')
 			c = 0;
-		board++;
+		x++;
 	}
 	return (0);
 }
@@ -100,6 +99,7 @@ int	handle_board(t_b *table)
 
 	i = 0;
 	error = check_repeated_chars_and_non_print(table->file_c, table);
+	error = error || check_first_line(table->file_c);
 	table->file_c = ignore_first_line(table->file_c);
 	error = error || check_lines(table->file_c);
 	error = error || check_board_caracters(table->file_c, table);

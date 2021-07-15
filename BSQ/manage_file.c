@@ -6,7 +6,7 @@
 /*   By: goliano- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 10:10:27 by goliano-          #+#    #+#             */
-/*   Updated: 2021/07/14 18:55:34 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/14 20:52:50 by goliano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*fill_board(int fd)
 	int		sz;
 	char	*board;
 
-	board = (char *)malloc(sizeof(char) * 1000);
-	sz = read(fd, board, 1000);
+	board = (char *)malloc(sizeof(char) * 100000000);
+	sz = read(fd, board, 100000000);
 	if (sz == 0)
 	{
 		print_map_error();
