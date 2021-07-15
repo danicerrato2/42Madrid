@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:24:40 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/07/07 14:13:52 by dcerrato         ###   ########.fr       */
+/*   Updated: 2021/07/15 19:23:06 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char *argv[])
 		i = argc - 1;
 		while (i >= 1)
 		{
-			j = 0;
+			j = 1;
 			while (j < i)
 			{
 				if (cmp(argv[j], argv[j + 1]) > 0)
