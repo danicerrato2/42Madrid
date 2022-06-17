@@ -8,7 +8,7 @@ sin funciones auxiliares:
     -memset
     -bzero
     -memcpy
-    memmove
+    -memmove
     -strlcpy
     -strlcat
     -toupper

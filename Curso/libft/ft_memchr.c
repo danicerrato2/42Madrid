@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 14:08:49 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 16:11:50 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/17 16:05:29 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/17 16:19:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
+void	*ft_memchr(const void *str, int c, size_t len)
 {
-	int	i;
-
-	i = 0;
-	while (str + i != NULL)
-	{
-		if (str[i] == c)
-			return ((char*)str + i);
-		i++;
-	}
-	return (NULL);
+	if (str == NULL || len == 0)
+		return (str);
+	return NULL;
 }

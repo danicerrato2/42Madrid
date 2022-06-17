@@ -6,16 +6,15 @@ void *ft_memmove(void *dst, const void *src,  size_t len)
 	int i = 0;
 	char buff[len];
 
-	while (i < len)
+	while (i < len && src + i > dst)
 	{
-		buff[i] = ((char *)src)[i];
+		((char *)dst)[i] = ((char *)src)[i];
 		i++;
 	}
-	i = 0;
-	while (i < len)
+	while (i < len && src + i < dst + len)
 	{
-		((char *)dst)[i] = buff[i];
-		i++;
+		((char *)dst)[len - 1] = ((char *)src)[len - 1];
+		len--;
 	}
 
 	return (dst);
@@ -23,17 +22,17 @@ void *ft_memmove(void *dst, const void *src,  size_t len)
 
 int main()
 {
-	char *str = NULL;
-	int len = -1;
+	char str[] = "0123456789";
+	char src[] = "0123456789";
+	int len = 5;
 
 	printf("%s\n", str);
-	memmove(str, str+5, len);
+	memmove(str+5, str+3, len);
 	printf("%s\n", str);
 
-	strcpy(str, "Holayadios");
-	printf("%s\n", str);
-	ft_memmove(str+5, str, len);
-	printf("%s\n", str);
+	printf("%s\n", src);
+	memmove(src+5, src+3, len);
+	printf("%s\n", src);
 
 	return 0;
 }
