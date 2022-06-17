@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 11:25:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 13:53:12 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/17 14:08:49 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/17 14:22:52 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *str, int c, size_t len)
+char	*ft_strchr(const char *str, int c)
 {
-	int	i;
+	int i;
 
-	if (str == NULL)
-		return (str);
 	i = 0;
-	while (i < len)
+	while (str+i != NULL)
 	{
-		((char *)str)[i] = c;
+		if (str[i] == c)
+			return (str+i);
 		i++;
 	}
-	return (str);
+	return (NULL);
 }

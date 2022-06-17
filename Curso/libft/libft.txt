@@ -11,9 +11,9 @@ sin funciones auxiliares:
     memmove
     -strlcpy
     -strlcat
-    toupper
-    tolower
-    strchr
+    -toupper
+    -tolower
+    -strchr
     -strncmp
     memchr
     memcmp

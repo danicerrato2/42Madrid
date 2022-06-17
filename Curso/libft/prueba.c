@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 
-void *ft_memcpy(void *dst, const void *src,  size_t len)
+void *ft_memmove(void *dst, const void *src,  size_t len)
 {
 	int i = 0;
-	while (i != len)
+	char buff[len];
+
+	while (i < len)
 	{
-		((char *)dst)[i] = ((char *)src)[i];
+		buff[i] = ((char *)src)[i];
+		i++;
+	}
+	i = 0;
+	while (i < len)
+	{
+		((char *)dst)[i] = buff[i];
 		i++;
 	}
 
@@ -15,23 +23,17 @@ void *ft_memcpy(void *dst, const void *src,  size_t len)
 
 int main()
 {
-	char str[10];
-	char dst[10];
-	int len = 10;
+	char *str = NULL;
+	int len = -1;
 
-	memset(str, 'a', 10);
-	memcpy(str, str, len);
-	if (str[9] == 'a')
-		printf("Correcto\n");
-	else
-		printf("Incorrecto\n");
+	printf("%s\n", str);
+	memmove(str, str+5, len);
+	printf("%s\n", str);
 
-	memset(str, 'a', 10);
-	ft_memcpy(str, str, len);
-	if (str[9] == 'a')
-		printf("Correcto\n");
-	else
-		printf("Incorrecto\n");
+	strcpy(str, "Holayadios");
+	printf("%s\n", str);
+	ft_memmove(str+5, str, len);
+	printf("%s\n", str);
 
 	return 0;
 }

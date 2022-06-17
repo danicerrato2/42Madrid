@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 11:25:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 13:53:12 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/17 14:02:24 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/17 14:07:48 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *str, int c, size_t len)
+int	ft_toupper(int c)
 {
-	int	i;
-
-	if (str == NULL)
-		return (str);
-	i = 0;
-	while (i < len)
-	{
-		((char *)str)[i] = c;
-		i++;
-	}
-	return (str);
+	if (c >= 'a' && c <= 'z')
+		c += 'A' - 'a';
+	return (c);
 }

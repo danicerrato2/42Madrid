@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:03:44 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 12:20:51 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:53:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@ void	bzero(void *str, size_t len)
 {
 	int	i;
 
+	if (str == NULL)
+		return (str);
 	i = 0;
-	while (i != len)
+	while (i < len)
 	{
 		((char *)str)[i] = 0;
 		i++;

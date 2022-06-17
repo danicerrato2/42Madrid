@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 11:25:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 13:53:12 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/17 14:06:27 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/17 14:07:59 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *str, int c, size_t len)
+int	ft_tolower(int c)
 {
-	int	i;
-
-	if (str == NULL)
-		return (str);
-	i = 0;
-	while (i < len)
-	{
-		((char *)str)[i] = c;
-		i++;
-	}
-	return (str);
+	if (c >= 'A' && c <= 'Z')
+		c += 'a' - 'A';
+	return (c);
 }
