@@ -1,40 +1,42 @@
 #include <stdio.h>
 #include <string.h>
+#include <xlocale.h>
 
-
-
-void *ft_memmove(void *dst, const void *src,  size_t len)
+char *ft_strnstr(const char *str, const char *sub, size_t n)
 {
-	int i = 0;
-	char buff[len];
+    int i = 0, j;
 
-	while (i < len && src + i > dst)
-	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
-	}
-	while (i < len && src + i < dst + len)
-	{
-		((char *)dst)[len - 1] = ((char *)src)[len - 1];
-		len--;
-	}
-
-	return (dst);
+	if (str == NULL || sub == NULL || n <= 0)
+        return ((char *)str);
+    while (str + i != NULL && i < n){
+        j = 0;
+        while (str[i + j] == sub[j]){
+			printf("Hola\n");
+            if (sub + j + 1 == NULL)
+			{
+				printf("Encontrado: %s\n", (char *)str + i);
+                return (char *)str + i;
+			}
+            j++;
+        }
+        i++;
+    }
+    return NULL;
 }
 
 int main()
 {
-	char str[] = "0123456789";
-	char src[] = "0123456789";
-	int len = 5;
+    char str[] = "abcdefghij";
+    char sub[] = "efgh";
+    int n = 10;
 
-	printf("%s\n", str);
-	memmove(str+5, str+3, len);
-	printf("%s\n", str);
+	printf("%s\n", strnstr(str, sub, n));
+	printf("%s\n", ft_strnstr(str, sub, n));
 
-	printf("%s\n", src);
-	memmove(src+5, src+3, len);
-	printf("%s\n", src);
+    if (strnstr(str, sub, n) == ft_strnstr(str, sub, n))
+        printf("Correcto\n");
+    else
+        printf("Incorrecto\n");
 
-	return 0;
+    return 0;
 }

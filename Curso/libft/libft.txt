@@ -15,8 +15,8 @@ sin funciones auxiliares:
     -tolower
     -strchr
     -strncmp
-    memchr
-    memcmp
+    -memchr
+    -memcmp
     strnstr
     -atoi
 
