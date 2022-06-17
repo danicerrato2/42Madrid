@@ -1,0 +1,49 @@
+sin funciones auxiliares:
+    -isalpha
+    -isdigit
+    -isalnum
+    -isascii
+    -isprint
+    -strlen
+    -memset
+    -bzero
+    -memcpy
+    memmove
+    -strlcpy
+    -strlcat
+    toupper
+    tolower
+    strchr
+    -strncmp
+    memchr
+    memcmp
+    strnstr
+    -atoi
+
+con malloc():
+    calloc
+    -strdup
+
+adicionales:
+    substr
+    -strjoin
+    strtrim
+    -split
+    itoa
+    strmapi
+    striteri
+    putchar_fd
+    putstr_fd
+    putendl_fd
+    putnbr_fd
+
+bonus:
+    lstnew
+    lstadd_front
+    lstsize
+    lstlast
+    lstadd_back
+    lstdelone
+    lstclear
+    lstiter
+    lstmap
