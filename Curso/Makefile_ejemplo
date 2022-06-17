@@ -1,0 +1,22 @@
+SRCS = archivo.c
+OBJS = ${SRCS:.c=.o}
+NAME = archivo
+CC = cc
+rm = rm -f
+CFLAGS = -Wall -Wextra -Werror
+
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+
+bonus:
+
+clean:	
+	${RM} ${OBJS}
+
+fclean: clean
+	${RM} ${NAME}
+
+re: fclean all
