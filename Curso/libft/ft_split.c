@@ -5,30 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 09:53:35 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 16:00:01 by dcerrato         ###   ########.fr       */
+/*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/20 19:44:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_charset(char c, char *charset)
+void free_all(char **strs)
 {
 	int	i;
 
 	i = 0;
-	while (charset[i] != '\0')
-	{
-		if (charset[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+	while (strs[i] != NULL)
+		free(strs[i]);
+	free(strs);
 }
 
-void	copy_str(char *dest, char *src, size_t size)
+void	copy_str(char *dest, char *src, int size)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -39,52 +35,70 @@ void	copy_str(char *dest, char *src, size_t size)
 	dest[i] = '\0';
 }
 
-char	**new_split(char **strings, char *str, int size, int *g_num_strs)
+int	num_words(char *str, char c)
 {
-	char	**new;
-	int		i;
+	int	words;
+	int	i;
 
-	if (size == 0)
-		return (strings);
-	(*g_num_strs)++;
-	new = (char **)malloc((*g_num_strs + 1) * sizeof(char *));
-	if (new == NULL)
-		return (strings);
 	i = 0;
-	while (i < *g_num_strs - 1)
+	words = 0;
+	while (str[i])
 	{
-		new[i] = strings[i];
-		i++;
+		while (str[i] == c && str[i])
+			i++;
+		if (!str[i])
+			break ;
+		while (str[i] != c && str[i])
+			i++;
+		words++;
 	}
-	new[i] = (char *)malloc((size + 1) * sizeof(char));
-	if (new[i] == NULL)
-		return (strings);
-	copy_str(new[i], str, size);
-	new[i + 1] = "\0";
-	return (new);
+	return (words);
 }
 
+int	split_words(char **strings, char *str, char c)
+{
+	int	i;
+	int	num_word;
+	int	ini_word;
+
+	num_word = 0;
+	i = -1;
+	while (str[++i])
+	{
+		while (str[i] == c && str[i])
+			i++;
+		ini_word = i;
+		while (str[i] != c && str[i])
+			i++;
+		strings[num_word] = (char *)malloc((i - ini_word + 1) * sizeof(char));
+		if (strings[num_word] == NULL)
+			return (0);
+		copy_str(strings[num_word], &str[ini_word], i - ini_word);
+		if (ft_strncmp(strings[num_word], "", -1) == 0)
+			free(strings[num_word]);
+		if (str[i] == '\0')
+			break ;
+		num_word++;
+	}
+	return (1);
+}
+#include <stdio.h>
 char	**ft_split(const char *str, char c)
 {
 	char	**strings;
-	int		from;
-	int		to;
-	int		g_num_strs;
+	char	*aux;
+	int		words;
 
-	strings = (char **)malloc(sizeof(char *));
-	strings[0] = "\0";
-	to = 0;
-	from = 0;
-	g_num_strs = 0;
-	while (str[to] != '\0')
+	aux = (char *)str;
+	words = num_words(aux, c);
+	strings = (char **)malloc((words + 1) * sizeof(char *));
+	if (strings == NULL)
+		return (NULL);
+	if (split_words(strings, aux, c) == 0)
 	{
-		if (is_charset(str[to], charset) == 1)
-		{
-			strings = new_split(strings, &str[from], to - from, &g_num_strs);
-			from = to + 1;
-		}
-		to++;
+		free_all(strings);
+		return (NULL);
 	}
-	strings = new_split(strings, &str[from], to - from, &g_num_strs);
+	strings[words] = 0;
 	return (strings);
 }

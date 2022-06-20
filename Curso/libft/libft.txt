@@ -14,6 +14,7 @@ sin funciones auxiliares:
     -toupper
     -tolower
     -strchr
+	-strrchr
     -strncmp
     -memchr
     -memcmp
@@ -25,10 +26,10 @@ con malloc():
     -strdup
 
 adicionales:
-    substr
+    -substr
     -strjoin
     strtrim
-    split
+    -split
     itoa
     strmapi
     striteri
