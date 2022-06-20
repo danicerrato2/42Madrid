@@ -6,13 +6,15 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 11:25:32 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 13:53:12 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:17:45 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	*ft_memset(void *str, int c, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	if (str == NULL)
 		return (str);

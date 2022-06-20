@@ -6,21 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:52:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 09:52:32 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:06:11 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 void	concat_sep(char *str, char *sep, int *pos_str)
 {

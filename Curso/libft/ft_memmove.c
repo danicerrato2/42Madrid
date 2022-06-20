@@ -6,16 +6,19 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:45:49 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 15:59:22 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:17:28 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memmove(void *dst, const void *src, size_t len)
-{
-	int	i;
+#include "libft.h"
 
-	if (dst == NULL || scr == NULL)
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t	i;
+
+	if (dst == NULL || src == NULL)
 		return (dst);
+	i = 0;
 	while (i < len && src + i > dst)
 	{
 		((char *)dst)[i] = ((char *)src)[i];

@@ -6,16 +6,18 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:03:44 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 13:53:25 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:15:06 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	bzero(void *str, size_t len)
+#include "libft.h"
+
+void	ft_bzero(void *str, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	if (str == NULL)
-		return (str);
+		return ;
 	i = 0;
 	while (i < len)
 	{

@@ -21,7 +21,7 @@ sin funciones auxiliares:
     -atoi
 
 con malloc():
-    calloc
+    -calloc
     -strdup
 
 adicionales:

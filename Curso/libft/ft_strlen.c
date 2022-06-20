@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 10:48:46 by dcerrato          #+#    #+#             */
-/*   Updated: 2021/06/28 13:25:39 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:07:37 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_strlen(char *str)
 {

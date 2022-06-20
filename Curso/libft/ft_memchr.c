@@ -6,16 +6,18 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:05:29 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 17:38:36 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:16:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	*ft_memchr(const void *str, int c, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	if (str == NULL || len <= 0)
-		return (str);
+		return ((void *)str);
 	i = 0;
 	while (i < len && str + i != NULL)
 	{

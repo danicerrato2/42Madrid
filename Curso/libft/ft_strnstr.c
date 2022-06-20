@@ -6,14 +6,16 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:38:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 11:13:17 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:22:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strnstr(const char *str, const char *substr, size_t n)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	if (str == NULL || substr == NULL || n <= 0)
 		return ((char *)str);

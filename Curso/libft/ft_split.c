@@ -6,13 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:53:35 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/17 09:53:54 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:20:24 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	g_num_strs;
+#include "libft.h"
 
 int	is_charset(char c, char *charset)
 {
@@ -28,9 +26,9 @@ int	is_charset(char c, char *charset)
 	return (0);
 }
 
-void	copy_str(char *dest, char *src, int size)
+void	copy_str(char *dest, char *src, size_t size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
@@ -41,19 +39,19 @@ void	copy_str(char *dest, char *src, int size)
 	dest[i] = '\0';
 }
 
-char	**new_split(char **strings, char *str, int size)
+char	**new_split(char **strings, char *str, int size, int *g_num_strs)
 {
 	char	**new;
 	int		i;
 
 	if (size == 0)
 		return (strings);
-	g_num_strs++;
-	new = (char **)malloc((g_num_strs + 1) * sizeof(char *));
+	(*g_num_strs)++;
+	new = (char **)malloc((*g_num_strs + 1) * sizeof(char *));
 	if (new == NULL)
 		return (strings);
 	i = 0;
-	while (i < g_num_strs - 1)
+	while (i < *g_num_strs - 1)
 	{
 		new[i] = strings[i];
 		i++;
@@ -71,6 +69,7 @@ char	**ft_split(char *str, char *charset)
 	char	**strings;
 	int		from;
 	int		to;
+	int		g_num_strs;
 
 	strings = (char **)malloc(sizeof(char *));
 	strings[0] = "\0";
@@ -81,11 +80,11 @@ char	**ft_split(char *str, char *charset)
 	{
 		if (is_charset(str[to], charset) == 1)
 		{
-			strings = new_split(strings, &str[from], to - from);
+			strings = new_split(strings, &str[from], to - from, &g_num_strs);
 			from = to + 1;
 		}
 		to++;
 	}
-	strings = new_split(strings, &str[from], to - from);
+	strings = new_split(strings, &str[from], to - from, &g_num_strs);
 	return (strings);
 }
