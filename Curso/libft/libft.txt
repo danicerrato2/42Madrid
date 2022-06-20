@@ -28,15 +28,15 @@ con malloc():
 adicionales:
     -substr
     -strjoin
-    strtrim
+    -strtrim
     -split
     itoa
     strmapi
     striteri
-    putchar_fd
-    putstr_fd
-    putendl_fd
-    putnbr_fd
+    -putchar_fd
+    -putstr_fd
+    -putendl_fd
+    -putnbr_fd
 
 bonus:
     lstnew

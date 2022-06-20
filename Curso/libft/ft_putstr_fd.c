@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:44:19 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 17:59:14 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 20:26:48 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s && fd)
-		return ;
-	return ;
+	write(fd, s, ft_strlen(s));
 }
