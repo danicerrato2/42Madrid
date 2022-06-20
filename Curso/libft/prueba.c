@@ -1,42 +1,42 @@
 #include <stdio.h>
-#include <string.h>
-#include <xlocale.h>
+#include <stdlib.h>
 
-char *ft_strnstr(const char *str, const char *sub, size_t n)
+void *ft_calloc(size_t count, size_t size)
 {
-    int i = 0, j;
+    void    *mem;
+    int        i;
 
-	if (str == NULL || sub == NULL || n <= 0)
-        return ((char *)str);
-    while (str + i != NULL && i < n){
-        j = 0;
-        while (str[i + j] == sub[j]){
-			printf("Hola\n");
-            if (sub + j + 1 == NULL)
-			{
-				printf("Encontrado: %s\n", (char *)str + i);
-                return (char *)str + i;
-			}
-            j++;
-        }
+    if (count <= 0 || size <= 0)
+        return (NULL);
+    mem = malloc(count * size);
+    if (mem == NULL)
+        return (NULL);
+    i = 0;
+    while (i < count * size)
+    {
+        ((char *)mem)[i] = 0;
         i++;
     }
-    return NULL;
+    return (mem);
 }
 
 int main()
 {
-    char str[] = "abcdefghij";
-    char sub[] = "efgh";
-    int n = 10;
+    char *m = NULL, *n = NULL;
+    int size = -1,  count = -2, i = 0;
 
-	printf("%s\n", strnstr(str, sub, n));
-	printf("%s\n", ft_strnstr(str, sub, n));
-
-    if (strnstr(str, sub, n) == ft_strnstr(str, sub, n))
-        printf("Correcto\n");
-    else
-        printf("Incorrecto\n");
+    m = calloc(count, size);
+    n = ft_calloc(count, size);
+    while(i < size * count)
+    {
+        if (m[i] != n[i])
+        {
+            printf("Error %d\n", i);
+            return 0;
+        }
+        i++;
+    }
+    printf("Correcto\n");
 
     return 0;
 }

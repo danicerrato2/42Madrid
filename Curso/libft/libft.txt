@@ -17,7 +17,7 @@ sin funciones auxiliares:
     -strncmp
     -memchr
     -memcmp
-    strnstr
+    -strnstr
     -atoi
 
 con malloc():
