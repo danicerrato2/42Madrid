@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:38:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 14:22:25 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:21:37 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ char	*ft_strnstr(const char *str, const char *substr, size_t n)
 	size_t	i;
 	size_t	j;
 
-	if (str == NULL || substr == NULL || n <= 0)
-		return ((char *)str);
+	if (str == NULL || substr == NULL)
+		return (NULL);
+	if (substr[0] == 0)
+		return ((char *) str);
 	i = 0;
 	while (str[i] != '\0' && i < n)
 	{

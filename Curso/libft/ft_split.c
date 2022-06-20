@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:53:35 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 14:20:24 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:00:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**new_split(char **strings, char *str, int size, int *g_num_strs)
 	return (new);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(const char *str, char c)
 {
 	char	**strings;
 	int		from;

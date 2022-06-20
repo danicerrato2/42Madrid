@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:11:07 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 14:22:02 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:55:18 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int				ft_atoi(char *str);
+int				ft_atoi(const char *str);
 void			ft_bzero(void *str, size_t len);
 void			*ft_calloc(int count, int size);
-int				isalnum(int c);
+int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
@@ -30,9 +30,9 @@ void			*ft_memcpy(void *dst, const void *src, size_t len);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *str, int c, size_t len);
 char			**ft_split(char *str, char *charset);
-char			*ft_strchr(const char *str, size_t c);
+char			*ft_strchr(const char *str, int c);
 char			*ft_strdup(char *src);
-char			*ft_strjoin(int size, char **strs, char *sep);
+char			*ft_strjoin(const char *str1, const char *str2);
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 int				ft_strlen(char *str);

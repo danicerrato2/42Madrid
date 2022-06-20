@@ -6,66 +6,33 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:52:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 14:06:11 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:56:38 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	concat_sep(char *str, char *sep, int *pos_str)
+char	*ft_strjoin(const char *str1, const char *str2)
 {
-	int	i;
-
-	i = 0;
-	while (sep[i] != '\0')
-	{
-		str[*pos_str] = sep[i];
-		i++;
-		(*pos_str)++;
-	}
-}
-
-void	ft_join(int size, char *str, char *sep, char **strs)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (strs[i][j] != '\0')
-		{
-			str[k] = strs[i][j];
-			k++;
-			j++;
-		}
-		if (i + 1 != size)
-			concat_sep(str, sep, &k);
-		i++;
-	}
-	str[k] = '\0';
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
-{
+	char	*joined_str;
 	int		i;
-	int		tam;
-	char	*str;
+	int		j;
 
-	if (size <= 0)
-		return ("");
+	joined_str = malloc(ft_strlen((char *)str1) + ft_strlen((char *)str2) + 1);
+	if (joined_str == NULL)
+		return (NULL);
 	i = 0;
-	tam = 0;
-	while (i < size)
+	while (str1[i] != 0)
 	{
-		tam += ft_strlen(strs[i]);
+		joined_str[i] = str1[i];
 		i++;
 	}
-	tam += (size - 1) * ft_strlen(sep) + 1;
-	str = (char *)malloc(tam * sizeof(char));
-	ft_join(size, str, sep, strs);
-	return (str);
+	j = 0;
+	while (str2[j] != 0)
+	{
+		joined_str[i + j] = str2[j];
+		j++;
+	}
+	joined_str[i + j] = '\0';
+	return (joined_str);
 }

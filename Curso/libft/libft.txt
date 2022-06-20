@@ -28,7 +28,7 @@ adicionales:
     substr
     -strjoin
     strtrim
-    -split
+    split
     itoa
     strmapi
     striteri
