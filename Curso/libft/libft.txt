@@ -14,7 +14,7 @@ sin funciones auxiliares:
     -toupper
     -tolower
     -strchr
-	-strrchr
+    -strrchr
     -strncmp
     -memchr
     -memcmp
