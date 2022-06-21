@@ -82,7 +82,7 @@ int	split_words(char **strings, char *str, char c)
 	}
 	return (1);
 }
-#include <stdio.h>
+
 char	**ft_split(const char *str, char c)
 {
 	char	**strings;
