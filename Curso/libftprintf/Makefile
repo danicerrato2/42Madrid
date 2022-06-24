@@ -1,11 +1,7 @@
-NAME	=	libft.a
-
-SRC		=	$(wildcard *[!"_bonus"].c)
-SRB		=	$(wildcard *_bonus.c)
-
-OBJ		=	$(SRC:.c=.o)
-OBB		=	$(SRB:.c=.o)
-
+NAME	=	libftprintf.a
+SRC		=	$(wildcard src/*)
+INC		=	$(wildcard inc/*)
+OBJ		=	$(wildcard obj/*)
 AR		=	ar rcs
 CC		=	clang
 FLAGS	=	-Wall -Werror -Wextra
@@ -13,11 +9,15 @@ RM		=	rm -f
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	libft printf
 			@$(AR) $(NAME) $(OBJ)
 
 %.o:		%.c
-			@$(CC) $(FLAGS) -c $< -o $@
+			@$(CC) $(FLAGS) -c $(SRC) -o $(OBJ)
+
+libft:
+			@mkdir obj
+			@$(CC) $(FLAGS) -c $(SRC) -o $(OBJ)
 
 clean:
 			@$(RM) $(OBJ) $(OBB)
