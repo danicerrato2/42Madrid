@@ -6,50 +6,50 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:39:37 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 17:55:12 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/24 16:58:34 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int get_num_digits(int n)
+int	get_num_digits(int n)
 {
-    int numDigits;
+	int	num_digits;
 
-    numDigits = 1;
-    while (n > 9)
-    {
-        n /= 10;
-        numDigits++;
-    }
-    return numDigits;
+	num_digits = 1;
+	while (n > 9)
+	{
+		n /= 10;
+		num_digits++;
+	}
+	return (num_digits);
 }
 
 char	*ft_itoa(int n)
 {
-    int     isNegative;
-    int     numDigits;
-    char    *number;
+	int		is_negative;
+	int		num_digits;
+	char	*number;
 
-    if (n == -2147483648)
-        return ft_strdup("-2147483648");
-    isNegative = 0;
-    if (n < 0)
-    {
-        isNegative = 1;
-        n = -n;
-    }
-    numDigits = get_num_digits(n);
-    number = malloc(isNegative + numDigits + 1);
-    if (number == NULL)
-        return (NULL);
-    if (isNegative)
-        number[0] = '-';
-    number[isNegative + numDigits] = '\0';
-    while (--numDigits >= 0)
-    {
-        number[isNegative + numDigits] = n % 10 + 48;
-        n /= 10;
-    }
-    return (number);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	is_negative = 0;
+	if (n < 0)
+	{
+		is_negative = 1;
+		n = -n;
+	}
+	num_digits = get_num_digits(n);
+	number = malloc(is_negative + num_digits + 1);
+	if (number == NULL)
+		return (NULL);
+	if (is_negative)
+		number[0] = '-';
+	number[is_negative + num_digits] = '\0';
+	while (--num_digits >= 0)
+	{
+		number[is_negative + num_digits] = n % 10 + 48;
+		n /= 10;
+	}
+	return (number);
 }

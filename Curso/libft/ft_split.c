@@ -6,13 +6,13 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 19:44:01 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/06/24 17:34:42 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void free_all(char **strs)
+void	free_all(char **strs)
 {
 	int	i;
 

@@ -1,6 +1,6 @@
 NAME	=	libft.a
 
-SRC		=	$(wildcard *[!"_bonus"].c)
+SRC		=	$(filter-out $(SRB), $(wildcard *.c))
 SRB		=	$(wildcard *_bonus.c)
 
 OBJ		=	$(SRC:.c=.o)
