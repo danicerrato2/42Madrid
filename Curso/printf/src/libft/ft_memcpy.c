@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:21:00 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:01:02 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:37:51 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t len)
 {

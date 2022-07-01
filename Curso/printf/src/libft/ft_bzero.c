@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:03:44 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 09:58:34 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:35:55 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	ft_bzero(void *str, size_t len)
 {

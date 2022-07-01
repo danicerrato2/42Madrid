@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:40:49 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:02:37 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:39:17 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {

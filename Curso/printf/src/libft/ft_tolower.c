@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:06:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:03:20 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:39:51 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 int	ft_tolower(int c)
 {

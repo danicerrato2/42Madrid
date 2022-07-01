@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:11:07 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 09:57:27 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:44:27 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_list
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *str, size_t len);
-void			*ft_calloc(int count, int size);
+void			*ft_calloc(int count, size_t size);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);

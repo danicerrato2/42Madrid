@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:03:48 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:00:27 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:37:15 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

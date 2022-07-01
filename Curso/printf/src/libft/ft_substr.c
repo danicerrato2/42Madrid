@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:20:15 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:03:15 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:39:45 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {

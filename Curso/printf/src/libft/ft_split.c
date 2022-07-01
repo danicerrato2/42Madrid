@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:01:43 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:38:31 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	free_all(char **strs)
 {

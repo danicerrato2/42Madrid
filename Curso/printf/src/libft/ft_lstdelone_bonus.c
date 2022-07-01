@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:02:24 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:00:14 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:37:01 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 12:45:49 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 10:01:08 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:37:56 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

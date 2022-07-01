@@ -1,4 +1,16 @@
-#include "libftprintf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_libft.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/07/01 14:17:04 by dcerrato         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../inc/libftprintf.h"
 
 int	ft_putchar(char c)
 {
@@ -17,7 +29,7 @@ int	print_digits(unsigned int n)
 	int		size;
 
 	i = 0;
-	while (n > 9)q
+	while (n > 9)
 	{
 		digit[i] = '0' + n % 10;
 		i++;

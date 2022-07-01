@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 09:55:47 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 09:59:20 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:36:13 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 int	ft_isalpha(int c)
 {

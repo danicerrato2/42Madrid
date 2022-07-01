@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:44:23 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 09:58:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:41:08 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 void	*ft_calloc(int count, size_t size)
 {

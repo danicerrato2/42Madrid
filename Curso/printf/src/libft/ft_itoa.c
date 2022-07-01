@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:39:37 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 09:59:50 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 13:36:38 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/libft.h"
+#include "../../inc/libft.h"
 
 int	get_num_digits(int n)
 {
