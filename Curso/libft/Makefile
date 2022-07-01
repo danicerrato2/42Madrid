@@ -7,7 +7,7 @@ OBJ		=	$(SRC:.c=.o)
 OBB		=	$(SRB:.c=.o)
 
 AR		=	ar rcs
-CC		=	clang
+CC		=	gcc
 FLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
