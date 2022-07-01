@@ -1,26 +1,27 @@
-NAME	=	libftprintf.a
-SRC		=	$(wildcard src/*)
-INC		=	$(wildcard inc/*)
-OBJ		=	$(wildcard obj/*)
-AR		=	ar rcs
-CC		=	clang
-FLAGS	=	-Wall -Werror -Wextra
-RM		=	rm -f
+NAME		=	libftprintf.a
+SRC_LIB		=	$(wildcard src/libft/*)
+SRC_PRNT	=	$(wildcard src/printf/*)
+OBJ_DIR		= 	obj/
+OBJ_LIB		=	$(addprefix $(OBJ_DIR), SRC_LIB:.c=.o)
+OBJ_PRNT	=	$(addprefix $(OBJ_DIR), SRC_PRNT:.c=.o)
+AR			=	ar rcs
+CC			=	clang
+FLAGS		=	-Wall -Werror -Wextra
+RM			=	rm -f
 
 all:		$(NAME)
 
-$(NAME):	libft printf
-			@$(AR) $(NAME) $(OBJ)
+$(NAME):	obj_dir $(OBJ_LIB) $(OBJ_PRNT)
+			@$(AR) $(NAME) $(OBJ_LIB) $(OBJ_PRNT)
 
 %.o:		%.c
-			@$(CC) $(FLAGS) -c $(SRC) -o $(OBJ)
+			@$(CC) $(FLAGS) -c $< -o $@
 
-libft:
-			@mkdir obj
-			@$(CC) $(FLAGS) -c $(SRC) -o $(OBJ)
+obj_dir:
+			@mkdir -p $(OBJ_DIR)
 
 clean:
-			@$(RM) $(OBJ) $(OBB)
+			@$(RM) -r $(OBJ_LIB) $(OBJ_PRNT)
 
 fclean:		clean
 			@$(RM) $(NAME)
