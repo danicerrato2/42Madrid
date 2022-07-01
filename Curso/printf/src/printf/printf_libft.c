@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 14:17:04 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/01 14:25:52 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libftprintf.h"
+#include "../../inc/ft_printf.h"
 
 int	ft_putchar(char c)
 {
