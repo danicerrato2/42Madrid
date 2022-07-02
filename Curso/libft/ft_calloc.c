@@ -6,19 +6,17 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:44:23 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/20 14:10:05 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:21:16 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_calloc(int count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*mem;
 	size_t	i;
 
-	if (count <= 0 || size <= 0)
-		return (NULL);
 	mem = malloc(count * size);
 	if (mem == NULL)
 		return (NULL);
