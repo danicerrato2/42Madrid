@@ -6,32 +6,61 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 14:26:01 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:20:14 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/ft_printf.h"
+#include "../inc/ft_printf.h"
 
-int	print_ptr(void *ptr)
+void	ft_strcpy(char *dst, const char *src)
 {
-	char			digits[12];
-	int				i;
-	unsigned int	p;
+	unsigned int	i;
 
-	i = 11;
-	p = (unsigned int)ptr;
-	while (p != 0)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		digits[i] = "0123456789abcdef"[p % 16];
-		i--;
-		p /= 16;
+		dst[i] = src[i];
+		i++;
 	}
-	while (i >= 0)
+	dst[i] = '\0';
+}
+
+int	get_nbr_size_in_hexa(unsigned long long nbr)
+{
+	int	size;
+
+	size = 1;
+	while (nbr >= 16)
 	{
-		digits[i] = '0';
-		i--;
+		nbr /= 16;
+		size++;
 	}
-	return write(1, "0x", 2) + write(1, digits, 12);
+	return (size);
+}
+
+int	print_ptr(unsigned long long ptr)
+{
+	int		written;
+	char	base16[16];
+	char	*nbr;
+	int		nbr_size;
+
+	ft_strcpy(base16, "0123456789abcdef");
+	written = write(1, "0x", 2);
+	nbr_size = get_nbr_size_in_hexa(ptr);
+	nbr = malloc(nbr_size + 1);
+	if (nbr == NULL)
+		return (written);
+	nbr[nbr_size] = 0;
+	while (nbr_size > 0)
+	{
+		nbr[nbr_size - 1] = base16[ptr % 16];
+		ptr /= 16;
+		nbr_size--;
+	}
+	written += write(1, nbr, ft_strlen(nbr));
+	free(nbr);
+	return (written);
 }
 
 int	print_hexa(unsigned int n, char case_type)
@@ -40,9 +69,9 @@ int	print_hexa(unsigned int n, char case_type)
 	int		written;
 
 	if (case_type == 'X')
-		ft_strlcpy(base16, "0123456789ABCDEF", 16);
+		ft_strcpy(base16, "0123456789ABCDEF");
 	else
-		ft_strlcpy(base16, "0123456789abcdef", 16);
+		ft_strcpy(base16, "0123456789abcdef");
 	written = 0;
 	while (n >= 16)
 	{
@@ -50,5 +79,5 @@ int	print_hexa(unsigned int n, char case_type)
 		n %= 16;
 	}
 	written += write(1, &base16[n], 1);
-	return written;
+	return (written);
 }

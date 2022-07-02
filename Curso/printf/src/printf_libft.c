@@ -6,20 +6,40 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/01 14:25:52 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:24:16 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/ft_printf.h"
+#include "../inc/ft_printf.h"
 
 int	ft_putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 int	ft_putstr(char *s)
 {
-	return write(1, s, ft_strlen(s));
+	if (s == NULL)
+		return (write(1, "(null)", 6));
+	return (write(1, s, ft_strlen(s)));
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+	int	length;
+
+	length = 0;
+	if (str != NULL)
+	{
+		i = 0;
+		while (str[i] != '\0')
+		{
+			i++;
+			length++;
+		}
+	}
+	return (length);
 }
 
 int	print_digits(unsigned int n)
@@ -52,10 +72,10 @@ int	ft_putnbr(int n)
 	written = 0;
 	if (n < 0)
 	{
-		written += write (1, "-", 1);
+		written += write(1, "-", 1);
 		if (n == -2147483648)
 		{
-			written += write (1, "2", 1);
+			written += write(1, "2", 1);
 			n = 147483648;
 		}
 		else
@@ -63,4 +83,3 @@ int	ft_putnbr(int n)
 	}
 	return (written + print_digits((unsigned int)n));
 }
-
