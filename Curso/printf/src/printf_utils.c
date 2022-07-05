@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/02 14:20:14 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/05 10:30:29 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,26 @@ int	print_hexa(unsigned int n, char case_type)
 {
 	char	base16[16];
 	int		written;
+	char	*nbr;
+	int		nbr_size;
 
 	if (case_type == 'X')
 		ft_strcpy(base16, "0123456789ABCDEF");
 	else
 		ft_strcpy(base16, "0123456789abcdef");
 	written = 0;
-	while (n >= 16)
+	nbr_size = get_nbr_size_in_hexa(n);
+	nbr = malloc(nbr_size + 1);
+	if (nbr == NULL)
+		return (written);
+	nbr[nbr_size] = 0;
+	while (nbr_size > 0)
 	{
-		written += write(1, &base16[n / 16], 1);
-		n %= 16;
+		nbr[nbr_size - 1] = base16[n % 16];
+		n /= 16;
+		nbr_size--;
 	}
-	written += write(1, &base16[n], 1);
+	written += write(1, nbr, ft_strlen(nbr));
+	free(nbr);
 	return (written);
 }

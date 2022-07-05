@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/02 14:24:16 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:57:27 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	print_digits(unsigned int n)
 		n /= 10;
 	}
 	digit[i] = '0' + n;
-	size = i;
+	size = i + 1;
 	while (i >= 0)
 	{
 		write (1, &digit[i], 1);
