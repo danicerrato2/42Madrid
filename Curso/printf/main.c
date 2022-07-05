@@ -4,13 +4,13 @@
 
 int main()
 {
-	char *str = " %x ";
+	char *str = " %d ";
 
 	printf("Inicio de programa...\n");
 
-	printf(str, LONG_MAX);
+	printf(str, 0);
 	printf("\n");
-	ft_printf(str, LONG_MAX);
+	ft_printf(str, 0);
 	printf("\n");
 
 	printf("Fin de programa\n");
