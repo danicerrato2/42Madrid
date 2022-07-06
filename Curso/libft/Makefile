@@ -8,7 +8,7 @@ OBB		=	$(SRB:.c=.o)
 
 AR		=	ar rcs
 CC		=	gcc
-FLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address
 RM		=	rm -f
 
 all:		$(NAME)
@@ -17,7 +17,7 @@ $(NAME):	$(OBJ)
 			@$(AR) $(NAME) $(OBJ)
 
 %.o:		%.c
-			@$(CC) $(FLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 			@$(RM) $(OBJ) $(OBB)
