@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:11:07 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/06 11:21:18 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:30:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_split(const char *str, char c);
 char			*ft_strchr(const char *str, int c);
-char			*ft_strdup(char *src);
+char			*ft_strdup(const char *src);
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 char			*ft_strjoin(const char *str1, const char *str2);
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
-int				ft_strlen(char *str);
+unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size);
+unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size);
+int				ft_strlen(const char *str);
 char			*ft_strmapi(const char *s, char (*f)(unsigned int, char));
-int				ft_strncmp(char *s1, char *s2, unsigned int n);
+int				ft_strncmp(const char *s1, const char *s2, unsigned int n);
 char			*ft_strnstr(const char *str, const char *substr, size_t n);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strtrim(const char *s1, const char *set);

@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/06/24 17:34:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:15:30 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	free_all(char **strs)
 
 	i = 0;
 	while (strs[i] != NULL)
+	{
 		free(strs[i]);
+		i++;
+	}
 	free(strs);
 }
 
