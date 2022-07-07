@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 11:07:41 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/07 10:42:32 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:54:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,17 @@ void	get_flags(char **str, t_flags *flags)
 			get_width(str, flags);
 		*str += 1;
 	}
+}
+
+int	print_width(t_flags flags)
+{
+	int	written;
+
+	written = 0;
+	while(flags.width > 0)
+	{
+		written += write(1, " ", 1);
+		flags.width--;
+	}
+	return (written);
 }

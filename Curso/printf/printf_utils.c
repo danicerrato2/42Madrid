@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/07 11:23:18 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:54:34 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,25 @@ int	get_nbr_size_in_hexa(unsigned long long nbr)
 	return (size);
 }
 
-int	print_ptr(unsigned long long ptr)
+int	print_nbr(char *nbr, t_flags flags)
+{
+	int	written;
+	int	nbr_size;
+
+	written = 0;
+	nbr_size = ft_strlen(nbr);
+	flags.width -= nbr_size;
+	if (flags.width < 0)
+		flags.width = 0;
+	if (flags.minus == 0)
+		written += print_width(flags);
+	written += write(1, nbr, nbr_size);
+	if (flags.minus != 0)
+		written += print_width(flags);
+	return (written);
+}
+
+int	print_ptr(unsigned long long ptr, t_flags flags)
 {
 	int		written;
 	char	base16[16];
@@ -51,6 +69,7 @@ int	print_ptr(unsigned long long ptr)
 	nbr = malloc(nbr_size + 1);
 	if (nbr == NULL)
 		return (written);
+	flags.width -= 2;
 	nbr[nbr_size] = 0;
 	while (nbr_size > 0)
 	{
@@ -58,7 +77,7 @@ int	print_ptr(unsigned long long ptr)
 		ptr /= 16;
 		nbr_size--;
 	}
-	written += write(1, nbr, ft_strlen(nbr));
+	written += print_nbr(nbr, flags);
 	free(nbr);
 	return (written);
 }
@@ -79,7 +98,10 @@ int	print_hexa(unsigned int n, char case_type, t_flags flags)
 	if (nbr == NULL)
 		return (written);
 	if (flags.sharp != 0 && n != 0)
+	{
 		written += write(1, "0", 1) + write(1, &case_type, 1);
+		flags.width -= 2;
+	}
 	nbr[nbr_size] = 0;
 	while (nbr_size > 0)
 	{
@@ -87,7 +109,7 @@ int	print_hexa(unsigned int n, char case_type, t_flags flags)
 		n /= 16;
 		nbr_size--;
 	}
-	written += write(1, nbr, ft_strlen(nbr));
+	written += print_nbr(nbr, flags);
 	free(nbr);
 	return (written);
 }

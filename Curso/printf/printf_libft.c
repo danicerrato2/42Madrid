@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/07 12:06:47 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:54:30 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_putchar(char c, t_flags flags)
 	written = 0;
 	if (flags.width != 0)
 		flags.width -= 1;
-	while (flags.width > 0)
-	{
-		written += write(1, " ", 1);
-		flags.width--;
-	}
-	return (written + write(1, &c, 1));
+	if (flags.minus == 0)
+		written += print_width(flags);
+	written += write(1, &c, 1);
+	if (flags.minus != 0)
+		written += print_width(flags);
+	return (written);
 }
 
 int	ft_putstr(char *s, t_flags flags)
@@ -40,12 +40,12 @@ int	ft_putstr(char *s, t_flags flags)
 		flags.width -= s_len;
 	if (flags.width < 0)
 		flags.width = 0;
-	while (flags.width > 0)
-	{
-		written += write(1, " ", 1);
-		flags.width--;
-	}
-	return (written + write(1, s, s_len));
+	if (flags.minus == 0)
+		written += print_width(flags);
+	written += write(1, s, s_len);
+	if (flags.minus != 0)
+		written += print_width(flags);
+	return (written);
 }
 
 int	ft_strlen(char *str)
@@ -66,11 +66,11 @@ int	ft_strlen(char *str)
 	return (length);
 }
 
-int	print_digits(unsigned int n)
+int	print_digits(unsigned int n, t_flags flags)
 {
 	int		i;
 	char	digit[10];
-	int		size;
+	int		written;
 
 	i = 0;
 	while (n > 9)
@@ -80,19 +80,23 @@ int	print_digits(unsigned int n)
 		n /= 10;
 	}
 	digit[i] = '0' + n;
-	size = i + 1;
+	flags.width -= i + 1;
+	if (flags.width < 0)
+		flags.width = 0;
+	written = print_width(flags);
 	while (i >= 0)
 	{
-		write (1, &digit[i], 1);
+		written += write (1, &digit[i], 1);
 		i--;
 	}
-	return (size);
+	return (written);
 }
 
 int	ft_putnbr(int n, t_flags flags)
 {
 	int	written;
 
+ 14
 	written = 0;
 	if (n < 0)
 	{
@@ -105,7 +109,9 @@ int	ft_putnbr(int n, t_flags flags)
 		else
 			n *= (-1);
 	}
+	else if (flags.plus != 0)
+		written += write(1, "+", 1);
 	else if (flags.space != 0)
 		written += write(1, " ", 1);
-	return (written + print_digits((unsigned int)n));
+	return (written + print_digits((unsigned int)n, flags));
 }

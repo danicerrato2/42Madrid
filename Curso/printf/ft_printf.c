@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:54 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/07 12:02:19 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:54:36 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	print_format(char **str, va_list args)
 	if ((*str)[0] == 's')
 		written = ft_putstr(va_arg(args, char *), flags);
 	if ((*str)[0] == 'p')
-		written = print_ptr(va_arg(args, unsigned long long));
+		written = print_ptr(va_arg(args, unsigned long long), flags);
 	if ((*str)[0] == 'd' || (*str)[0] == 'i')
 		written = ft_putnbr(va_arg(args, int), flags);
 	if ((*str)[0] == 'u')
-		written = print_digits(va_arg(args, unsigned int));
+		written = print_digits(va_arg(args, unsigned int), flags);
 	if ((*str)[0] == 'x' || (*str)[0] == 'X')
 		written = print_hexa(va_arg(args, unsigned int), (*str)[0], flags);
 	if ((*str)[0] == '%')
