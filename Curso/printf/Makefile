@@ -1,7 +1,12 @@
 NAME	=	libftprintf.a
-SRC		=	$(wildcard src/*)
+
+SRC		=	ft_printf.c \
+			printf_libft.c \
+			printf_utils.c \
+			printf_flags.c
+
 OBJ		=	$(SRC:.c=.o)
-OBJ_DIR	=	obj/
+
 AR		=	ar rcs
 CC		=	gcc
 FLAGS	=	-Wall -Werror -Wextra
@@ -10,22 +15,19 @@ RM		=	rm -f
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			@mkdir -p $(OBJ_DIR)
 			@$(AR) $@ $^
-			@mv $^ $(OBJ_DIR)
+
+bonus:		$(NAME)
 
 %.o:		%.c
 			@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-			@$(RM) -r $(OBJ_DIR)
+			@$(RM) -r $(OBJ)
 
 fclean:		clean
 			@$(RM) $(NAME)
 
 re:			fclean	all
 
-bonus:		$(OBJ)
-			@$(AR) $(NAME) $^
-
-#.PHONY:		all $(NAME) OBJ OBJ_DIR bonus clean fclean re
+.PHONY:		all clean fclean re

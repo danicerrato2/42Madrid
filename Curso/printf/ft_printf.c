@@ -6,33 +6,33 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:44:54 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/06 11:54:29 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:02:19 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "ft_printf.h"
 
 int	print_format(char **str, va_list args)
 {
 	int		written;
-//	t_flags	flags;
+	t_flags	flags;
 
 	*str += 1;
-//	get_flags(str, &flags) == 0);
+	get_flags(str, &flags);
 	if ((*str)[0] == 'c')
-		written = ft_putchar(va_arg(args, int));
+		written = ft_putchar(va_arg(args, int), flags);
 	if ((*str)[0] == 's')
-		written = ft_putstr(va_arg(args, char *));
+		written = ft_putstr(va_arg(args, char *), flags);
 	if ((*str)[0] == 'p')
 		written = print_ptr(va_arg(args, unsigned long long));
 	if ((*str)[0] == 'd' || (*str)[0] == 'i')
-		written = ft_putnbr(va_arg(args, int));
+		written = ft_putnbr(va_arg(args, int), flags);
 	if ((*str)[0] == 'u')
 		written = print_digits(va_arg(args, unsigned int));
 	if ((*str)[0] == 'x' || (*str)[0] == 'X')
-		written = print_hexa(va_arg(args, unsigned int), (*str)[0]);
+		written = print_hexa(va_arg(args, unsigned int), (*str)[0], flags);
 	if ((*str)[0] == '%')
-		written = ft_putchar('%');
+		written = ft_putchar('%', flags);
 	return (written);
 }
 
@@ -50,7 +50,7 @@ int	ft_printf(const char *format, ...)
 		if (str[0] == '%')
 			printed += print_format(&str, args);
 		else
-			printed += ft_putchar(str[0]);
+			printed += write(1, str, 1);
 		str++;
 	}
 	va_end(args);

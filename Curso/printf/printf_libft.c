@@ -6,22 +6,46 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/05 09:57:27 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:06:47 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putchar(char c, t_flags flags)
 {
-	return (write(1, &c, 1));
+	int	written;
+
+	written = 0;
+	if (flags.width != 0)
+		flags.width -= 1;
+	while (flags.width > 0)
+	{
+		written += write(1, " ", 1);
+		flags.width--;
+	}
+	return (written + write(1, &c, 1));
 }
 
-int	ft_putstr(char *s)
+int	ft_putstr(char *s, t_flags flags)
 {
+	int	written;
+	int	s_len;
+
 	if (s == NULL)
 		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
+	written = 0;
+	s_len = ft_strlen(s);
+	if (flags.width != 0)
+		flags.width -= s_len;
+	if (flags.width < 0)
+		flags.width = 0;
+	while (flags.width > 0)
+	{
+		written += write(1, " ", 1);
+		flags.width--;
+	}
+	return (written + write(1, s, s_len));
 }
 
 int	ft_strlen(char *str)
@@ -65,7 +89,7 @@ int	print_digits(unsigned int n)
 	return (size);
 }
 
-int	ft_putnbr(int n)
+int	ft_putnbr(int n, t_flags flags)
 {
 	int	written;
 
@@ -81,5 +105,7 @@ int	ft_putnbr(int n)
 		else
 			n *= (-1);
 	}
+	else if (flags.space != 0)
+		written += write(1, " ", 1);
 	return (written + print_digits((unsigned int)n));
 }

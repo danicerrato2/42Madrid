@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 11:07:41 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/06 12:06:22 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/07 10:42:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_isdigit(char c)
 {
@@ -44,7 +44,7 @@ void	get_width(char **str, t_flags *flags)
 	flags->width = width;
 }
 
-int	get_flags(char **str, t_flags *flags)
+void	get_flags(char **str, t_flags *flags)
 {
 	initialize_flags(flags);
 	while ((*str)[0] == '-' || (*str)[0] == '0' || (*str)[0] == '.' || \
@@ -55,17 +55,16 @@ int	get_flags(char **str, t_flags *flags)
 			flags->minus = 1;
 		else if ((*str)[0] == '0')
 			flags->zero = 1;
-		else if((*str)[0] == '.')
+		else if ((*str)[0] == '.')
 			flags->dot = 1;
-		else if((*str)[0] == '#')
+		else if ((*str)[0] == '#')
 			flags->sharp = 1;
-		else if((*str)[0] == ' ')
+		else if ((*str)[0] == ' ')
 			flags->space = 1;
-		else if((*str)[0] == '+')
+		else if ((*str)[0] == '+')
 			flags->plus = 1;
 		else
 			get_width(str, flags);
 		*str += 1;
 	}
-	return (0);
 }
