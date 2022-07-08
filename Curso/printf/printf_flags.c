@@ -12,13 +12,6 @@
 
 #include "ft_printf.h"
 
-int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
 void	initialize_flags(t_flags *flags)
 {
 	flags->width = 0;
@@ -49,7 +42,7 @@ void	get_flags(char **str, t_flags *flags)
 	initialize_flags(flags);
 	while ((*str)[0] == '-' || (*str)[0] == '0' || (*str)[0] == '.' || \
 			(*str)[0] == '#' || (*str)[0] == ' ' || (*str)[0] == '+' || \
-			ft_isdigit((*str)[0]) == 1)
+			((*str)[0] >= '1' && (*str)[0] <= '9'))
 	{
 		if ((*str)[0] == '-')
 			flags->minus = 1;

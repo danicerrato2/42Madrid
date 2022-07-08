@@ -33,7 +33,7 @@ int	ft_putstr(char *s, t_flags flags)
 	int	s_len;
 
 	if (s == NULL)
-		return (write(1, "(null)", 6));
+		s = "(null)";
 	written = 0;
 	s_len = ft_strlen(s);
 	if (flags.dot != 0 && s_len > flags.width)

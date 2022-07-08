@@ -66,22 +66,21 @@ int	print_ptr(unsigned long long ptr, t_flags flags)
 	int		nbr_size;
 
 	if (ptr == 0)
-		return (write(1, "(nil)", 5));
+		return (print_nbr("(nil)", flags));
 	ft_strcpy(base16, "0123456789abcdef");
-	written = write(1, "0x", 2);
 	nbr_size = get_nbr_size_in_hexa(ptr);
-	nbr = malloc(nbr_size + 1);
+	nbr = malloc(nbr_size + 3);
 	if (nbr == NULL)
-		return (written);
-	flags.width -= 2;
-	nbr[nbr_size] = 0;
+		return (0);
+	ft_strcpy(nbr, "0x");
+	nbr[nbr_size + 2] = 0;
 	while (nbr_size > 0)
 	{
-		nbr[nbr_size - 1] = base16[ptr % 16];
+		nbr[nbr_size + 1] = base16[ptr % 16];
 		ptr /= 16;
 		nbr_size--;
 	}
-	written += print_nbr(nbr, flags);
+	written = print_nbr(nbr, flags);
 	free(nbr);
 	return (written);
 }

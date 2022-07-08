@@ -36,6 +36,7 @@ int		print_digits(unsigned int n, t_flags flags);
 int		ft_putnbr(int n, t_flags flags);
 int		print_ptr(unsigned long long ptr, t_flags flags);
 int		print_hexa(unsigned int n, char case_type, t_flags flags);
+void	ft_strcpy(char *dst, const char *src);
 
 void	get_flags(char **str, t_flags *flags);
 int		print_width(t_flags flags);
