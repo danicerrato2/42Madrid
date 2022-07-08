@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/07 13:54:30 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/08 10:47:21 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,35 +83,35 @@ int	print_digits(unsigned int n, t_flags flags)
 	flags.width -= i + 1;
 	if (flags.width < 0)
 		flags.width = 0;
-	written = print_width(flags);
+	written = 0;
+	if (flags.minus == 0)
+		written += print_width(flags);
 	while (i >= 0)
-	{
-		written += write (1, &digit[i], 1);
-		i--;
-	}
+		written += write (1, &digit[i--], 1);
+	if (flags.minus != 0)
+		written += print_width(flags);
 	return (written);
 }
 
 int	ft_putnbr(int n, t_flags flags)
 {
-	int	written;
+	int				written;
+	unsigned int	nbr;
 
- 14
 	written = 0;
 	if (n < 0)
 	{
 		written += write(1, "-", 1);
-		if (n == -2147483648)
-		{
-			written += write(1, "2", 1);
-			n = 147483648;
-		}
-		else
-			n *= (-1);
+		nbr = -n;
 	}
-	else if (flags.plus != 0)
-		written += write(1, "+", 1);
-	else if (flags.space != 0)
-		written += write(1, " ", 1);
-	return (written + print_digits((unsigned int)n, flags));
+	else
+	{
+		nbr = n;
+		if (flags.plus != 0)
+			written += write(1, "+", 1);
+		else if (flags.space != 0)
+			written += write(1, " ", 1);
+	}
+	flags.width -= written;
+	return (written + print_digits(nbr, flags));
 }

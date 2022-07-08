@@ -5,14 +5,18 @@
 
 int main()
 {
-	char *str = "Hola%#-4xHola";
+	char *str = "%.4dhola\n";
+	int printf_n, ft_printf_n;
 
 	printf("Inicio de programa...\n");
 
-	printf(str, 13);
+	printf_n = printf(str, 257);
 	printf("\n");
-//	ft_printf(str, '1', '2', '3');
-	printf("1111111111111\n");
+//	ft_printf_n = ft_printf(str, 20);
+	printf("\n");
+
+	printf("printf escribió %d caracteres\n", printf_n);
+	printf("ft_printf escribió %d caracteres\n", ft_printf_n);
 
 	return 0;
 }
