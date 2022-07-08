@@ -36,14 +36,16 @@ int	ft_putstr(char *s, t_flags flags)
 		return (write(1, "(null)", 6));
 	written = 0;
 	s_len = ft_strlen(s);
-	if (flags.width != 0)
+	if (flags.dot != 0 && s_len > flags.width)
+		s_len = flags.width;
+	else
 		flags.width -= s_len;
 	if (flags.width < 0)
 		flags.width = 0;
-	if (flags.minus == 0)
+	if (flags.minus == 0 && flags.dot == 0)
 		written += print_width(flags);
 	written += write(1, s, s_len);
-	if (flags.minus != 0)
+	if (flags.minus != 0 && flags.dot == 0)
 		written += print_width(flags);
 	return (written);
 }
@@ -84,11 +86,13 @@ int	print_digits(unsigned int n, t_flags flags)
 	if (flags.width < 0)
 		flags.width = 0;
 	written = 0;
+	if (flags.dot != 0)
+		flags.zero = 1;
 	if (flags.minus == 0)
 		written += print_width(flags);
 	while (i >= 0)
 		written += write (1, &digit[i--], 1);
-	if (flags.minus != 0)
+	if (flags.minus != 0 && flags.dot == 0)
 		written += print_width(flags);
 	return (written);
 }
@@ -112,6 +116,7 @@ int	ft_putnbr(int n, t_flags flags)
 		else if (flags.space != 0)
 			written += write(1, " ", 1);
 	}
-	flags.width -= written;
+	if (flags.dot == 0)
+		flags.width -= written;
 	return (written + print_digits(nbr, flags));
 }

@@ -48,6 +48,8 @@ int	print_nbr(char *nbr, t_flags flags)
 	flags.width -= nbr_size;
 	if (flags.width < 0)
 		flags.width = 0;
+	if (flags.dot != 0)
+		flags.zero = 1;
 	if (flags.minus == 0)
 		written += print_width(flags);
 	written += write(1, nbr, nbr_size);
@@ -63,6 +65,8 @@ int	print_ptr(unsigned long long ptr, t_flags flags)
 	char	*nbr;
 	int		nbr_size;
 
+	if (ptr == 0)
+		return (write(1, "(nil)", 5));
 	ft_strcpy(base16, "0123456789abcdef");
 	written = write(1, "0x", 2);
 	nbr_size = get_nbr_size_in_hexa(ptr);
@@ -100,7 +104,7 @@ int	print_hexa(unsigned int n, char case_type, t_flags flags)
 	if (flags.sharp != 0 && n != 0)
 		written += write(1, "0", 1) + write(1, &case_type, 1);
 	nbr[nbr_size - 1] = 0;
-	while (nbr_size-- > 0)
+	while (--nbr_size > 0)
 	{
 		nbr[nbr_size - 1] = base16[n % 16];
 		n /= 16;
