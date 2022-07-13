@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 11:07:41 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/08 11:43:24 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:19:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ void	initialize_flags(t_flags *flags)
 	flags->width = 0;
 	flags->minus = 0;
 	flags->zero = 0;
-	flags->dot = 0;
+	flags->dot = -1;
 	flags->sharp = 0;
 	flags->space = 0;
 	flags->plus = 0;
 }
 
-void	get_width(char **str, t_flags *flags)
+int	ft_atoi(char **str)
 {
-	int	width;
+	int	nbr;
 
-	width = 0;
+	nbr = 0;
 	while ((*str)[0] >= '0' && (*str)[0] <= '9')
 	{
-		width = width * 10 + (*str)[0] - '0';
+		nbr = nbr * 10 + (*str)[0] - '0';
 		*str += 1;
 	}
 	*str -= 1;
-	flags->width = width;
+	return (nbr);
 }
 
 void	get_flags(char **str, t_flags *flags)
@@ -49,7 +49,10 @@ void	get_flags(char **str, t_flags *flags)
 		else if ((*str)[0] == '0')
 			flags->zero = 1;
 		else if ((*str)[0] == '.')
-			flags->dot = 1;
+		{
+			*str += 1;
+			flags->dot = ft_atoi(str);
+		}
 		else if ((*str)[0] == '#')
 			flags->sharp = 1;
 		else if ((*str)[0] == ' ')
@@ -57,7 +60,7 @@ void	get_flags(char **str, t_flags *flags)
 		else if ((*str)[0] == '+')
 			flags->plus = 1;
 		else
-			get_width(str, flags);
+			flags->width = ft_atoi(str);
 		*str += 1;
 	}
 }
@@ -77,4 +80,22 @@ int	print_width(t_flags flags)
 		flags.width--;
 	}
 	return (written);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+	int	length;
+
+	length = 0;
+	if (str != NULL)
+	{
+		i = 0;
+		while (str[i] != '\0')
+		{
+			i++;
+			length++;
+		}
+	}
+	return (length);
 }
