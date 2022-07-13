@@ -36,6 +36,8 @@ int	ft_putstr(char *s, t_flags flags)
 		s = "(null)";
 	written = 0;
 	s_len = ft_strlen(s);
+	if (s[0] == '(' && flags.dot >= 0 && s_len > flags.dot)
+		return (0);
 	if (flags.dot >= 0 && s_len > flags.dot)
 		s_len = flags.dot;
 	flags.width -= s_len;
@@ -52,17 +54,21 @@ int	ft_putstr(char *s, t_flags flags)
 int	print_flags_and_nbr(char *digits, int is_negative, t_flags flags)
 {
 	int	written;
+	int digits_len;
 
 	written = 0;
+	digits_len = ft_strlen(digits);
+	if (flags.dot >= 0 && digits[0] == '(' && flags.dot < digits_len)
+		return (0);
 	if (flags.minus == 0 && flags.zero == 0)
 		written += print_width(flags);
 	if (is_negative != 0)
 		written += write(1, "-", 1);
 	while (flags.dot-- > 0)
 		written += write(1, "0", 1);
-	if (flags.minus == 0)
+	if (flags.minus == 0 && flags.zero != 0)
 		written += print_width(flags);
-	written += write(1, digits, ft_strlen(digits));
+	written += write(1, digits, digits_len);
 	if (flags.minus != 0)
 		written += print_width(flags);
 	return (written);
@@ -74,6 +80,8 @@ int	print_digits(unsigned int n, int is_negative, t_flags flags)
 	char	digits[11];
 
 	nbr_size = get_nbr_size_in_base((unsigned long long)n, 10);
+	if (n == 0 && flags.dot == 0)
+		nbr_size = 0;
 	flags.dot -= nbr_size;
 	if (flags.dot < 0)
 		flags.dot = 0;

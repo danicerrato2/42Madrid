@@ -52,6 +52,7 @@ void	get_flags(char **str, t_flags *flags)
 		{
 			*str += 1;
 			flags->dot = ft_atoi(str);
+			flags->zero = 0;
 		}
 		else if ((*str)[0] == '#')
 			flags->sharp = 1;

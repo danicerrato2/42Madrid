@@ -45,6 +45,8 @@ int	print_nbr(char *nbr, t_flags flags, char case_type)
 
 	written = 0;
 	nbr_size = ft_strlen(nbr);
+	if (nbr[0] == '0' && flags.dot == 0)
+		nbr_size = 0;
 	flags.dot -= nbr_size;
 	if (flags.dot < 0)
 		flags.dot = 0;
@@ -71,12 +73,14 @@ int	print_ptr(unsigned long long ptr, t_flags flags)
 	char	*nbr;
 	int		nbr_size;
 
+	if (ptr == 0)
+		return (print_nbr("(nil)", flags, 0));
 	nbr_size = get_nbr_size_in_base(ptr, 16);
 	nbr = malloc(nbr_size + 1);
 	if (nbr == NULL)
 		return (0);
 	nbr[nbr_size] = 0;
-	while (--nbr_size > 0)
+	while (--nbr_size >= 0)
 	{
 		nbr[nbr_size] = "0123456789abcdef"[ptr % 16];
 		ptr /= 16;
