@@ -9,7 +9,7 @@ OBJ		=	$(SRC:.c=.o)
 
 AR		=	ar rcs
 CC		=	gcc
-FLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra #-g3 -fsanitize=address -static-libsan
 RM		=	rm -f
 
 all:		$(NAME)
@@ -20,7 +20,7 @@ $(NAME):	$(OBJ)
 bonus:		$(NAME)
 
 %.o:		%.c
-			@$(CC) $(FLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 			@$(RM) -r $(OBJ)
