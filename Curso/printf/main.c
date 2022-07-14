@@ -6,14 +6,14 @@
 int main()
 {
 	char c;
-	char *str = "%.dhola";
+	char *str = "%p";
 	int printf_n = 0, ft_printf_n = 0;
 
 	printf("Inicio de programa...\n");
 
-	printf_n = printf(str, 1);
+	printf_n = printf(str, (void *)0);
 	printf("\n");
-	ft_printf_n = ft_printf(str, 1);
+	ft_printf_n = ft_printf(str, (void *)0);
 	printf("\n");
 
 	printf("printf escribió %d caracteres\n", printf_n);
