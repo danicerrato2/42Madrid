@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:22 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/14 09:09:30 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:29:14 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	ft_putstr(char *s, t_flags flags)
 		s = "(null)";
 	written = 0;
 	s_len = ft_strlen(s);
-//	if (s[0] == '(' && flags.dot >= 0 && s_len > flags.dot)
-//		return (0);
 	if (flags.dot >= 0 && s_len > flags.dot)
 		s_len = flags.dot;
 	flags.width -= s_len;
@@ -54,7 +52,7 @@ int	ft_putstr(char *s, t_flags flags)
 int	print_flags_and_nbr(char *digits, int is_negative, t_flags flags)
 {
 	int	written;
-	int digits_len;
+	int	digits_len;
 
 	written = 0;
 	digits_len = ft_strlen(digits);

@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:45:30 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/14 09:04:57 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:28:49 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int	print_ptr(unsigned long long ptr, t_flags flags)
 	char	*nbr;
 	int		nbr_size;
 
-//	if (ptr == 0)
-//		return (print_nbr("(nil)", flags, 0));
 	nbr_size = get_nbr_size_in_base(ptr, 16);
 	nbr = malloc(nbr_size + 1);
 	if (nbr == NULL)
