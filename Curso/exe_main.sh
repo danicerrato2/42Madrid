@@ -1,1 +1,1 @@
-vi main.c; make; gcc main.c libftprintf.a; ./a.out; rm a.out
+vi main.c; gcc main.c; ./a.out; rm a.out

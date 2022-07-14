@@ -1,23 +1,20 @@
 #include <stdio.h>
-#include <limits.h>
+#include <string.h>
 #include <stdlib.h>
-#include "ft_printf.h"
+#include <unistd.h>
+#include <fcntl.h>
 
 int main()
 {
-	char c;
-	char *str = "%p";
-	int printf_n = 0, ft_printf_n = 0;
+	char buf[10];
+	int	n;
+	int fd = open("file.txt", 'r');
 
-	printf("Inicio de programa...\n");
+	n = read(fd, buf, 1);
+	printf("%d\n", n);
+	printf("%s\n", buf);
 
-	printf_n = printf(str, (void *)0);
-	printf("\n");
-	ft_printf_n = ft_printf(str, (void *)0);
-	printf("\n");
-
-	printf("printf escribió %d caracteres\n", printf_n);
-	printf("ft_printf escribió %d caracteres\n", ft_printf_n);
+	close(fd);
 
 	return 0;
 }
