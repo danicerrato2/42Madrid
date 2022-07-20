@@ -12,14 +12,25 @@
 
 #include "get_next_line.h"
 
-void	cut_and_save(const char *buf, size_t n, char *str, char *save)
+int	check_save(char **save, char **str)
 {
-	if (str == NULL)
-	{
-		str = ft_strnjoin(str, save, n);
-		save = save + n;
-	}
-	else
+	size_t	n_pos;
+	size_t	save_len;
+	char	*new_save;
+
+	if (*save == NULL)
+		return (0);
+	save_len = ft_strlen(*save);
+	n_pos = find_n(*save, save_len);
+	*str = ft_strnjoin(NULL, *save, n_pos);
+	if (*str == NULL)
+		return (1);
+	new_save = ft_strnjoin(NULL, *save + n_pos, save_len - n_pos);
+	free(*save);
+	*save = new_save;
+	if (save_len == n_pos && (*str)[n_pos - 1] != '\n')
+		return (0);
+	return (1);
 }
 
 char	*get_next_line(int fd)
@@ -27,23 +38,25 @@ char	*get_next_line(int fd)
 	static char		*save;
 	char			buf[BUFFER_SIZE];
 	char			*str;
-	size_t			n_flag;
+	size_t			n_pos;
 	size_t			bytes_read;
 
-	n_flag = find_n(save, ft_strlen(save));
 	str = NULL;
+	n_pos = check_save(&save, &str);
+	if (n_pos != 0)
+		return (str);
 	bytes_read = BUFFER_SIZE;
-	while (n_flag == -1 && bytes_read == BUFFER_SIZE)
+	while (bytes_read == BUFFER_SIZE)
 	{
+		ft_bzero(&buf, BUFFER_SIZE);
 		bytes_read = read(fd, buf, BUFFER_SIZE);
-		n_flag = find_n(buf, bytes_read);
-		if (n_flag == -1)
-		{
-			str = ft_strnjoin(str, buf, bytes_read);
-			if (str == NULL)
-				return (NULL);
-		}
+		n_pos = find_n(buf, bytes_read);
+		str = ft_strnjoin(str, buf, n_pos);
+		if (str == NULL)
+			return (NULL);
+		if (n_pos != ft_strlen(buf) || buf[n_pos - 1] == '\n')
+			break;
 	}
-	cut_and_save(buf, n_flag, str, save);
+	save = ft_strnjoin(NULL, buf + n_pos, ft_strlen(buf) - n_pos);
 	return (str);
 }

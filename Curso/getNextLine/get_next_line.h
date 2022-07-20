@@ -16,10 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+#include <stdio.h>
+
 char	*get_next_line(int fd);
 
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 size_t	find_n(const char *str, size_t size);
-void	ft_strnjoin(const char *s1, const char *s2, size_t size);
+char	*ft_strnjoin(char *s1, char *s2, size_t size);
 
+
+void	ft_bzero(char (*str)[], size_t size);
 #endif
