@@ -8,19 +8,30 @@
 
 int main()
 {
-	char *str;
-	int	i;
+//	char *str;
+//	int	i;
+	char buf[BUFFER_SIZE];
+	size_t bytes_read;
 	int fd = open("file.txt", O_RDWR);
 
-	str = "";
+/*	str = "";
 	i = 0;
 	while (str != NULL){
 		i++;
-		printf("\nLinea %d:\n", i);
 		str = get_next_line(fd);
-		if (str != NULL)
+		if (str != NULL){
+			printf("\nLinea %d:\n", i);
 			printf("\"%s\"\n", str);
+		}
 	}
+*/
+
+	printf("Inicio de programa ...\n");
+	bytes_read = read(fd, buf, 1);
+	if (buf[0] == EOF)
+		printf("Soy EOF\n");
+	else
+		printf("No guarda EOF\n");
 	close(fd);
 
 	return 0;

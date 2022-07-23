@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:12 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/14 13:08:57 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/23 13:11:40 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,44 @@ int	check_save(char **save, char **str)
 	return (1);
 }
 
+char	*save_rest(int fd, size_t size, char **save)
+{
+	char	buf[BUFFER_SIZE];
+	size_t	i;
+
+	i = 0;
+	while (i < size && read(fd, buf + i, 1) != EOF)
+		i++;
+	return ft_strnjoin(NULL, buf, i);
+}
+
+char	*get_next_line(int fd)
+{
+	static char		*save;
+	char			buf[BUFFER_SIZE];
+	char			*str;
+	size_t			i;
+	int				end_flag;
+
+	str = NULL;
+	end_flag = check_save(&save, &str);
+	if (end_flag != 0)
+		return (str);
+	while (end_flag == 0)
+	{
+		ft_bzero(&buf, BUFFER_SIZE);
+		i = 0;
+		while (i < BUFFER_SIZE && read(fd, buf + i, 1) != 0 && buf[i] != '\n')
+			i++;
+		str = ft_strnjoin(str, buf, i);
+		if (i != BUFFER_SIZE || buf[i] == '\n')
+			end_flag = 1;
+	}
+	save = save_rest(fd, BUFFER_SIZE - i, &save);
+	return (str);
+}
+
+/*
 char	*get_next_line(int fd)
 {
 	static char		*save;
@@ -60,3 +98,4 @@ char	*get_next_line(int fd)
 	save = ft_strnjoin(NULL, buf + n_pos, ft_strlen(buf) - n_pos);
 	return (str);
 }
+*/
