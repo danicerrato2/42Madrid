@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:23 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/14 13:07:37 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:07:44 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_strnjoin(char *s1, char *s2, size_t size)
 
 	if (size == 0)
 		return (s1);
-	joined_str = malloc(ft_strlen((char *)s1) + size);
+	joined_str = malloc(ft_strlen(s1) + size + 1);
 	if (joined_str == NULL)
 		return (NULL);
 	i = 0;
