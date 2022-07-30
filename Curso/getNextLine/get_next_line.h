@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:39:40 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/30 14:33:34 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:42:26 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-#include <stdio.h>
 
 char	*get_next_line(int fd);
 
