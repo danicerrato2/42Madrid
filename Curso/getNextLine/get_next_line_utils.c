@@ -6,23 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:23 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/28 20:07:44 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:40:23 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_bzero(char (*str)[], size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		(*str)[i] = 0;
-		i++;
-	}
-}
 
 size_t	ft_strlen(const char *str)
 {

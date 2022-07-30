@@ -6,7 +6,7 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:12 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/28 20:07:47 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:27:42 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,24 @@ int	check_save(char **save, char **str)
 	*str = ft_strnjoin(NULL, *save, n_pos);
 	if (*str == NULL)
 		return (0);
+	if (save_len == n_pos && (*str)[n_pos - 1] != '\n')
+	{
+		free(*save);
+		return (BUFFER_SIZE);
+	}
 	new_save = ft_strnjoin(NULL, *save + n_pos, save_len - n_pos);
 	free(*save);
 	*save = new_save;
-	if (save_len == n_pos && (*str)[n_pos - 1] != '\n')
-		return (BUFFER_SIZE);
 	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*save;
-	char			buf[BUFFER_SIZE];
-	char			*str;
-	size_t			n_pos;
+	static char	*save;
+	char		buf[BUFFER_SIZE];
+	char		*str;
+	size_t		n_pos;
+	size_t		bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -46,17 +50,15 @@ char	*get_next_line(int fd)
 	n_pos = check_save(&save, &str);
 	if (n_pos == 0)
 		return (str);
-	ft_bzero(&buf, BUFFER_SIZE);
+	buf[n_pos - 1] = 0;
 	while (n_pos == BUFFER_SIZE && buf[n_pos - 1] != '\n')
 	{
-		n_pos = read(fd, buf, BUFFER_SIZE);
-		if (n_pos != BUFFER_SIZE)
-			ft_bzero(&buf + n_pos, BUFFER_SIZE - n_pos);
-		n_pos = find_n(buf, n_pos);
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		n_pos = find_n(buf, bytes_read);
 		str = ft_strnjoin(str, buf, n_pos);
 		if (str == NULL)
 			return (NULL);
 	}
-	save = ft_strnjoin(NULL, buf + n_pos, ft_strlen(buf) - n_pos);
+	save = ft_strnjoin(NULL, buf + n_pos, bytes_read - n_pos);
 	return (str);
 }
