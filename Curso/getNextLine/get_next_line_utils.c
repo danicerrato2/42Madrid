@@ -75,6 +75,7 @@ char	*ft_strnjoin(char *s1, char *s2, size_t size)
 		joined_str[i + j] = s2[j];
 		j++;
 	}
+	joined_str[i + j] = 0;
 	if (s1 != NULL)
 		free(s1);
 	return (joined_str);

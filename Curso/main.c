@@ -10,9 +10,12 @@ int main()
 {
 	char *str;
 	int	i;
-//	char buf[BUFFER_SIZE];
+//	char buf[10];
 //	size_t bytes_read;
 	int fd = open("file.txt", O_RDONLY);
+
+	printf("Inicio de programa ...\n");
+
 
 	str = "";
 	i = 0;
@@ -26,15 +29,14 @@ int main()
 		}
 	}
 
-	close(fd);
-
-/*	printf("Inicio de programa ...\n");
-	bytes_read = read(fd, buf, 1);
-	if ((int)bytes_read == 0)
-		printf("Soy EOF\n");
-	else
-		printf("No guarda EOF\n");
+/*
+	strcpy(buf, "123456789");
+	bytes_read = read(fd, buf, 4);
+	printf("%s\n", buf);
 */
 
+	close(fd);
+
+	printf("Fin de programa\n");
 	return 0;
 }
