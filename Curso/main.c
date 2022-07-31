@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int main()
 {
@@ -13,15 +13,25 @@ int main()
 //	char buf[10];
 //	size_t bytes_read;
 	int fd = open("file.txt", O_RDONLY);
+//	int fd1 = open("file1.txt", O_RDONLY);
+//	int fd2 = open("file2.txt", O_RDONLY);
 
 	printf("Inicio de programa ...\n");
 
+/*
+	printf("1000: %s\n", get_next_line(1000));
+	printf("fd1: %s\n", get_next_line(fd1));
+	printf("1001: %s\n", get_next_line(1001));
+	printf("fd2: %s\n", get_next_line(fd2));
+	printf("fd1: %s\n", get_next_line(fd1));
+	printf("fd2: %s\n", get_next_line(fd2));
+*/
 
 	str = "";
 	i = 0;
 	while (str != NULL && i < 3){
 		i++;
-		str = get_next_line(fd);
+		str = get_next_line(1001);
 		if (str != NULL){
 			printf("\nLinea %d:\n", i);
 			printf("\"%s\"\n", str);
@@ -36,6 +46,8 @@ int main()
 */
 
 	close(fd);
+//	close(fd1);
+//	close(fd2);
 
 	printf("Fin de programa\n");
 	return 0;

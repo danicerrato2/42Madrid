@@ -6,11 +6,11 @@
 /*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:12 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/31 12:26:29 by dcerrato         ###   ########.fr       */
+/*   Updated: 2022/07/31 12:30:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	check_save(char **save, char **str)
 {
@@ -38,7 +38,7 @@ int	check_save(char **save, char **str)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[MAX_FDS];
 	char		buf[BUFFER_SIZE];
 	char		*str;
 	size_t		n_pos;
@@ -47,7 +47,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str = NULL;
-	n_pos = check_save(&save, &str);
+	n_pos = check_save(&(save[fd]), &str);
 	if (n_pos == 0)
 		return (str);
 	buf[n_pos - 1] = 0;
@@ -61,6 +61,6 @@ char	*get_next_line(int fd)
 		if (str == NULL)
 			return (NULL);
 	}
-	save = ft_strnjoin(NULL, buf + n_pos, (size_t)bytes_read - n_pos);
+	save[fd] = ft_strnjoin(NULL, buf + n_pos, (size_t)bytes_read - n_pos);
 	return (str);
 }
