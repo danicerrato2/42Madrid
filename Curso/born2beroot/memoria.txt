@@ -1,0 +1,85 @@
+1. Elegí Debian frente a CentOS puesto que no tengo mucha experiencia en
+	administración de sistemas
+
+2. Diferencias entre Debian y CentOS (RedHat):
+	- Interfaces diferentes
+
+	- Administrador de paquetes: 	CentOS -> YUM/DNF con formato RPM
+									Debian -> dpkg/APT con formato DEB
+	- Sistema de archivos:	CentOS -> XFS
+							Debian -> EXT4
+		Aunque ambas distribuciones soportan ambos sistemas y más.
+
+	- Capacidad de actualizacion: 	CentOS -> admite actualizaciones de
+										versiones menores, pero no o debilmente
+										para las versiones principales.
+									Debian -> permite actualizar de una version
+										estable a otra, permitiendo mantener el
+										sistema actualizado tras mucho tiempo.
+
+	- Soporte:	CentOS -> realizado en gran parte por la comunidad, pero aceptan
+					informes de errores por usuarios finales. No cuenta con soporte
+					comercial, sí a través de terceros.
+				Debian -> depende de la comunidad, que incluye un rastreador de
+					errores, además de una lista de consultores independientes.
+					Sí que cuenta con soporte comercial, Ubuntu por ejemplo.
+
+	-Resumen: Debian es más fácil para usuarios con menos experiencia en
+		administración de sistemas. CentOS es mejor para usuarios experimentados,
+		así como empresas, ya que es más confiable por el apoyo de RHEL o AlmaLinux
+
+3. Diferencias entre aptitude y apt:
+	Son herramientas de administración de paquetes.
+	APT (Advanced Packaging Tool) es un software gratuito y de código abierto.
+		Se diseñó para paquetes .deb, pero es compatible con paquetes RPM.
+		Busca el paquete a instalar en la lista de fuentes "etc/apt/sources.list"
+		y la lista de dependencias de ese paquete. Hace que el usuario no tenga
+		que preocuparse por instalar las dependencias.
+	Aptitude es una herramienta de empaquetado avanzada que agrega una GUI,
+		permitiendo al usuario instalar los paquetes de forma interactiva.
+		Diseñada para Debian, pero es compatible con paquetes RPM. Permite
+		operar en modo UI evitando ciertas especificaciones de bajo nivel;
+		y por linea de comandos.
+
+	Aptitude tiene más funcionalidad e integra la funcionalidad de APT.
+	Aptitude puede usar UI o linea de comandos, APT solo linea de comandos.
+	Aptitude tiene mejor administración de paquetes que APT.
+	Aptitude elimina automaticamente los paquetes no usados al eliminar cualquier
+		paquete; APT necesita la especificación explícita.
+	Aptitude ofrece comandos para saber porqué se ha bloqueado cierta acción.
+	Aptitude ofrece posibles medidas para evitar algunos conflictos, mientras
+		que APT simplemente acaba el proceso.
+
+4. SELinux:
+	Es una arquitectura de seguridad para sistemas Linux, la cual permite a los
+		administradores tener mayor control sobre las personas que pueden acceder
+		a los sistemas. Es OpenSource desde el 2000 y está integrado en el kernel
+		de Linux desde 2003.
+
+	Define los controles de acceso para las aplicaciones, procesos y archivos.
+		Usa politicas de seguridad que consisten en una serie de reglas.
+		Cuando un proceso solicita acceso a algun objeto, SELinux consulta la cache
+		de vector de acceso (AVC), donde se almacenan los permisos.
+		Si no puede determinar el acceso, envia  solicitud al servidor de
+		seguridad, el cual comprueba el contexto de seguridad del sujeto y del
+		archivo. Aquí se deniega o permite el acceso. En caso de negarse,
+		aparece el mensaje "avc: denied" en "/var/log.messsages"
+
+5. APPArmor:
+	Es un sistema de seguridad de control de acceso tipo MAC (Mandatory Access
+		Control). El núcleo pregunta a AppArmor antes de cada llamada del sistema
+		para saber si un proceso está autorizado para realizar cierta acción.
+
+	Aplica un conjunto de reglas a cada programa en base a su ruta de instalación.
+		Las reglas no dependen del usuario, se les aplican las mismas reglas.
+
+	Los perfiles se guardan en "/etc/apparmor.d/" y contienen una serie de reglas
+		de control de acceso sobre los recursos que puede usar cada programa.
+
+	- Instalar AppArmor:
+		sudo apt install apparmor apparmor-profiles apparmor-utils
+
+	- Comprobar estdo de AppArmor:
+		aa-status
+
+	
