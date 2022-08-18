@@ -82,4 +82,44 @@
 	- Comprobar estdo de AppArmor:
 		aa-status
 
-	
+6. Creación de la maquina virtual:
+	1. Creamos nueva máquina de Linux (Debian) con 1024 MB de memoria y 8 GB de
+		alamcenamiento.
+	2. Seleccionamos la imagen de disco (.iso) de Debian descargada (ult. version)
+	3. Iniciamos la máquina y elegimos los idiomas que queremos
+	4. Nombre de la maquina: dcerrato42
+	5. Dominio para la red: (Dejar en blanco)
+	6. Nombre de usuario: Daniel Cerrato
+	7. Nombre de usuario para la cuenta: dcerrato42
+	8. Metodo de particionado: Manual
+	9. Creamos nueva tabla de particionado VBOX Harddisk creado anteriormente (8GB)
+	10. Seleccionamos la particion nueva:
+		10.1. Le damos 500 MB de memoria primaria y al inicio de la particion.
+		10.2. La colgamos del "boot" y terminamos
+	11. Seleccionamos la particion nueva:
+		11.1. Le damos el tamaño máximo restante de memoria lógica.
+		11.2. El punto de montaje lo dejamos vacío para después
+	12. Accedemos a la configuración de los volúmenes cifrados:
+		12.1. Los creamos en la segunda partición.
+		12.2. Terminamos de definir la partición y acabamos.
+	13. Introducimos frase para la encriptacion: 42islife
+	14. Accedemos a la configuracion de la LVM (Logical Volum Manager):
+		14.1. Creamos un nuevo grupo: LVMGroup
+		14.2. Seleccionamos sda5_crypt como localidad del nuevo grupo.
+		14.3. Creamos los volumenes logicos: root (2GB), swap (1024MB),
+			home (1GB), var (1GB), srv (1GB), tmp (1GB), var-log (resto)
+		14.4. Terminamos y empezamos a configurar las sub-particiones:
+			14.4.1. home -> EXT4 colgada de /home
+			14.4.2. root -> EXT4 colgada de /
+			14.4.3. srv -> EXT4 colgada de /srv
+			14.4.4. swap -> swap area
+			14.4.5. tmp -> EXT4 colgada de /tmp
+			14.4.6. var -> EXT4 colgada de /var
+			14.4.7. var-log -> EXT4 colgada de /var/log (creada manualmente)
+		14.5. Terminamos y guardamos los cambios
+	15. No escaneamos ningun CD o DVD más.
+	16. Seleccionamos el archivo deb.debian.org
+	17. Dejamos en blanco el HTTP
+	18. Decimos que no queremos participar en la encuesta.
+	19. Deseleccionamos SSH server y las herramientas standar del sistema
+	20. Instalamos GRUB en la memoria VBOX Hardisk
