@@ -90,7 +90,7 @@
 	4. Nombre de la maquina: dcerrato42
 	5. Dominio para la red: (Dejar en blanco)
 	6. Nombre de usuario: Daniel Cerrato
-	7. Nombre de usuario para la cuenta: dcerrato42
+	7. Nombre de usuario para la cuenta: dcerrato
 	8. Metodo de particionado: Manual
 	9. Creamos nueva tabla de particionado VBOX Harddisk creado anteriormente (8GB)
 	10. Seleccionamos la particion nueva:
@@ -123,3 +123,39 @@
 	18. Decimos que no queremos participar en la encuesta.
 	19. Deseleccionamos SSH server y las herramientas standar del sistema
 	20. Instalamos GRUB en la memoria VBOX Hardisk
+
+7. VM:
+	Arrancamos la máquina virtual, desbloqueamos el script con la frase "42islife",
+		iniciamos sesion (dcerrato42 y su contraseña).
+	Entramos en modo root -> "su"
+	Actualizamos apt -> "apt update; apt upgrade"
+	Instalamos sudo -> "apt install sudo"
+	Añadimos un usuario a un grupo -> "sudo usermod -aG [group] [username]"
+		-a : append
+		-G : group
+	Comprobar un grupo -> "getent group [grupo]"
+	Salir del modo root -> "exit"
+	Crear grupos -> "sudo groupadd [groupname]"
+	Ver todos los grupos -> "groups"
+	Reiniciar VM -> "sudo reboot"
+
+8. SSH:
+	Instalar SSH -> "sudo apt install openssh-server"
+	Comprobar ssh corriendo -> "sudo systemctl status ssh"
+	Comprobar ip -> "ip a"
+	Añadir un puerto ->
+		"cd /etc/ssh; sudo vim sshd_config (cambiar '#Port 22' por 'Port [port]')"
+	Incluir puerto en la lista de la VM:
+		VirtualBox -> Elegir VM -> Settings -> "Red/Network" -> "Adaptador1" ->
+			"Advance" -> "Port Forwarding" -> Añadir regla -> Host/Guest port igual
+	Acceder en remoto a VM -> "ssh -p [port] [username]@[ip]"
+		ip para ordenador 42 -> 127.0.0.1
+		ip para ordenador personal -> 10.0.2.15
+
+9. UFW:
+	Instalar UFW -> "sudo apt install ufw"
+	Activar UFW -> "sudo ufw enable"
+	Comprobar ufw activo -> "sudo ufw status"
+	Permitir puertos -> "sudo ufw allow [port]"
+	Comprobar reglas -> "sudo ufw status"
+	Eliminar reglas -> "sudo ufw delete [rulenum]"
