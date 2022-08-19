@@ -130,14 +130,23 @@
 	Entramos en modo root -> "su"
 	Actualizamos apt -> "apt update; apt upgrade"
 	Instalamos sudo -> "apt install sudo"
+	Crear un usuario -> "sudo adduser -m [username]"
+	Cambiar contraseña -> "sudo passwd [username]"
+	Comprobar usuarios -> "getent passwd | cut -d: -f1"
+	Eliminar usuarios -> "sudo userdel -r [username]"
 	Añadimos un usuario a un grupo -> "sudo usermod -aG [group] [username]"
 		-a : append
 		-G : group
 	Comprobar un grupo -> "getent group [grupo]"
+	Eliminar usuario de un grupo -> "sudo gpasswd -d [username] [group]"
 	Salir del modo root -> "exit"
 	Crear grupos -> "sudo groupadd [groupname]"
 	Ver todos los grupos -> "groups"
 	Reiniciar VM -> "sudo reboot"
+	Comprobar hostname -> "sudo hostnamectl"
+	Cambiar hostname -> "sudo hostnamectl set-hostname [newhostname]"
+	Comprobar particiones -> "lsblk"
+	Comprobar acciones con sudo -> "sudo vi /var/log/auth.log"
 
 8. SSH:
 	Instalar SSH -> "sudo apt install openssh-server"
@@ -158,4 +167,37 @@
 	Comprobar ufw activo -> "sudo ufw status"
 	Permitir puertos -> "sudo ufw allow [port]"
 	Comprobar reglas -> "sudo ufw status"
-	Eliminar reglas -> "sudo ufw delete [rulenum]"
+	Eliminar reglas -> "sudo ufw delete [ruleposition]"
+
+10. Politica de contraseñas:
+	Instalar herramienta seguridad -> "sudo apt install libpam-pwquality"
+	Abrir archivo de control -> "sudo vi /etc/login.defs"
+		PASS_MAX_DAYS 30 (dias en los que expira la contraseña)
+		PASS_MIN_DAYS 2  (dias minimos para cambiar de contraseña)
+		PASS_WARN_AGE 7  (dias de antelacion para aviso de cambio de contraseña)
+	Abrir archivo requisitos -> "sudo vi /etc/pam.d/common-password"
+		retry = 3		(numero maximo de intentos)
+		minlen = 10		(longitud minima)
+		ucredit = -1	(numero minimo de mayusculas)
+		dcredit = -1	(numero minimo de digitos)
+		maxrepeat = 3	(numero maximo de repeticiones seguidas)
+		usercheck = 0	(permiso de introducir el nombre de usuario)
+		difok = 7 		(numero de caracteres distintos de la contraseña antigua)
+		enforce_for_root (permiso especial para el root)
+
+11. Politca de sudo:
+	Abrir archivo para sudo -> "sudo visudo"
+	Añadir "Defaults":
+		passwd_tries = 3					(maximo intentos contraseña)
+		badpass_message = [message]			(mensaje en caso de fallo contraseña)
+		logfile = "/var/log/sudo/sudo.log"	(archivo log para uso de sudo)
+		requiretty							(modo TTY activado)
+	Añadidos otros "Defaults" interesantes:
+		timestamp_timeout = 1				(mins para preguntar contraseña)
+		log_input, log_output				(guarda inicios y cierres de sesion)
+
+12. monitoring.sh:
+	Escribir en todos los monitores -> "wall [OPTIONS] [MESSAGE]"
+		-n : Quita el banner de informacion
+	Arquitectura y version de kernel -> "uname -a"
+	Numero de procesadores -> "nproc --all"
