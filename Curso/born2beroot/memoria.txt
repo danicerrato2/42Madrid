@@ -84,7 +84,7 @@
 
 6. Creación de la maquina virtual:
 	1. Creamos nueva máquina de Linux (Debian) con 1024 MB de memoria y 8 GB de
-		alamcenamiento.
+		almacenamiento.
 	2. Seleccionamos la imagen de disco (.iso) de Debian descargada (ult. version)
 	3. Iniciamos la máquina y elegimos los idiomas que queremos
 	4. Nombre de la maquina: dcerrato42
