@@ -200,4 +200,8 @@
 	Escribir en todos los monitores -> "wall [OPTIONS] [MESSAGE]"
 		-n : Quita el banner de informacion
 	Arquitectura y version de kernel -> "uname -a"
-	Numero de procesadores -> "nproc --all"
+	Numero de nucleos fisicos -> 
+		"lscpu | grep '^CPU(s):' | awk '{print $2}'"
+	Numero de nucleos virtuales -> 
+		"grep -c processor /proc/cpuinfo"
+	
