@@ -199,9 +199,16 @@
 12. monitoring.sh:
 	Escribir en todos los monitores -> "wall [OPTIONS] [MESSAGE]"
 		-n : Quita el banner de informacion
-	Arquitectura y version de kernel -> "uname -a"
-	Numero de nucleos fisicos -> 
-		"lscpu | grep '^CPU(s):' | awk '{print $2}'"
-	Numero de nucleos virtuales -> 
-		"grep -c processor /proc/cpuinfo"
-	
+	*** Lo que hace cada comando se explica con el nombre ***
+	Crear/editar crontab (en modo su) -> crontab -e
+	Crear/editar crontab (sin modo su) -> sudo crontab -u [username] -e
+	Comprobar crontab -> sudo contrab -l
+	Automatizando:
+		m 	-> minuto (0-59)
+		h 	-> hora (0-23)
+		dom -> dia del mes (1-31)
+		mon -> mes del año (1-12)
+		dow -> dia de la semana (0:domingo-6:sabado)
+		command -> ruta al script (ha de colgar de la raiz)
+
+		*/[num] -> cada [num] (minutos, horas...)
