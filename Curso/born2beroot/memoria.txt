@@ -130,7 +130,7 @@
 	Entramos en modo root -> "su"
 	Actualizamos apt -> "apt update; apt upgrade"
 	Instalamos sudo -> "apt install sudo"
-	Crear un usuario -> "sudo adduser -m [username]"
+	Crear un usuario -> "sudo adduser [username]"
 	Cambiar contraseña -> "sudo passwd [username]"
 	Comprobar usuarios -> "getent passwd | cut -d: -f1"
 	Eliminar usuarios -> "sudo userdel -r [username]"
@@ -212,3 +212,27 @@
 		command -> ruta al script (ha de colgar de la raiz)
 
 		*/[num] -> cada [num] (minutos, horas...)
+
+*** Comandos para monitoring.sh
+
+	a.1. Arquitectura y kernel usados ->
+		"uname -a"
+	b.1. Numero de CPUs físicas ->
+		"lscpu | grep "CPU(s):" | awk '{print $2}'"
+	c.1. Numero de CPUs virtuales ->
+		"grep -c "^processor" /proc/cpuinfo"
+	g.1. Comprobar fecha y hora del ultimo boot ->
+		"who -b | awk '{print $4 " " $5}'" ($3 y $4 si ingles)
+	h.1. Comprobar si se esta usando LVM ->
+		"lsblk | grep -c "lvm" | \
+			awk '{if ($1 != 0) {print "yes"} else {print "no"}}'"
+	i.1. Numero de conexiones tcp abiertas ->
+		"ss -tunlp | grep -c "tcp" | awk '{print ($1)-1}'"
+	j.1. Numero de usuarios en el servidor ->
+		"who | wc -l"
+	k.1. Direccion IPv4 ->
+		"hostname -I"
+	k.2. Direccion MAC ->
+		"ip link | grep "inet" | awk '{print $2}'"
+	l.1. Numero de comandos ejecutados con sudo ->
+		"journalctl _COMM=sudo | grep -c COMMAND"
