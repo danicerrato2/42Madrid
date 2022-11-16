@@ -213,6 +213,7 @@
 
 		*/[num] -> cada [num] (minutos, horas...)
 
+
 *** Comandos para monitoring.sh
 
 	a.1. Arquitectura y kernel usados ->
@@ -221,8 +222,17 @@
 		"lscpu | grep "CPU(s):" | awk '{print $2}'"
 	c.1. Numero de CPUs virtuales ->
 		"grep -c "^processor" /proc/cpuinfo"
+	d.1. Fraccion y porcentaje de memoria usada ->
+		"free -m | grep "Mem:" | \
+			awk '{printf "%d/%dMB (%.2f%%)", $3, $2, $3/$2*100}'"
+	e.1. Fraccion de almacenamiento disponible y porcentaje de uso ->
+		"df -Bm | grep "^/dev/" | grep -v "/boot$" | \
+			awk '{t+=$2; f+=$4} END \
+				{printf "%d/%dMb (%.2f%%)", f, t, 1-f/t}'"
+	f.1. Porcentaje de uso de CPU ->
+		"top -bn1 | grep "^%Cpu(s):" | awk '{printf "%.1f%%", $2}'"
 	g.1. Comprobar fecha y hora del ultimo boot ->
-		"who -b | awk '{print $4 " " $5}'" ($3 y $4 si ingles)
+		"who -b | awk '{print $(NF-1) " " $NF}'" 
 	h.1. Comprobar si se esta usando LVM ->
 		"lsblk | grep -c "lvm" | \
 			awk '{if ($1 != 0) {print "yes"} else {print "no"}}'"
