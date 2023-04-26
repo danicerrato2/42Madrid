@@ -126,7 +126,7 @@
 
 7. VM:
 	Arrancamos la máquina virtual, desbloqueamos el script con la frase "42islife",
-		iniciamos sesion (dcerrato42 y su contraseña).
+		iniciamos sesion (dcerrato y su contraseña).
 	Entramos en modo root -> "su"
 	Actualizamos apt -> "apt update; apt upgrade"
 	Instalamos sudo -> "apt install sudo"
