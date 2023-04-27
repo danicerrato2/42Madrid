@@ -244,6 +244,6 @@
 	k.1. Direccion IPv4 ->
 		"hostname -I"
 	k.2. Direccion MAC ->
-		"ip link | grep "inet" | awk '{print $2}'"
+		"ip link | grep "link/ether" | awk '{print $2}'"
 	l.1. Numero de comandos ejecutados con sudo ->
 		"journalctl _COMM=sudo | grep -c COMMAND"
