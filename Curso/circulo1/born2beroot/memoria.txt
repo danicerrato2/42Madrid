@@ -125,7 +125,7 @@
 	20. Instalamos GRUB en la memoria VBOX Hardisk
 
 7. VM:
-	Arrancamos la máquina virtual, desbloqueamos el script con la frase "42islife",
+	Arrancamos la máquina virtual, desbloqueamos el cifrado con la frase "42islife",
 		iniciamos sesion (dcerrato y su contraseña).
 	Entramos en modo root -> "su"
 	Actualizamos apt -> "apt update; apt upgrade"
@@ -157,9 +157,10 @@
 	Incluir puerto en la lista de la VM:
 		VirtualBox -> Elegir VM -> Settings -> "Red/Network" -> "Adaptador1" ->
 			"Advance" -> "Port Forwarding" -> Añadir regla -> Host/Guest port igual
+	En 42 usar NAT, en Linux (Casa) usar Adaptador puente
 	Acceder en remoto a VM -> "ssh -p [port] [username]@[ip]"
 		ip para ordenador 42 -> 127.0.0.1
-		ip para ordenador personal -> 10.0.2.15
+		ip para ordenador personal -> 10.0.2.15/192.168.1.27
 
 9. UFW:
 	Instalar UFW -> "sudo apt install ufw"
