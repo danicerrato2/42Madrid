@@ -28,9 +28,9 @@ int push(t_stack *stack1, t_stack *stack2)
 
 int sort_stack(t_stack *stacks[], char *commands)
 {
-	int areSorted[2] = {0, 0};
+	int areSorted[2];
 
-	areSorted = are_in_order(stacks);
+	are_in_order(stacks, &areSorted);
 	while (stacks[0]->top != 0 || !areSorted[0] || !areSorted[1])
 	{
 		if (!areSorted[0] || !areSorted[1])
