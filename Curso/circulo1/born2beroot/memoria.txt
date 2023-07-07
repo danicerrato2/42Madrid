@@ -182,7 +182,7 @@
 		ucredit = -1	(numero minimo de mayusculas)
 		dcredit = -1	(numero minimo de digitos)
 		maxrepeat = 3	(numero maximo de repeticiones seguidas)
-		usercheck = 0	(permiso de introducir el nombre de usuario)
+		usercheck = 1	(no permite introducir el nombre de usuario)
 		difok = 7 		(numero de caracteres distintos de la contraseña antigua)
 		enforce_for_root (permiso especial para el root)
 
@@ -203,7 +203,7 @@
 	*** Lo que hace cada comando se explica con el nombre ***
 	Crear/editar crontab (en modo su) -> crontab -e
 	Crear/editar crontab (sin modo su) -> sudo crontab -u [username] -e
-	Comprobar crontab -> sudo contrab -l
+	Comprobar crontab -> sudo crontab -l
 	Automatizando:
 		m 	-> minuto (0-59)
 		h 	-> hora (0-23)
