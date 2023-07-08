@@ -102,7 +102,7 @@
 	12. Accedemos a la configuración de los volúmenes cifrados:
 		12.1. Los creamos en la segunda partición.
 		12.2. Terminamos de definir la partición y acabamos.
-	13. Introducimos frase para la encriptacion: 42islife
+	13. Introducimos frase para la encriptacion: "42madrid"
 	14. Accedemos a la configuracion de la LVM (Logical Volum Manager):
 		14.1. Creamos un nuevo grupo: LVMGroup
 		14.2. Seleccionamos sda5_crypt como localidad del nuevo grupo.
@@ -125,7 +125,7 @@
 	20. Instalamos GRUB en la memoria VBOX Hardisk
 
 7. VM:
-	Arrancamos la máquina virtual, desbloqueamos el cifrado con la frase "42islife",
+	Arrancamos la máquina virtual, desbloqueamos el cifrado con la frase "42madrid",
 		iniciamos sesion (dcerrato y su contraseña).
 	Entramos en modo root -> "su"
 	Actualizamos apt -> "apt update; apt upgrade"
@@ -204,6 +204,9 @@
 	Crear/editar crontab (en modo su) -> crontab -e
 	Crear/editar crontab (sin modo su) -> sudo crontab -u [username] -e
 	Comprobar crontab -> sudo crontab -l
+	Eliminar crontab -> sudo crontab -r
+	Parar crontab -> sudo /etc/init.d/cron stop
+	Reiniciar crontab -> sudo /etc/init.d/cron start
 	Automatizando:
 		m 	-> minuto (0-59)
 		h 	-> hora (0-23)
@@ -231,9 +234,9 @@
 			awk '{t+=$2; f+=$4} END \
 				{printf "%d/%dMb (%.2f%%)", f, t, 1-f/t}'"
 	f.1. Porcentaje de uso de CPU ->
-		"top -bn1 | grep "^%Cpu(s):" | awk '{printf "%.1f%%", $2}'"
+		"top -bn1 | grep "^%Cpu(s):" | awk '{printf "%.1f%%", 100.0 - $8}'"
 	g.1. Comprobar fecha y hora del ultimo boot ->
-		"who -b | awk '{print $(NF-1) " " $NF}'" 
+		"who -b | awk '{print $(NF-1) " " $NF}'"
 	h.1. Comprobar si se esta usando LVM ->
 		"lsblk | grep -c "lvm" | \
 			awk '{if ($1 != 0) {print "yes"} else {print "no"}}'"
