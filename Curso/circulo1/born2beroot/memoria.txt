@@ -152,8 +152,8 @@
 	Instalar SSH -> "sudo apt install openssh-server"
 	Comprobar ssh corriendo -> "sudo systemctl status ssh"
 	Comprobar ip -> "ip a"
-	Añadir un puerto ->
-		"cd /etc/ssh; sudo vim sshd_config (cambiar '#Port 22' por 'Port [port]')"
+	Añadir un puerto y no permitir login con root ->
+		"cd /etc/ssh; sudo vim sshd_config (cambiar '#Port 22' por 'Port [port]')""
 	Incluir puerto en la lista de la VM:
 		VirtualBox -> Elegir VM -> Settings -> "Red/Network" -> "Adaptador1" ->
 			"Advance" -> "Port Forwarding" -> Añadir regla -> Host/Guest port igual
