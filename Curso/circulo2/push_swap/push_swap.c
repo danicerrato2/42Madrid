@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "utils.h"
 
-int swap(t_stack *stack)
+int swap(t_stack *stack, char *move)
 {
 	int aux;
 
@@ -9,10 +9,11 @@ int swap(t_stack *stack)
 	aux = stack->content[stack->top];
 	stack->content[stack->top] = stack->content[stack->top+1];
 	stack->content[stack->top+1] = aux;
+	ft_putstr_fd(move, 1);
 	return (0);
 }
 
-int push(t_stack *stack1, t_stack *stack2)
+int push(t_stack *stack1, t_stack *stack2, char *move)
 {
 	int aux;
 
@@ -23,50 +24,43 @@ int push(t_stack *stack1, t_stack *stack2)
 		stack_push(stack2, aux);
 		return (-1);
 	}
+	ft_putstr_fd(move, 1);
 	return (0);
 }
 
-int sort_stack(t_stack *stacks[], char *commands)
-{
-	int areSorted[2];
+#include <stdio.h>
 
-	are_in_order(stacks, &areSorted);
-	while (stacks[0]->top != 0 || !areSorted[0] || !areSorted[1])
+int sort_three(t_stack *stack)
+{
+	while (!is_in_order(stack))
 	{
-		if (!areSorted[0] || !areSorted[1])
+		printf("\n");
+		printf("%d %d %d\n", stack->content[stack->top], stack->content[stack->top + 1], stack->content[stack->size - 1]);
+		if (stack->content[stack->top] > stack->content[stack->top + 1])
 		{
-			// Solo se indica el movimiento
-			if (!areSorted[0])
-			{
-				/*
-				 * Ver más pequeño de A:
-				 * 	Si bottom -> RRA
-				 * 	Si seg 	-> Si bottom < top -> RA
-				 * 		-> Si bottom > top -> SA
-				 * 	Si top 	-> Si bottom < prebottom -> RRA, RRA, SA, RA, RA
-				 */
-			}
-			if (!areSorted[1])
-			{
-				/*
-				 * Ver más pequeño (neg) de B:
-				 * 	Si bottom -> RRB
-				 * 	Si seg 	-> Si bottom < top -> RB
-				 * 		-> Si bottom > top -> SB
-				 * 	Si top -> PA
-			 	 */
-			}
-			// Se hacen comprobaciones y luego movimientos
-			/*
-			 * Si RR? o S? o R? -> RRR o SS o RR
-			 * Si PA y PB -> PB
-			 */
+			if (stack->content[stack->top] > stack->content[stack->size - 1])
+				(stack_rotate(stack, 0), ft_putstr_fd("ra\n", 1));
+			else
+				return (swap(stack, "sa\n"));
 		}
 		else
-			/*
-			 * PA
-			 */
+			(stack_rotate(stack, 1), ft_putstr_fd("rra\n", 1));
 	}
+	return (0);
+}
+
+int sort_stacks(t_stack *stacks[])
+{
+	// Bucle ida
+	if (stacks[0]->size > 2)
+		while (stacks[0]->top < stacks[0]->size - 3)
+		{
+			// No es algoritmo correcto, solo prueba
+			push(stacks[1], stacks[0], "");
+		}
+	sort_three(stacks[0]);
+	// Bucle vuelta
+	return (0);
 }
 
 int main(int argc, char **argv)
@@ -74,9 +68,8 @@ int main(int argc, char **argv)
 	t_stack *stacks[2];
 	int i;
 	int num;
-	char *commands;
 
-	if (argc < 2)
+	if (argc < 3)
 		return (0);
 	stacks[0] = stack_init(argc - 1);
 	stacks[1] = stack_init(argc - 1);
@@ -86,9 +79,9 @@ int main(int argc, char **argv)
 		num = ft_atoi(argv[i]);
 		if (is_in_stack(num, stacks[0]) == 1)
 			return (free_all(stacks, 1));
-		stack_push(stacks[0], ft_atoi(argv[i]));		
+		stack_push(stacks[0], num);		
 	}
-	if (i > 0 || sort_stack(stacks, commands) != 0)
+	if (stacks[0]->top == argc - 1 || sort_stacks(stacks) != 0)
 		return (free_all(stacks, 1));
 	return (free_all(stacks, 0));
 }

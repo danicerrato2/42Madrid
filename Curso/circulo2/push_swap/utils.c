@@ -5,26 +5,23 @@ int check_int(char *str)
 	int i;
 	int len;
 	
-	if (str != 0 && str[0] == '-')
+	len = ft_strlen(str);
+	if (len != 0 && str[0] == '-')
 	{
-		if (ft_strcmp("-2147483648", str) == 0)
+		if (ft_strncmp("-2147483648", str, len) == 0)
 			return (0);
 		str++;
 	}
-	len = ft_strlen(str);
 	if (len == 0 || len > 10)
 		return (-1);
-	if (len == 10) 
+	i = -1;
+	while (++i < len)
 	{
-		i = -1;
-		while (++i < len)
-		{
-			if (str[i] < '0' || str[i] > "2147483647"[i])
-				return (-1);
-			if (str[i] < "2147483647"[i])
-				return (0);
-		}
-	}		
+		if (str[i] < '0' || str[i] > '9')
+			return (-1);
+		if (len == 10 && str[i] > "2147483647"[i])
+			return (-1);
+	}
 	return (0);
 }
 
@@ -60,11 +57,24 @@ void are_in_order(t_stack *stacks[], int inOrder[2])
 	}
 }
 
+int is_in_order(t_stack *stack)
+{
+	int i;
+
+	i = stack->top - 1;
+	while (++i < stack->size - 1)
+	{
+		if (stack->content[i] > stack->content[i + 1])
+			return (0);
+	}
+	return (1);
+}
+
 int free_all(t_stack *stacks[], int errorValue)
 {
 	stack_free(stacks[0]);
 	stack_free(stacks[1]);
 	if (errorValue != 0)
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 1);
 	return (0);
 }

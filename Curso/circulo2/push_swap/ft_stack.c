@@ -58,9 +58,10 @@ int stack_rotate(t_stack *stack, int upOrDown)
 
 void stack_free(t_stack *stack)
 {
-	if (stack == NULL)
-		return;
-	if (stack->content != NULL)
-		free(stack->content);
-	free(stack);
+	if (stack != NULL)
+	{
+		if (stack->content != NULL)
+			free(stack->content);
+		free(stack);
+	}
 }
