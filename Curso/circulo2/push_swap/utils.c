@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 17:12:00 by dcerrato          #+#    #+#             */
+/*   Updated: 2023/07/13 17:12:00 by dcerrato         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
-int check_int(char *str)
+int	check_int(char *str)
 {
-	int i;
-	int len;
-	
+	int	i;
+	int	len;
+
 	len = ft_strlen(str);
 	if (len != 0 && str[0] == '-')
 	{
@@ -25,9 +37,9 @@ int check_int(char *str)
 	return (0);
 }
 
-int is_in_stack(int num, t_stack *stack)
+int	is_in_stack(int num, t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = stack->top;
 	while (i < stack->size)
@@ -39,27 +51,9 @@ int is_in_stack(int num, t_stack *stack)
 	return (0);
 }
 
-void are_in_order(t_stack *stacks[], int inOrder[2])
+int	is_in_order(t_stack *stack)
 {
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < 2)
-	{
-		inOrder[i] = 1;
-		j = stacks[i]->top - 1;
-		while (inOrder[i] == 1 && ++j < stacks[i]->size - 1)
-		{
-			if (stacks[i]->content[j] > stacks[i]->content[j + 1])
-				inOrder[i] = 0;
-		}
-	}
-}
-
-int is_in_order(t_stack *stack)
-{
-	int i;
+	int	i;
 
 	i = stack->top - 1;
 	while (++i < stack->size - 1)
@@ -70,7 +64,23 @@ int is_in_order(t_stack *stack)
 	return (1);
 }
 
-int free_all(t_stack *stacks[], int errorValue)
+void	get_minmax_values(t_stack *stack, int *min_value, int *max_value)
+{
+	int	i;
+
+	i = 0;
+	*min_value = stack->content[0];
+	*max_value = stack->content[0];
+	while (++i < stack->size)
+	{
+		if (stack->content[i] < *min_value)
+			*min_value = stack->content[i];
+		else if (stack->content[i] > *max_value)
+			*max_value = stack->content[i];
+	}
+}
+
+int	free_all(t_stack *stacks[], int errorValue)
 {
 	stack_free(stacks[0]);
 	stack_free(stacks[1]);

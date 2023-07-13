@@ -1,5 +1,5 @@
-setup=$(rm salida.txt resultado.txt)
-check=$(diff salida.txt resultado.txt | wc -l | awk '{if ($1 != 0) {print "KO"} else {print "OK"}}')
+setup=$(rm -f salida.txt resultado.txt)
+check=$(diff salida.txt resultado.txt 2> /dev/null | wc -l | awk '{if ($1 != 0) {print "KO"} else {print "OK"}}')
 
 echo "Prueba con 2 elementos"
 $setup; touch salida.txt; ./push_swap 1 2 > resultado.txt;

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.h                                         :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 17:17:48 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/13 17:21:55 by dcerrato         ###   ########.fr       */
+/*   Created: 2023/07/13 19:16:43 by dcerrato          #+#    #+#             */
+/*   Updated: 2023/07/13 19:42:32 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STACK_H
-# define FT_STACK_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-# include <stdlib.h>
+# include "utils.h"
 
-typedef struct s_stack
-{
-	int	*content;
-	int	top;
-	int	size;
-}	t_stack;
-
-t_stack	*stack_init(int size);
-int		stack_push(t_stack *stack, int num);
-int		stack_pop(t_stack *stack, int *num);
-int		stack_rotate(t_stack *stack, int upOrDown);
-void	stack_free(t_stack *stack);
+int		swap(t_stack *stack, char *move);
+int		push(t_stack *stack1, t_stack *stack2, char *move);
+void	change_stack(t_stack *stack_from, t_stack *stack_to);
+void	sort_three(t_stack *stack);
+void	sort_stacks(t_stack *stacks);
 
 #endif
