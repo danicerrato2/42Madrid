@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:17:48 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/13 17:21:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:17:57 by danicerrato      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_STACK_H
 
 # include <stdlib.h>
+# include "libft/libft.h"
 
 typedef struct s_stack
 {

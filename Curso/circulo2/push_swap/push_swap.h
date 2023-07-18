@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:16:43 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/13 19:42:32 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:11:49 by danicerrato      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 int		swap(t_stack *stack, char *move);
 int		push(t_stack *stack1, t_stack *stack2, char *move);
-void	change_stack(t_stack *stack_from, t_stack *stack_to);
 void	sort_three(t_stack *stack);
-void	sort_stacks(t_stack *stacks);
+void	move_to_b(t_stack *stacks[], float chunks[]);
+
+//void	change_stack(t_stack *stack_from, t_stack *stack_to);
 
 #endif
