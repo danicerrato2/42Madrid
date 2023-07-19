@@ -26,7 +26,7 @@ typedef struct s_stack
 t_stack	*stack_init(int size);
 int		stack_push(t_stack *stack, int num);
 int		stack_pop(t_stack *stack, int *num);
-int		stack_rotate(t_stack *stack, int upOrDown);
+int		stack_rotate(t_stack *stack, int up_or_down);
 void	stack_free(t_stack *stack);
 
 #endif

@@ -59,7 +59,7 @@ int	is_in_order(t_stack *stack)
 	i = stack->top;
 	while (--i > 0)
 	{
-		if (stack->content[i] > stack->content[i + 1])
+		if (stack->content[i] > stack->content[i - 1])
 			return (0);
 	}
 	return (1);

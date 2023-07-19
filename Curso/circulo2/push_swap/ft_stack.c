@@ -39,19 +39,19 @@ int	stack_pop(t_stack *stack, int *num)
 {
 	if (stack == NULL || stack->top == 0)
 		return (-1);
-	*num = stack->content[--stack->top];
+	*num = stack->content[--(stack->top)];
 	return (0);
 }
 
-// upOrDown = 0 => RA; = 1 => RRA
-int	stack_rotate(t_stack *stack, int upOrDown)
+// up_or_down = 0 => RA; = 1 => RRA
+int	stack_rotate(t_stack *stack, int up_or_down)
 {
 	int	i;
 	int	aux;
 
 	if (stack == NULL || stack->top <= 1)
 		return (-1);
-	if (upOrDown == 0)
+	if (up_or_down == 0)
 	{
 		i = stack->top - 1;
 		aux = stack->content[i];
