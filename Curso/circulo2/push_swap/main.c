@@ -12,29 +12,6 @@
 
 #include "push_swap.h"
 
-
-
-#include <stdio.h>
-
-
-
-
-void print_stack(t_stack *stack, char *name)
-{
-	printf("\nStack %s: ", name);
-	for (int i = stack->top - 1; i >= 0; i--)
-		printf("%d ", stack->content[i]);
-	printf("\n");
-}
-
-
-
-
-
-
-
-
-
 void	move_to_a(t_stack *stacks[], int move_code)
 {
 	int	value;
@@ -56,7 +33,6 @@ void	move_to_a(t_stack *stacks[], int move_code)
 		value = stacks[0]->content[stacks[0]->top - 1];
 	else if (move_code == -1)
 		value = stacks[0]->content[0];
-//printf("Move code = %d, value = %d\n", move_code, value);
 	do_moves_to_a(stacks, move_code, binary_search(stacks[1], value), rras);
 }
 
@@ -69,7 +45,7 @@ void	sort_three(t_stack *stack)
 			if (stack->content[stack->top - 1] > stack->content[0])
 				(stack_rotate(stack, 0), ft_putstr_fd("ra\n", 1));
 			else
-				return (void)(swap(stack, "sa\n"));
+				return ((void)(swap(stack, "sa\n")));
 		}
 		else
 			(stack_rotate(stack, 1), ft_putstr_fd("rra\n", 1));
@@ -87,7 +63,7 @@ void	move_to_b(t_stack *stacks[], float chunks[])
 		{
 			push(stacks[1], stacks[0], "pb\n");
 			if (stacks[0]->top <= 3 || stacks[1]->top == 1)
-				continue;
+				continue ;
 			if (stacks[1]->content[stacks[1]->top - 1] <= chunks[0] && \
 				stacks[0]->content[stacks[0]->top - 1] > chunks[1])
 			{
@@ -107,9 +83,8 @@ void	sort_stacks(t_stack *stacks[])
 {
 	float	chunks[2];
 	int		move_code;
-	int		top_A;
+	int		top_a;
 
-//print_stack(stacks[0], "A init");
 	chunks[0] = stacks[0]->size / 3.0;
 	chunks[1] = stacks[0]->size * 2.0 / 3.0;
 	while (stacks[0]->top > 3)
@@ -118,24 +93,19 @@ void	sort_stacks(t_stack *stacks[])
 		chunks[0] = (stacks[0]->size + 2.0 * (int)chunks[1]) / 3.0;
 		chunks[1] = (2.0 * stacks[0]->size + (int)chunks[1]) / 3.0;
 	}
-//print_stack(stacks[0], "A bf sort 3");
 	sort_three(stacks[0]);
 	while (stacks[1]->top > 0 || stacks[0]->content[stacks[0]->top - 1] != 1)
 	{
-		top_A = stacks[0]->top;
-		move_code = -2;	// PA directamente
-		if (stacks[0]->content[top_A - 1] != stacks[0]->content[top_A - 2] - 1)
-			move_code = 0;	// RA
-		else if (stacks[0]->content[0] == stacks[0]->content[top_A - 1] - 1)
-			move_code = 1;	// RRA
+		top_a = stacks[0]->top;
+		move_code = -2;
+		if (stacks[0]->content[top_a - 1] != stacks[0]->content[top_a - 2] - 1)
+			move_code = 0;
+		else if (stacks[0]->content[0] == stacks[0]->content[top_a - 1] - 1)
+			move_code = 1;
 		else if (stacks[0]->content[0] != stacks[0]->size)
-			move_code = -1;	// PA siguiente mayor
-//if (move_code == -1)
-//	return;
+			move_code = -1;
 		move_to_a(stacks, move_code);
-//print_stack(stacks[0], "A"); print_stack(stacks[1], "B");
 	}
-//print_stack(stacks[0], "A fin");
 }
 
 int	main(int argc, char **argv)

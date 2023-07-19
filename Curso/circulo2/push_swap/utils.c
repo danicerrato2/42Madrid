@@ -79,11 +79,13 @@ void	convert_numbers(t_stack *stacks[])
 		min_pos = 0;
 		i = -1;
 		while (++i < stacks[0]->top)
+		{
 			if (stacks[2]->content[i] == 0 && stacks[0]->content[i] < min_value)
 			{
-					min_value = stacks[0]->content[i];
-					min_pos = i;
+				min_value = stacks[0]->content[i];
+				min_pos = i;
 			}
+		}
 		stacks[0]->content[min_pos] = j + 1;
 		stacks[2]->content[min_pos] = 1;
 	}
@@ -93,6 +95,7 @@ int	free_all(t_stack *stacks[], int errorValue)
 {
 	stack_free(stacks[0]);
 	stack_free(stacks[1]);
+	stack_free(stacks[2]);
 	if (errorValue != 0)
 		ft_putstr_fd("Error\n", 2);
 	return (0);

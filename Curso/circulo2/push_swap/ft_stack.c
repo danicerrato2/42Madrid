@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "ft_stack.h"
+#include "ft_stack.h"
 
 t_stack	*stack_init(int size)
 {
