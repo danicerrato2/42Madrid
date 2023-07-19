@@ -1,3 +1,0 @@
-En utils.c se puede meter una funcion mas
-
-En push_swap.c hacer funcion prepare_stacks, sort_stacks, change_stack

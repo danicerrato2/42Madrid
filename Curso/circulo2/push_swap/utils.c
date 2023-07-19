@@ -94,6 +94,6 @@ int	free_all(t_stack *stacks[], int errorValue)
 	stack_free(stacks[0]);
 	stack_free(stacks[1]);
 	if (errorValue != 0)
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 	return (0);
 }

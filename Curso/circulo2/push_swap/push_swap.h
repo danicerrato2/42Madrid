@@ -15,11 +15,10 @@
 
 # include "utils.h"
 
-int	swap(t_stack *stack, char *move);
-int	push(t_stack *stack1, t_stack *stack2, char *move);
-int rotate_stacks(t_stack *stacks[], int up_or_down);
-int binary_search(t_stack *stack, int value);
-
-//void	change_stack(t_stack *stack_from, t_stack *stack_to);
+int     swap(t_stack *stack, char *move);
+int     push(t_stack *stack1, t_stack *stack2, char *move);
+void    rotate_stacks(t_stack *stacks[], int up_or_down);
+int     binary_search(t_stack *stack, int value);
+void	do_moves_to_a(t_stack *stacks[], int move_code, int moves, int rras);
 
 #endif
