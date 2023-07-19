@@ -114,7 +114,7 @@ int	main(int argc, char **argv)
 	int		i;
 	int		num;
 
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
 	stacks[0] = stack_init(argc - 1);
 	stacks[1] = stack_init(argc - 1);
