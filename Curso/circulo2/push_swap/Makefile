@@ -1,8 +1,11 @@
 NAME	=	push_swap
+BONUS	=	checker
 
 SRC		=	main.c push_swap.c utils.c ft_stack.c
+SRCB	=	main_bonus.c push_swap.c utils.c ft_stack.c push_swap_bonus.c
 
 OBJ		=	$(SRC:.c=.o)
+OBJB	=	$(SRCB:.c=.o)
 
 LIBFT	=	$(LIBFT_DIR)/libft.a
 LIBFT_DIR = libft
@@ -16,7 +19,8 @@ all:		$(NAME)
 $(NAME):	$(OBJ) $(LIBFT)
 			$(CC) $(CFLAGS) -o ${NAME} $^
 
-bonus:		$(NAME)
+bonus:		$(OBJB) $(LIBFT)
+			$(CC) $(CFLAGS) -o ${BONUS} $^
 
 $(LIBFT):	
 			@make all -C $(LIBFT_DIR) --no-print-directory
@@ -25,11 +29,11 @@ $(LIBFT):
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			@$(RM) -r $(OBJ) $(LIBFT)
+			@$(RM) -r $(OBJ) $(OBJB) $(LIBFT)
 			@make clean -C $(LIBFT_DIR) --no-print-directory
 
 fclean:		clean
-			@$(RM) $(NAME)
+			@$(RM) $(NAME) $(BONUS)
 
 re:			fclean	all
 

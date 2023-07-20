@@ -12,13 +12,15 @@
 
 #include "utils.h"
 
+#include <stdio.h>
+
 int	check_int(char *str)
 {
 	int	i;
 	int	len;
 
 	len = ft_strlen(str);
-	if (len != 0 && str[0] == '-')
+	if (len > 1 && str[0] == '-')
 	{
 		if (ft_strncmp("-2147483648", str, len) == 0)
 			return (0);
