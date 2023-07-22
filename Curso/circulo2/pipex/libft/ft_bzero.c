@@ -1,12 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 10:48:57 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/21 19:34:33 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/17 12:03:44 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/07/06 10:29:30 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_bzero(void *str, size_t len)
+{
+	size_t	i;
+
+	if (str == NULL)
+		return ;
+	i = 0;
+	while (i < len)
+	{
+		((char *)str)[i] = 0;
+		i++;
+	}
+}

@@ -1,12 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 10:48:57 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/21 19:34:33 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/24 17:06:32 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/24 17:09:04 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*aux_lst;
+
+	i = 0;
+	aux_lst = lst;
+	while (aux_lst != NULL)
+	{
+		i++;
+		aux_lst = aux_lst->next;
+	}
+	return (i);
+}

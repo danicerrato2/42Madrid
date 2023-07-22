@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 10:41:26 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/13 14:45:12 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:28:21 by danicerrato      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_flags
 int		ft_printf(const char *format, ...);
 int		ft_putchar(char c, t_flags flags);
 int		ft_putstr(char *s, t_flags flags);
-int		ft_strlen(char *str);
+int		ft_printf_strlen(char *str);
 int		print_digits(unsigned int n, int is_negative, t_flags flags);
 int		ft_putnbr(int n, t_flags flags);
 int		print_ptr(unsigned long long ptr, t_flags flags);

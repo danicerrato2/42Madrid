@@ -1,12 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 10:48:57 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/21 19:34:33 by dcerrato         ###   ########.fr       */
+/*   Created: 2022/06/24 17:00:37 by dcerrato          #+#    #+#             */
+/*   Updated: 2022/06/24 17:00:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *(lst);
+	*lst = new;
+}
