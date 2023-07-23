@@ -12,16 +12,44 @@
 
 #include "pipex.h"
 
-int	error(char *msg)
+void	free_all(t_pipex *data)
 {
+	close(data->infile);
+	close(data->outfile);
+	close(data->pipefd[0]);
+	close(data->pipefd[1]);
+}
+
+int	error(t_pipex *data, char *msg)
+{
+	free_all(data);
 	ft_putstr_fd(msg, 2);
 	return (-1);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	if (argc < 5 && argv)
-		return (error("Número de argumentos incorrecto\n"));
+	t_pipex	data;
+
+	if (argc < 5)
+		return (error(&data, "Número de argumentos incorrecto\n"));
+	data.argc = argc;
+	data.argv = argv;
+	data.infile = open(argv[1], O_RDONLY)
+	if (data.infile == -1)
+		return (error(&data, "Error al abrir infile\n"));
+	data.outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC);
+	if (data.outfile == -1)
+		return (error(&data, "Error al abrir outfile\n"));
+	if (pipe(data.pipefd) == -1)
+		return (error(&data, "Error al abrir pipe\n"));
+	data.child = fork();
+	if (data.child == -1)
+		return (error(&data, "Error al crear el proceso hijo\n"));
+	if (data.child == 0)
+		exec_child(&data);
+	else
+		exec_father(&data);
 	return (0);
 }
 
@@ -29,6 +57,25 @@ int	main(int argc, char *argv[], char *envp[])
 Estudio:
 
 infile command1 | ... | commandN outfile
+
+infile	-> open(..., O_RDONLY)
+outfile -> open(..., O_CREAT | O_WRONLY | O_TRUNC)
+
+infile o resultados de comandos	->	Enviar a fd = 0 con dup2
+outfile	o lecturas de resultados	->	Enviar a fd = 1 con dup2
+
+
+pipe (int pipefd[2])
+	pipefd	->	pipefd[0] para leer (hijo), pipefd[1] para escribir (padre)
+
+	Retornos:
+		Success	->	Nada
+		Failure	->	Retorna -1
+
+	Cosas a tener en cuenta:
+		Cerrar pipefd[0-1] contrario al del hijo o padre antes de que hagan algo
+		Padre espera a hijo con wait(NULL)
+
 
 access (const char *pathname, int mode)
 	pathname	->	Ruta al comando a ejecutar
