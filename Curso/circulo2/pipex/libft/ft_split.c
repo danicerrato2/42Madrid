@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
-/*   Updated: 2022/07/06 14:15:30 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:11:22 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_all(char **strs)
+void	free_all_s(char **strs)
 {
 	int	i;
 
@@ -99,7 +99,7 @@ char	**ft_split(const char *str, char c)
 		return (NULL);
 	if (split_words(strings, aux, c) == 0)
 	{
-		free_all(strings);
+		free_all_s(strings);
 		return (NULL);
 	}
 	strings[words] = 0;

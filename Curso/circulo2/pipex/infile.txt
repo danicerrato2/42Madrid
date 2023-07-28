@@ -1,8 +1,0 @@
-total 12
--rwxrwxrwx 1 danicerrato2 danicerrato2  921 Jul 23 19:30 Makefile
--rwxrwxrwx 1 danicerrato2 danicerrato2    0 Jul 23 22:15 infile.txt
-drwxrwxrwx 1 danicerrato2 danicerrato2 4096 Jul 23 22:15 libft
--rwxrwxrwx 1 danicerrato2 danicerrato2 3614 Jul 23 21:21 main.c
--rwxrwxrwx 1 danicerrato2 danicerrato2  892 Jul 23 19:30 pipex.c
--rwxrwxrwx 1 danicerrato2 danicerrato2  120 Jul 23 19:30 pipex.h
-drwxrwxrwx 1 danicerrato2 danicerrato2 4096 Jul 23 22:15 printf

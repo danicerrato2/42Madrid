@@ -3,53 +3,167 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/22 20:29:26 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/28 21:50:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+
+#include <stdio.h>
+
+
+void	free_fork_utils(char *cmd, char **args)
+{
+	int	i;
+
+	if (cmd)
+		free(cmd);
+	i = -1;
+	if (args)
+	{
+		while (args[++i] != 0)
+			free(args[i]);
+		free(args); 
+	}
+}
+
 void	free_all(t_pipex *data)
 {
-	close(data->infile);
-	close(data->outfile);
-	close(data->pipefd[0]);
+	int	i;
+
+	i = -1;
+	if (data->paths)
+	{
+		while (data->paths[++i] != 0)
+			free(data->paths[i]);
+		free(data->paths);
+	}
+	(close(data->infile), close(data->outfile));
+	(close(data->pipefd[0]), close(data->pipefd[1]));
+}
+
+void	error(t_pipex *data, char *msg, int code)
+{
+	if (data != 0)
+		free_all(data);
+	ft_putstr_fd(msg, 2);
+	exit(code);
+}
+
+void	exec_child(t_pipex *data)
+{
+	char	**args;
+	char	*cmd;
+	int		i;
+
+	if (data->infile == -1)
+		return ;
+	(dup2(data->infile, 0), dup2(data->pipefd[1], 1));
+	(close(data->pipefd[0]), close(data->infile));
+	args = ft_split(data->argv[2], ' ');
+	i = 0;
+	while (data->paths[i] != 0)
+	{
+		cmd = ft_strjoin(data->paths[i], args[0]);
+		if (access(cmd, X_OK) != -1)
+			break;
+		free(cmd);
+		i++;
+	}
+	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
+		cmd = args[0];
+	else if (data->paths[i] == 0)
+		(free_fork_utils(NULL, args), error(data, "Error: Command not found\n", 127));
+	if (execve(cmd, args, data->envp) != -1)
+		(free_fork_utils(cmd, args), error(data, "Error: Command not found\n", 127));
+	free_fork_utils(cmd, args);
 	close(data->pipefd[1]);
 }
 
-int	error(t_pipex *data, char *msg)
+void	exec_father(t_pipex *data)
 {
-	free_all(data);
-	ft_putstr_fd(msg, 2);
-	return (-1);
+	char	**args;
+	char	*cmd;
+	int		i;
+	
+	(dup2(data->outfile, 1), dup2(data->pipefd[0], 0));
+	(close(data->pipefd[1]), close(data->outfile));
+	args = ft_split(data->argv[3], ' ');
+	i = 0;
+	while (data->paths[i] != 0)
+	{
+		cmd = ft_strjoin(data->paths[i], args[0]);
+		if (access(cmd, X_OK) != -1)
+			break;
+		free(cmd);
+		i++;
+	}
+	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
+		cmd = args[0];
+	else if (data->paths[i] == 0)
+		(free_fork_utils(NULL, args), error(data, "Error: Command not found\n", 127));
+	if (execve(cmd, args, data->envp) != -1)
+		(free_fork_utils(cmd, args), error(data, "Error: Command not found\n", 127));
+	free_fork_utils(cmd, args);
+	close(data->pipefd[0]);
+}
+
+char	**get_paths(char *envp[])
+{
+	char	*aux;
+	char	**paths;
+	int		i;
+
+	i = 0;
+	while (ft_strncmp(envp[i], "PATH=", 5) != 0)
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	i = -1;
+	while (paths[++i] != 0)
+	{
+		aux = ft_strjoin(paths[i], "/");
+		free(paths[i]);
+		paths[i] = aux;
+	}
+	return paths;
+}
+
+void	init_data(t_pipex *data, int argc, char *argv[], char *envp[])
+{	
+	data->argc = argc;
+	data->argv = argv;
+	data->envp = envp;
+	data->paths = get_paths(envp);
+	data->infile = open(argv[1], O_RDONLY);
+	if (data->infile == -1)
+		ft_putstr_fd("Error: No such file or directory\n", 2);
+	data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 644);
+	if (data->outfile == -1)
+		error(data, "Error: Permission denied\n", 1);
+	if (pipe(data->pipefd) == -1)
+		error(data, "Error: Pipe not open\n", 1);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	data;
 
-	if (argc < 5)
-		return (error(&data, "Número de argumentos incorrecto\n"));
-	data.argc = argc;
-	data.argv = argv;
-	data.infile = open(argv[1], O_RDONLY)
-	if (data.infile == -1)
-		return (error(&data, "Error al abrir infile\n"));
-	data.outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC);
-	if (data.outfile == -1)
-		return (error(&data, "Error al abrir outfile\n"));
-	if (pipe(data.pipefd) == -1)
-		return (error(&data, "Error al abrir pipe\n"));
+	if (argc != 5)
+		error(0, "Error: command not found\n", 1);
+	init_data(&data, argc, argv, envp);
 	data.child = fork();
 	if (data.child == -1)
-		return (error(&data, "Error al crear el proceso hijo\n"));
+		error(&data, "Error al crear el proceso hijo\n", 0);
 	if (data.child == 0)
 		exec_child(&data);
 	else
 		exec_father(&data);
+	waitpid(data.child, NULL, 0);
+	free_all(&data);
 	return (0);
 }
 

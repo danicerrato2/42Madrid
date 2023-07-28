@@ -2,14 +2,18 @@
 # define PIPEX_H
 
 # include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <string.h>
 
 # include "libft/libft.h"
-# include "printf/ft_printf.h"
 
 typedef struct s_pipex
 {
 	int		argc;
-	char	*argv[];
+	char	**argv;
+	char	**envp;
+	char	**paths;
 	int		infile;
 	int		outfile;
 	int		pipefd[2];
