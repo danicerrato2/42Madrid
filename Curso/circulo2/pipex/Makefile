@@ -22,7 +22,7 @@ $(NAME):	$(OBJ) $(LIBFT)
 #bonus:		$(OBJB) $(LIBFT)
 #			$(CC) $(CFLAGS) -o ${BONUS} $^
 
-$(LIBS):	
+$(LIBFT):	
 			@make all -C $(LIBFT_DIR) --no-print-directory
 
 %.o:		%.c
