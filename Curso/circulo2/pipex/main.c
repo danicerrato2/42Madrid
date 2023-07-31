@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/29 00:18:42 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:57:17 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_child(t_pipex *data)
 
 	(dup2(data->infile, 0), dup2(data->pipefd[1], 1));
 	(close(data->pipefd[0]), close(data->infile));
-	args = ft_split(data->argv[2], ' ');
+	args = ft_pipex_split(data->argv[2], ' ');
 	i = -1;
 	while (data->paths[++i] != 0)
 	{
@@ -56,7 +56,7 @@ void	exec_father(t_pipex *data)
 
 	(dup2(data->outfile, 1), dup2(data->pipefd[0], 0));
 	(close(data->pipefd[1]), close(data->outfile));
-	args = ft_split(data->argv[3], ' ');
+	args = ft_pipex_split(data->argv[3], ' ');
 	i = -1;
 	while (data->paths[++i] != 0)
 	{

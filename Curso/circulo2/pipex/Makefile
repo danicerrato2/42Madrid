@@ -1,7 +1,7 @@
 NAME	=	pipex
 #BONUS	=	checker
 
-SRC		=	main.c pipex.c
+SRC		=	main.c pipex.c ft_pipex_split.c
 #SRCB	=	main_bonus.c push_swap.c utils.c ft_stack.c push_swap_bonus.c
 
 OBJ		=	$(SRC:.c=.o)
@@ -18,6 +18,8 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ) $(LIBFT)
 			$(CC) $(CFLAGS) -o ${NAME} $^
+
+bonus:
 
 #bonus:		$(OBJB) $(LIBFT)
 #			$(CC) $(CFLAGS) -o ${BONUS} $^
