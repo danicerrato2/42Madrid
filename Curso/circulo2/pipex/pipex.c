@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:48:57 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/31 18:59:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:36:12 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	error(t_pipex *data, char *msg, int code)
+{
+	if (data != 0)
+		free_all(data);
+	ft_putstr_fd(msg, 2);
+	exit(code);
+}
 
 void	free_fork_utils(char *cmd, char **args)
 {
@@ -23,7 +31,7 @@ void	free_fork_utils(char *cmd, char **args)
 	{
 		while (args[++i] != 0)
 			free(args[i]);
-		free(args); 
+		free(args);
 	}
 }
 
@@ -60,4 +68,23 @@ char	**get_paths(char *envp[])
 		paths[i] = aux;
 	}
 	return (paths);
+}
+
+int	get_command(t_pipex *data, char **args)
+{
+	int	i;
+
+	i = -1;
+	while (data->paths[++i] != 0)
+	{
+		data->cmd = ft_strjoin(data->paths[i], args[0]);
+		if (access(data->cmd, X_OK) != -1)
+			break ;
+		free(data->cmd);
+	}
+	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
+		data->cmd = args[0];
+	else if (data->paths[i] == 0)
+		return (0);
+	return (1);
 }
