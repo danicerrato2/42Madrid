@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/11 13:35:27 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:39:39 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	exec_child(t_pipex *data)
 {
 	char	**args;
 
+	if (data->infile == -1)
+		return ;
 	(dup2(data->infile, 0), dup2(data->pipefd[1], 1));
 	(close(data->pipefd[0]), close(data->infile));
 	args = ft_pipex_split(data->argv[2], ' ');
@@ -67,11 +69,10 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc != 5)
 		error(0, "Error: Command not found\n", 1);
 	init_data(&data, argc, argv, envp);
-	if (data.infile != -1)
-		data.child = fork();
-	if (data.infile != -1 && data.child == -1)
+	data.child = fork();
+	if (data.child == -1)
 		error(&data, "Error: Process child not created\n", 0);
-	if (data.infile != -1 && data.child == 0)
+	if (data.child == 0)
 		exec_child(&data);
 	else
 		exec_father(&data);
