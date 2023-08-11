@@ -3,78 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/31 20:57:17 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:02:29 by danicerrato      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error(t_pipex *data, char *msg, int code)
-{
-	if (data != 0)
-		free_all(data);
-	ft_putstr_fd(msg, 2);
-	exit(code);
-}
 
-void	exec_child(t_pipex *data)
-{
-	char	**args;
-	char	*cmd;
-	int		i;
 
-	(dup2(data->infile, 0), dup2(data->pipefd[1], 1));
-	(close(data->pipefd[0]), close(data->infile));
-	args = ft_pipex_split(data->argv[2], ' ');
-	i = -1;
-	while (data->paths[++i] != 0)
-	{
-		cmd = ft_strjoin(data->paths[i], args[0]);
-		if (access(cmd, X_OK) != -1)
-			break ;
-		free(cmd);
-	}
-	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
-		cmd = args[0];
-	else if (data->paths[i] == 0)
-		(free_fork_utils(NULL, args), \
-		error(data, "Error: Command not found\n", 127));
-	if (execve(cmd, args, data->envp) != -1)
-		(free_fork_utils(cmd, args), \
-		error(data, "Error: Command not found\n", 127));
-	(free_fork_utils(cmd, args), close(data->pipefd[1]));
-}
-
-void	exec_father(t_pipex *data)
-{
-	char	**args;
-	char	*cmd;
-	int		i;
-
-	(dup2(data->outfile, 1), dup2(data->pipefd[0], 0));
-	(close(data->pipefd[1]), close(data->outfile));
-	args = ft_pipex_split(data->argv[3], ' ');
-	i = -1;
-	while (data->paths[++i] != 0)
-	{
-		cmd = ft_strjoin(data->paths[i], args[0]);
-		if (access(cmd, X_OK) != -1)
-			break ;
-		free(cmd);
-	}
-	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
-		cmd = args[0];
-	else if (data->paths[i] == 0)
-		(free_fork_utils(NULL, args), \
-		error(data, "Error: Command not found\n", 127));
-	if (execve(cmd, args, data->envp) != -1)
-		(free_fork_utils(cmd, args), \
-		error(data, "Error: Command not found\n", 127));
-	(free_fork_utils(cmd, args), close(data->pipefd[0]));
-}
+#include <stdio.h>
 
 void	init_data(t_pipex *data, int argc, char *argv[], char *envp[])
 {
@@ -87,27 +27,69 @@ void	init_data(t_pipex *data, int argc, char *argv[], char *envp[])
 		ft_putstr_fd("Error: No such file or directory\n", 2);
 	data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 644);
 	if (data->outfile == -1)
-		error(data, "Error: Permission denied\n", 1);
+		ft_putstr_fd("Error: Permission denied\n", 2);
 	if (pipe(data->pipefd) == -1)
-		error(data, "Error: Pipe not open\n", 1);
+		ft_putstr_fd("Error: Pipe not open\n", 2);
+	data->num_childs = argc - 2;
+	data->cmd = 0;
+}
+
+void	exec_child1(t_pipex *data)
+{
+	char	**args;
+
+	close(data->pipefd[0]);
+	if (data->infile == -1)
+		(close(data->pipefd[1]), exit(EXIT_FAILURE));
+	(dup2(data->pipefd[1], 1), close(data->pipefd[1]));
+	(dup2(data->infile, 0), close(data->infile));
+	args = ft_pipex_split(data->argv[2], ' ');
+	if (get_command(data, args) == 0 || \
+		execve(data->cmd, args, data->envp) != -1)
+			(free_fork_utils(data, args), \
+			error(data, "Error: Command not found\n", 127));
+	(free_fork_utils(data, args), exit(EXIT_FAILURE));
+}
+
+void	exec_child2(t_pipex *data)
+{
+	char	**args;
+
+	close(data->pipefd[1]);
+	(dup2(data->pipefd[0], 0), close(data->pipefd[0]));
+	(dup2(data->outfile, 1), close(data->outfile));
+	args = ft_pipex_split(data->argv[3], ' ');
+	if (get_command(data, args) == 0 || \
+		execve(data->cmd, args, data->envp) != -1)
+			(free_fork_utils(data, args), \
+			error(data, "Error: Command not found\n", 127));
+	(free_fork_utils(data, args), exit(EXIT_FAILURE));
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	data;
+	int		status;
 
 	if (argc != 5)
 		error(0, "Error: Command not found\n", 1);
 	init_data(&data, argc, argv, envp);
-	if (data.infile != -1)
-		data.child = fork();
-	if (data.infile != -1 && data.child == -1)
+	data.childs[0] = fork();
+	if (data.childs[0] == -1)
 		error(&data, "Error: Process child not created\n", 0);
-	if (data.infile != -1 && data.child == 0)
-		exec_child(&data);
-	else
-		exec_father(&data);
-	waitpid(data.child, NULL, 0);
+	if (data.childs[0] == 0)
+		exec_child1(&data);
+	data.childs[1] = fork();
+	if (data.childs[1] == -1)
+		error(&data, "Error: Process child not created\n", 0);
+	if (data.childs[1] == 0)
+		exec_child2(&data);
+	(close(data.pipefd[0]), close(data.pipefd[1]));
+	while (data.num_childs > 0)
+	{
+		waitpid(-1, NULL, 0);
+		data.num_childs--;
+	}
 	free_all(&data);
-	return (1);
+	return (WEXITSTATUS(status));
 }
