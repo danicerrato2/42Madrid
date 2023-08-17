@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 10:48:57 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/17 15:56:26 by danicerrato      ###   ########.fr       */
+/*   Updated: 2023/08/17 19:06:15 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ char	**get_paths(char *envp[])
 	int		i;
 
 	i = 0;
-	while (ft_strncmp(envp[i], "PATH=", 5) != 0)
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
+	if (envp[i] == 0)
+		return (0);
 	paths = ft_split(envp[i] + 5, ':');
 	i = -1;
 	while (paths[++i] != 0)
@@ -83,7 +85,8 @@ int	get_command(t_pipex *data, char **args)
 			break ;
 		free(data->cmd);
 	}
-	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0)
+	if (ft_strnstr(args[0], "/", ft_strlen(args[0])) != 0 && \
+		access(args[0], X_OK) != -1)
 		data->cmd = args[0];
 	else if (data->paths[i] == 0)
 	{

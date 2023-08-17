@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 12:38:42 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/07/31 20:57:23 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:13:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+#include <stdio.h>
+
+
+
 
 void	pipex_copy_str(char *dest, char *src, int size)
 {
@@ -31,19 +36,20 @@ int	pipex_num_words(char *str, char c)
 	int		i;
 	char	c_to_search;
 
-	i = -1;
+	i = 0;
 	words = 0;
-	while (str[++i])
+	while (str[i])
 	{
 		while (str[i] && str[i] == c)
 			i++;
 		c_to_search = c;
 		if (str[i] == '\"' || str[i] == '\'')
 			c_to_search = str[i++];
-		if (!str[i])
+		if (str[i] == 0)
 			break ;
 		while (str[i] && str[i] != c_to_search)
 			i++;
+		printf("%c\n", str[i]);
 		words++;
 	}
 	return (words);
@@ -86,6 +92,7 @@ char	**ft_pipex_split(const char *str, char c)
 
 	aux = (char *)str;
 	words = pipex_num_words(aux, c);
+	printf("Num words = %d\n", words);
 	strings = (char **)malloc((words + 1) * sizeof(char *));
 	if (strings == NULL)
 		return (NULL);
