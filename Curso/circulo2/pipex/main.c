@@ -6,7 +6,7 @@
 /*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/17 15:57:18 by danicerrato      ###   ########.fr       */
+/*   Updated: 2023/08/17 16:09:53 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,11 @@ void	exec_child2(t_pipex *data)
 	(free_fork_utils(data, args), exit(EXIT_FAILURE));
 }
 
-void	ft_leaks()
-{
-	system("leaks -q pipex");
-}
-
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	data;
 	int		status;
 
-	atexit(ft_leaks);
 	if (argc != 5)
 		error(0, "Error: Command not found\n", 1);
 	init_data(&data, argc, argv, envp);
