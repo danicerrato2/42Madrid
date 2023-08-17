@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/17 14:07:56 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:31:58 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	exec_child1(t_pipex *data)
 		(close(data->pipefd[1]), exit(EXIT_FAILURE));
 	(dup2(data->pipefd[1], 1), close(data->pipefd[1]));
 	(dup2(data->infile, 0), close(data->infile));
-	args = ft_pipex_split(data->argv[2], ' ');
+	args = ft_split(data->argv[2], ' ');
 	if (get_command(data, args) == 0 || \
 		execve(data->cmd, args, data->envp) != -1)
 		(free_fork_utils(data, args), \
@@ -54,7 +54,7 @@ void	exec_child2(t_pipex *data)
 	close(data->pipefd[1]);
 	(dup2(data->pipefd[0], 0), close(data->pipefd[0]));
 	(dup2(data->outfile, 1), close(data->outfile));
-	args = ft_pipex_split(data->argv[3], ' ');
+	args = ft_split(data->argv[3], ' ');
 	if (get_command(data, args) == 0 || \
 		execve(data->cmd, args, data->envp) != -1)
 		(free_fork_utils(data, args), \
@@ -62,11 +62,17 @@ void	exec_child2(t_pipex *data)
 	(free_fork_utils(data, args), exit(EXIT_FAILURE));
 }
 
+void	ft_leaks()
+{
+	system("leaks -q pipex");
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	data;
 	int		status;
 
+	atexit(ft_leaks);
 	if (argc != 5)
 		error(0, "Error: Command not found\n", 1);
 	init_data(&data, argc, argv, envp);
