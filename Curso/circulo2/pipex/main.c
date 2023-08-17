@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/17 15:31:58 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:57:18 by danicerrato      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	exec_child1(t_pipex *data)
 
 	close(data->pipefd[0]);
 	if (data->infile == -1)
-		(close(data->pipefd[1]), exit(EXIT_FAILURE));
+	{
+		free_fork_utils(data, NULL);
+		(free_all(data), exit(EXIT_FAILURE));
+	}
 	(dup2(data->pipefd[1], 1), close(data->pipefd[1]));
 	(dup2(data->infile, 0), close(data->infile));
 	args = ft_split(data->argv[2], ' ');
