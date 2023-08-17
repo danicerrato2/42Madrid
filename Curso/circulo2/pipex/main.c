@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 19:34:51 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/11 17:02:29 by danicerrato      ###   ########.fr       */
+/*   Updated: 2023/08/17 14:07:56 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-
-
-#include <stdio.h>
 
 void	init_data(t_pipex *data, int argc, char *argv[], char *envp[])
 {
@@ -25,7 +21,7 @@ void	init_data(t_pipex *data, int argc, char *argv[], char *envp[])
 	data->infile = open(argv[1], O_RDONLY);
 	if (data->infile == -1)
 		ft_putstr_fd("Error: No such file or directory\n", 2);
-	data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 644);
+	data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (data->outfile == -1)
 		ft_putstr_fd("Error: Permission denied\n", 2);
 	if (pipe(data->pipefd) == -1)
@@ -46,7 +42,7 @@ void	exec_child1(t_pipex *data)
 	args = ft_pipex_split(data->argv[2], ' ');
 	if (get_command(data, args) == 0 || \
 		execve(data->cmd, args, data->envp) != -1)
-			(free_fork_utils(data, args), \
+		(free_fork_utils(data, args), \
 			error(data, "Error: Command not found\n", 127));
 	(free_fork_utils(data, args), exit(EXIT_FAILURE));
 }
@@ -61,7 +57,7 @@ void	exec_child2(t_pipex *data)
 	args = ft_pipex_split(data->argv[3], ' ');
 	if (get_command(data, args) == 0 || \
 		execve(data->cmd, args, data->envp) != -1)
-			(free_fork_utils(data, args), \
+		(free_fork_utils(data, args), \
 			error(data, "Error: Command not found\n", 127));
 	(free_fork_utils(data, args), exit(EXIT_FAILURE));
 }
@@ -87,7 +83,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(close(data.pipefd[0]), close(data.pipefd[1]));
 	while (data.num_childs > 0)
 	{
-		waitpid(-1, NULL, 0);
+		waitpid(-1, &status, 0);
 		data.num_childs--;
 	}
 	free_all(&data);
