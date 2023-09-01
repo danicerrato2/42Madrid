@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 16:23:47 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:44:33 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,10 @@ int	save_map(t_map *map, char *map_path)
 	i = -1;
 	while (++i < map->height)
 		map->map[i] = get_next_line(map_fd);
+	close(map_fd);
 	if (check_line(map->map[map->height - 1], -1, map) != 0)
 		return (0);
-	close(map_fd);
 	return (1);
-}
-
-int	free_all_sl(t_utils *utils)
-{
-	int	i;
-
-	i = -1;
-	if (utils->map.map)
-	{
-		while (++i < utils->map.height)
-			free(utils->map.map[i]);
-		free(utils->map.map);
-	}
-	exit(0);
 }
 
 char	**get_map(t_map *map)

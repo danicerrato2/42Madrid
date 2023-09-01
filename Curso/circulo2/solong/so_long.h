@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:13 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 16:25:52 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:18:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ typedef struct s_vars
 
 typedef struct s_utils
 {
-	t_map		map;
-	t_vars		vars;
-	t_player	player;
+	t_map		*map;
+	t_vars		*vars;
+	t_player	*player;
 }	t_utils;
 
 void	init_map(t_map *map);

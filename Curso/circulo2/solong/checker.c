@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:08 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 15:59:54 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:41:10 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_line(char *line, int line_num, t_map *map)
 {
 	int	i;
 
-	if (line == NULL || line[0] != '1')
+	if (line[0] != '1')
 		return (-1);
 	i = 1;
 	if (line_num == 1 || line_num == -1)
@@ -108,7 +108,10 @@ int	check_line(char *line, int line_num, t_map *map)
 	if (line[i] != '\n' || i != map->widht || line[i - 1] != '1')
 		return (-1);
 	if (line_num != -1)
+	{
 		map->height = line_num;
+		free(line);
+	}
 	return (0);
 }
 
@@ -130,9 +133,11 @@ int	check_map(t_map *map, char *map_path)
 	line = get_next_line(map_fd);
 	while (line && check_line(line, ++line_num, map) == 0)
 		line = get_next_line(map_fd);
-	if (line != NULL || line_num < 3 || map->player[0] == -1 || \
-		map->exit[0] == -1 || map->num_rewards == 0)
-		return (-1);
 	close(map_fd);
+	if (line == NULL && line_num >= 3 && map->player[0] != -1 && \
+		map->exit[0] != -1 & map->num_rewards != 0)
+		return (0);
+	if (line)
+		free(line);
 	return (0);
 }

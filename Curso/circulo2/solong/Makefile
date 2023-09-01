@@ -1,6 +1,6 @@
 NAME	=	so_long
 
-SRC		=	main.c so_long.c checker.c ft_stack.c window.c moves.c
+SRC		=	main.c so_long.c checker.c ft_stack.c window.c moves.c free.c
 #SRCB	=	
 
 OBJ		=	$(SRC:.c=.o)

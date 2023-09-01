@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danicerrato2 <danicerrato2@student.42.f    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:42:12 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/20 13:27:41 by danicerrato      ###   ########.fr       */
+/*   Updated: 2023/09/01 18:27:46 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ int	check_save(char **save, char **str)
 	return (0);
 }
 
+void	ft_bzero_gnl(void *str, size_t len)
+{
+	size_t	i;
+
+	if (str == NULL)
+		return ;
+	i = 0;
+	while (i < len)
+	{
+		((char *)str)[i] = 0;
+		i++;
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*save;
@@ -50,7 +64,7 @@ char	*get_next_line(int fd)
 	n_pos = check_save(&save, &str);
 	if (n_pos == 0)
 		return (str);
-	buf[n_pos - 1] = 0;
+	ft_bzero_gnl(&buf, n_pos);
 	while (n_pos == BUFFER_SIZE && buf[n_pos - 1] != '\n')
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
