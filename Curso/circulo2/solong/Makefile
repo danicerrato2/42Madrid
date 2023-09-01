@@ -10,13 +10,16 @@ MAPS_DIR	= maps
 OBJ		=	$(SRC:.c=.o)
 #OBJB	=	$(SRCB:.c=.o)
 
-LIBS	=	$(LIBFT) $(PRINTF)
+LIBS	=	$(LIBFT) $(PRINTF) $(MINILIBX)
 
 LIBFT	=	$(LIBFT_DIR)/libft.a
 LIBFT_DIR	= libft
 
 PRINTF	=	$(PRINTF_DIR)/libftprintf.a
 PRINTF_DIR	= printf
+
+MINILIBX	= $(MINILIBX_DIR)/libmlx.a $(MINILIBX_DIR)/libmlx_Linux.a
+MINILIBX_DIR	= minilibx-linux
 
 GNL		=	$(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 GNL_DIR	=	getNextLine
@@ -42,6 +45,9 @@ $(LIBFT):
 $(PRINTF):
 			@make all -C $(PRINTF_DIR) --no-print-directory
 
+$(MINILIBX):
+			@make all -C $(MINILIBX_DIR) --no-print-directory
+
 %.o:		%.c
 			@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -49,6 +55,7 @@ clean:
 			@$(RM) -r $(OBJ) $(GNL_OBJ) $(OBJB)
 			@make clean -C $(LIBFT_DIR) --no-print-directory
 			@make clean -C $(PRINTF_DIR) --no-print-directory
+			@make clean -C $(MINILIBX_DIR) --no-print-directory
 
 fclean:		clean
 			@$(RM) $(NAME) $(BONUS)
