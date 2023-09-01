@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:08 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/23 12:45:31 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/01 15:59:54 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_route(t_map *map)
 	int		i[2];
 	int		error_flag;
 
-	map2 = prepare_and_free_map2(map);
+	map2 = get_map(map);
 	fill_paths(map, map2);
 	i[0] = 0;
 	error_flag = 0;

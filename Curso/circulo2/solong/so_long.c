@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/08/23 12:28:55 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/01 16:23:47 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,21 @@ int	save_map(t_map *map, char *map_path)
 	return (1);
 }
 
-void	free_all_sl(t_map *map)
+int	free_all_sl(t_utils *utils)
 {
 	int	i;
 
 	i = -1;
-	if (map->map)
+	if (utils->map.map)
 	{
-		while (++i < map->height)
-			free(map->map[i]);
-		free(map->map);
+		while (++i < utils->map.height)
+			free(utils->map.map[i]);
+		free(utils->map.map);
 	}
+	exit(0);
 }
 
-char	**prepare_and_free_map2(t_map *map)
+char	**get_map(t_map *map)
 {
 	int		i[2];
 	char	**map2;
