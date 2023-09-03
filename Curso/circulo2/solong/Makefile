@@ -21,12 +21,13 @@ GNL_OBJ =	$(GNL:.c=.o)
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra# -g3 -fsanitize=address -static-libsan
 LIBFLAGS	=	-lmlx -framework OpenGL -framework AppKit
+L_LIBFLAGS	=	-lmlx -lX11 -lXext
 RM		=	rm -f
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(GNL_OBJ) $(LIBS)
-			$(CC) $(CFLAGS) $(LIBFLAGS) -o ${NAME} $^
+			$(CC) $(CFLAGS) -o ${NAME} $^ $(L_LIBFLAGS)
 
 bonus:
 

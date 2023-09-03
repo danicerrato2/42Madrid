@@ -58,9 +58,9 @@ typedef struct s_utils
 	t_player	*player;
 }	t_utils;
 
+void	init_utils(t_utils *utils);
 void	init_map(t_map *map);
 int		save_map(t_map *map, char *map_path);
-int		free_all_sl(t_utils *utils);
 char	**get_map(t_map *map);
 
 int		check_route(t_map *map);
@@ -68,7 +68,9 @@ int		check_midline(char *line, t_map *map, int *i);
 int		check_line(char *line, int line_num, t_map *map);
 int		check_map(t_map *map, char *map_path);
 
-void	init_utils(t_utils *utils, int size);
+void	set_utils(t_utils *utils, int size);
 void	print_map(t_utils *utils);
+
+int		free_all_sl(t_utils *utils);
 
 #endif

@@ -135,9 +135,9 @@ int	check_map(t_map *map, char *map_path)
 		line = get_next_line(map_fd);
 	close(map_fd);
 	if (line == NULL && line_num >= 3 && map->player[0] != -1 && \
-		map->exit[0] != -1 & map->num_rewards != 0)
+		map->exit[0] != -1 && map->num_rewards != 0)
 		return (0);
 	if (line)
 		free(line);
-	return (0);
+	return (-1);
 }

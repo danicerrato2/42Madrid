@@ -12,6 +12,16 @@
 
 #include "so_long.h"
 
+void	init_utils(t_utils *utils)
+{
+	utils->map = malloc(sizeof(t_map));
+	utils->map->map = NULL;
+	utils->player = malloc(sizeof(t_player));
+	utils->player->img[0] = NULL;
+	utils->vars = malloc(sizeof(t_vars));
+	utils->vars->mlx = NULL;
+}
+
 void	init_map(t_map *map)
 {
 	map->map = NULL;

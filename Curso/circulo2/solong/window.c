@@ -58,7 +58,7 @@ int check_key(int key_code, t_utils *utils)
     return (0);
 }
 
-void    init_player(t_utils *utils, int size)
+void    set_player(t_utils *utils, int size)
 {
     utils->player->img[0] = mlx_xpm_file_to_image(utils->vars->mlx, \
         "textures/MudkipNorth1.xpm", &size, &size);
@@ -71,7 +71,7 @@ void    init_player(t_utils *utils, int size)
     utils->player->moves = 0;
 }
 
-void    init_utils(t_utils *utils, int size)
+void    set_utils(t_utils *utils, int size)
 {
     utils->vars->mlx = mlx_init();
     utils->vars->window = mlx_new_window(utils->vars->mlx, \
@@ -84,7 +84,7 @@ void    init_utils(t_utils *utils, int size)
         "textures/Stairs.xpm", &size, &size);
     utils->vars->wall = mlx_xpm_file_to_image(utils->vars->mlx, \
         "textures/Wall.xpm", &size, &size);
-    init_player(utils, size);
+    set_player(utils, size);
     mlx_key_hook(utils->vars->window, check_key, utils);
     mlx_hook(utils->vars->window, 17, 0, free_all_sl, utils);
 }

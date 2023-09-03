@@ -29,35 +29,37 @@ void	free_map(t_map *map)
 	}
 }
 
-/*
-void    free_player(t_player *player)
-{
 
+void    free_mlx(t_utils *utils)
+{
+	if (utils->player->img[0])
+	{
+		mlx_destroy_image(utils->vars->mlx, utils->player->img[0]);
+		mlx_destroy_image(utils->vars->mlx, utils->player->img[1]);
+		mlx_destroy_image(utils->vars->mlx, utils->player->img[2]);
+		mlx_destroy_image(utils->vars->mlx, utils->player->img[3]);
+	}
+	mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
+	mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
+	mlx_destroy_image(utils->vars->mlx, utils->vars->reward);
+	mlx_destroy_image(utils->vars->mlx, utils->vars->wall);
+	mlx_destroy_window(utils->vars->mlx, utils->vars->window);
+	mlx_destroy_display(utils->vars->mlx);
+	free(utils->vars->mlx);
 }
 
-void    free_vars(t_vars *vars)
-{
-
-}
-*/
 
 int	free_all_sl(t_utils *utils)
 {
 	free_map(utils->map);
-	if (utils->player){
-        mlx_destroy_image(utils->vars->mlx, utils->player->img[0]);
-        mlx_destroy_image(utils->vars->mlx, utils->player->img[1]);
-        mlx_destroy_image(utils->vars->mlx, utils->player->img[2]);
-        mlx_destroy_image(utils->vars->mlx, utils->player->img[3]);
-        free(utils->player);
-    }
 	if (utils->vars)
     {
-        mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
-        mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
-        mlx_destroy_image(utils->vars->mlx, utils->vars->reward);
-        mlx_destroy_image(utils->vars->mlx, utils->vars->wall);
-        mlx_destroy_window(utils->vars->mlx, utils->vars->window);
+		if (utils->player)
+		{
+			if (utils->vars->mlx)
+				free_mlx(utils);
+			free(utils->player);
+		}
         free(utils->vars);
     }
 	exit(0);

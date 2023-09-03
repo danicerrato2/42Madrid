@@ -21,18 +21,16 @@ int	main(int argc, char **argv)
 {
 	t_utils utils;
 
-	atexit(ft_leaks);
-	utils.map = malloc(sizeof(t_map));
+	//atexit(ft_leaks);
+	init_utils(&utils);
 	if (argc != 2 || check_map(utils.map, argv[1]) != 0 || \
-		! save_map(utils.map, argv[1]) || check_route(utils.map) != 0)
+		!save_map(utils.map, argv[1]) || check_route(utils.map) != 0)
 	{
-		free_all_sl(&utils);
+		(ft_printf("Error\n"), free_all_sl(&utils));
 		return (0);
 	}
-	utils.player = malloc(sizeof(t_player));
-	utils.vars = malloc(sizeof(t_vars));
-	(init_utils(&utils, SIZE));//, print_map(&utils));
-	//mlx_loop(utils.vars.mlx);
+	(set_utils(&utils, SIZE), print_map(&utils));
+	mlx_loop(utils.vars->mlx);
 	free_all_sl(&utils);
 	return (0);
 }
