@@ -33,7 +33,7 @@ void    print_map(t_utils *utils)
                     utils->vars->reward, pos[1] * SIZE, pos[0] * SIZE);
             else if (utils->map->map[pos[0]][pos[1]] == 'E')
                 mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
-                    utils->vars->exit, pos[1] * SIZE, pos[0] * SIZE);
+                    utils->vars->stairs, pos[1] * SIZE, pos[0] * SIZE);
             else if (utils->map->map[pos[0]][pos[1]] == 'P')
                 mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
                     utils->player->img[0], pos[1] * SIZE, pos[0] * SIZE);
@@ -41,20 +41,60 @@ void    print_map(t_utils *utils)
     }
 }
 
+int move(t_utils *utils, int x, int y, void *img)
+{
+    int *pos;
+
+    if (utils->map->map[x][y] == '1')
+        return (0);
+    if (utils->map->map[x][y] == 'C')
+    {
+        utils->map->map[x][y] = '0';
+        utils->map->num_rewards--;
+    }
+    pos = utils->map->player;
+    if (utils->map->map[pos[0]][pos[1]] == 'E')
+        mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
+            utils->vars->stairs, pos[1] * SIZE, pos[0] * SIZE);
+    else
+        mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
+            utils->vars->floor, pos[1] * SIZE, pos[0] * SIZE);
+    utils->map->player[0] = x;
+    utils->map->player[1] = y;
+    if (utils->map->map[x][y] == 'E')
+        return (2);
+    mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
+        img, y * SIZE, x * SIZE);
+    return (1);
+}
+
 int check_key(int key_code, t_utils *utils)
 {
-    if (key_code == 53)
+    int status;
+    int *pos;
+    
+    pos = utils->map->player;
+    status = 0;
+    if (key_code == 65307)// 53)
         free_all_sl(utils);
-    /*
-    else if (key_code == 0)
-        // Mover al oeste
-    else if (key_code == 1)
-        // Mover al sur
-    else if (key_code == 2)
-        // Mover al este
-    else if (key_code == 13)
-        // Mover al norte
-    */
+    else if (key_code == 97)// 0)
+        status = move(utils, pos[0], pos[1] - 1, utils->player->img[3]);
+    else if (key_code == 115)// 1)
+        status = move(utils, pos[0] + 1, pos[1], utils->player->img[2]);
+    else if (key_code == 100)// 2)
+        status = move(utils, pos[0], pos[1] + 1, utils->player->img[1]);
+    else if (key_code == 119)// 13)
+        status = move(utils, pos[0] - 1, pos[1], utils->player->img[0]);
+    if (status != 0)
+        ft_printf("Moves = %d\n", ++utils->player->moves);
+    if (status == 2)
+    {
+        if (utils->map->num_rewards == 0)
+            (ft_printf("CONGRATS! You win\n"), free_all_sl(utils));
+        ft_printf("Collect all the rewards before exit\n");
+        mlx_put_image_to_window(utils->vars->mlx, utils->vars->window, \
+            utils->vars->exit, pos[1] * SIZE, pos[0] * SIZE);
+    }
     return (0);
 }
 
@@ -80,8 +120,10 @@ void    set_utils(t_utils *utils, int size)
         "textures/Floor.xpm", &size, &size);
     utils->vars->reward = mlx_xpm_file_to_image(utils->vars->mlx, \
         "textures/Reward.xpm", &size, &size);
-    utils->vars->exit = mlx_xpm_file_to_image(utils->vars->mlx, \
+    utils->vars->stairs = mlx_xpm_file_to_image(utils->vars->mlx, \
         "textures/Stairs.xpm", &size, &size);
+    utils->vars->exit = mlx_xpm_file_to_image(utils->vars->mlx, \
+        "textures/Exit.xpm", &size, &size);
     utils->vars->wall = mlx_xpm_file_to_image(utils->vars->mlx, \
         "textures/Wall.xpm", &size, &size);
     set_player(utils, size);

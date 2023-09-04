@@ -40,6 +40,7 @@ void    free_mlx(t_utils *utils)
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[3]);
 	}
 	mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
+	mlx_destroy_image(utils->vars->mlx, utils->vars->stairs);
 	mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
 	mlx_destroy_image(utils->vars->mlx, utils->vars->reward);
 	mlx_destroy_image(utils->vars->mlx, utils->vars->wall);

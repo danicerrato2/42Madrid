@@ -47,6 +47,7 @@ typedef struct s_vars
 	void	*window;
 	void	*floor;
 	void	*wall;
+	void	*stairs;
 	void	*exit;
 	void	*reward;
 }	t_vars;
@@ -72,5 +73,10 @@ void	set_utils(t_utils *utils, int size);
 void	print_map(t_utils *utils);
 
 int		free_all_sl(t_utils *utils);
+
+int		move_to_north(t_utils *utils);
+int		move_to_east(t_utils *utils);
+int		move_to_south(t_utils *utils);
+int		move_to_west(t_utils *utils);
 
 #endif
