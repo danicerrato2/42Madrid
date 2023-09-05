@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:13 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 17:18:25 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:04:16 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	void	*img[4];	// *player[4][2];
+	void	*img[4];
 	int		moves;
-	// int		timer;	// Probar distintos tiempos; Usar modulo y cambio de imagen
 }	t_player;
 
 typedef struct s_vars

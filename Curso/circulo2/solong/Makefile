@@ -1,7 +1,7 @@
 NAME	=	so_long
 
 SRC		=	main.c so_long.c checker.c ft_stack.c window.c free.c
-#SRCB	=	
+#SRCB	=
 
 OBJ		=	$(SRC:.c=.o)
 #OBJB	=	$(SRCB:.c=.o)
@@ -27,14 +27,14 @@ RM		=	rm -f
 all:		$(NAME)
 
 $(NAME):	$(OBJ) $(GNL_OBJ) $(LIBS)
-			$(CC) $(CFLAGS) -o ${NAME} $^ $(L_LIBFLAGS)
+			$(CC) $(CFLAGS) -o ${NAME} $^ $(LIBFLAGS)
 
 bonus:
 
 #bonus:		$(OBJB) $(LIBFT)
 #			$(CC) $(CFLAGS) -o ${BONUS} $^
 
-$(LIBFT):	
+$(LIBFT):
 			@make all -C $(LIBFT_DIR) --no-print-directory
 
 $(PRINTF):

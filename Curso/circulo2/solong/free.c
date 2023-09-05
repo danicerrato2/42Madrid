@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:44:46 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 20:48:56 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:06:38 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	free_map(t_map *map)
 	}
 }
 
-
-void    free_mlx(t_utils *utils)
+void	free_mlx(t_utils *utils)
 {
 	if (utils->player->img[0])
 	{
@@ -39,29 +38,32 @@ void    free_mlx(t_utils *utils)
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[2]);
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[3]);
 	}
-	mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
-	mlx_destroy_image(utils->vars->mlx, utils->vars->stairs);
-	mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
-	mlx_destroy_image(utils->vars->mlx, utils->vars->reward);
-	mlx_destroy_image(utils->vars->mlx, utils->vars->wall);
-	mlx_destroy_window(utils->vars->mlx, utils->vars->window);
-	mlx_destroy_display(utils->vars->mlx);
+	if (utils->vars->window)
+	{
+		mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
+		mlx_destroy_image(utils->vars->mlx, utils->vars->stairs);
+		mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
+		mlx_destroy_image(utils->vars->mlx, utils->vars->reward);
+		mlx_destroy_image(utils->vars->mlx, utils->vars->wall);
+		mlx_clear_window(utils->vars->mlx, utils->vars->window);
+		mlx_destroy_window(utils->vars->mlx, utils->vars->window);
+	}
+	// mlx_destroy_display(utils->vars->mlx);
 	free(utils->vars->mlx);
 }
-
 
 int	free_all_sl(t_utils *utils)
 {
 	free_map(utils->map);
 	if (utils->vars)
-    {
+	{
 		if (utils->player)
 		{
 			if (utils->vars->mlx)
 				free_mlx(utils);
 			free(utils->player);
 		}
-        free(utils->vars);
-    }
+		free(utils->vars);
+	}
 	exit(0);
 }

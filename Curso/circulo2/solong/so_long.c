@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/01 20:44:33 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/05 12:16:54 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_utils(t_utils *utils)
 	utils->player->img[0] = NULL;
 	utils->vars = malloc(sizeof(t_vars));
 	utils->vars->mlx = NULL;
+	utils->vars->window = NULL;
 }
 
 void	init_map(t_map *map)
