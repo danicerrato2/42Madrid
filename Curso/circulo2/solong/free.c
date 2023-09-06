@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:44:46 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/06 22:02:38 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:12:50 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	free_mlx(t_utils *utils)
 {
 	if (utils->player->img[0])
 	{
-		ft_printf("Hola1\n");
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[0]);
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[1]);
 		mlx_destroy_image(utils->vars->mlx, utils->player->img[2]);
@@ -41,7 +40,6 @@ void	free_mlx(t_utils *utils)
 	}
 	if (utils->vars->exit)
 	{
-		ft_printf("Hola2\n");
 		mlx_destroy_image(utils->vars->mlx, utils->vars->exit);
 		mlx_destroy_image(utils->vars->mlx, utils->vars->stairs);
 		mlx_destroy_image(utils->vars->mlx, utils->vars->floor);
@@ -50,7 +48,6 @@ void	free_mlx(t_utils *utils)
 	}
 	if (utils->vars->window)
 	{
-		ft_printf("Hola3\n");
 		mlx_clear_window(utils->vars->mlx, utils->vars->window);
 		mlx_destroy_window(utils->vars->mlx, utils->vars->window);
 	}
