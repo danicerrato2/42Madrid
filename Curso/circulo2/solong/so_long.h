@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 23:05:13 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/05 14:04:16 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:08:00 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <fcntl.h>
 # include <stdlib.h>
-# include "mlx.h"
+# include "minilibx_mac/mlx.h"
 
 # include "ft_stack.h"
 # include "libft/libft.h"
