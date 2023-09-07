@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 20:44:46 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/06 22:12:50 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:49:50 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	free_mlx(t_utils *utils)
 		mlx_clear_window(utils->vars->mlx, utils->vars->window);
 		mlx_destroy_window(utils->vars->mlx, utils->vars->window);
 	}
-	// mlx_destroy_display(utils->vars->mlx);
-	free(utils->vars->mlx);
 }
 
 int	free_all_sl(t_utils *utils)
