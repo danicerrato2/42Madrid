@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 21:18:21 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/09 02:13:52 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/09 15:00:41 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	{
 		first = *lst;
 		first->prev = new;
-		first->content->left = new->content->right;
+		new->content->right = first->content;
 		new->next = first;
 	}
 	*lst = new;
@@ -61,13 +61,13 @@ void	ft_lstclear(t_list **lst, int num_nodes, void (*del)(void *))
 void	ft_lstiter(t_list *lst, int num_nodes, void (*f)(void *))
 {
 	t_list	*aux_lst;
-	int i;
+	int		i;
 
 	aux_lst = lst;
 	i = -1;
 	while (++i < num_nodes)
 	{
-		f(aux_lst->content);
+		f(aux_lst);
 		aux_lst = aux_lst->next;
 	}
 }

@@ -6,19 +6,11 @@
 /*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 02:26:03 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/09 02:39:50 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/09 15:00:13 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	live(void *p)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)p;
-	philo->live = 1;
-}
 
 void	*exist(void *p)
 {
@@ -27,11 +19,10 @@ void	*exist(void *p)
 
 	philo = (t_philo *)p;
 	data = (t_data *)philo->table;
-	usleep(999999);
-	while (data && philo->live != 1)
-		continue ;
-	// pthread_mutex_lock(data->wr_stdout);
-	printf("Filosofo %d\n", philo->id);
+	if (philo->id < data->num_philos)
+		pthread_mutex_lock(&philo->wait);
+	if (philo->id > 1)
+		pthread_mutex_unlock(&philo->right->wait);
 	return (0);
 }
 
@@ -46,18 +37,18 @@ void	init_philos(t_data *data)
 	{
 		new = ft_lstnew(malloc(sizeof(t_philo)));
 		new->content->id = i + 1;
-		new->content->live = 0;
 		new->content->table = data;
-		new->content->right = malloc(sizeof(t_fork));
-		new->content->right->in_use = i + 1;
-		pthread_mutex_init(&new->content->right->hold, 0);
+		new->content->fork = malloc(sizeof(t_fork));
+		new->content->fork->in_use = i + 1;
+		pthread_mutex_init(&new->content->wait, 0);
+		pthread_mutex_lock(&new->content->wait);
+		pthread_mutex_init(&new->content->fork->hold, 0);
+		pthread_create(&(new->thread), 0, exist, new->content);
 		ft_lstadd_front(&(data->philos), new);
-		pthread_create(&(new->thread), 0, exist, data->philos->content);
-		pthread_join(new->thread, 0);
 	}
 	last = ft_lstlast(data->philos, data->num_philos);
 	new->prev = last;
-	new->content->left = last->content->right;
+	last->content->right = new->content;
 	last->next = new;
 }
 
@@ -67,7 +58,7 @@ void	free_philo(void *p)
 
 	philo = (t_philo *)p;
 	philo->table = NULL;
-	pthread_mutex_destroy(&philo->right->hold);
-	free(philo->right);
+	pthread_mutex_destroy(&philo->fork->hold);
+	free(philo->fork);
 	free(philo);
 }

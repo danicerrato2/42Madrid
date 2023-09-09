@@ -28,11 +28,11 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	int		id;
-	int		live;
-	void	*table;
-	t_fork	*left;
-	t_fork	*right;
+	int				id;
+	void			*table;
+	pthread_mutex_t	wait;
+	t_fork			*fork;
+	struct s_philo	*right;
 }	t_philo;
 
 typedef struct s_list

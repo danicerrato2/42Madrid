@@ -1,3 +1,7 @@
+*
+!*/
+!*.*
+!Makefile
 .DS_Store
 .vscode
 *.swp

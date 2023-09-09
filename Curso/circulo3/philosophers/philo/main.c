@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:38:00 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/09 02:38:16 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:55:43 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ int	check_arg(char *arg)
 	return (1);
 }
 
+void	wait_threads(void *p)
+{
+	t_list	*philo;
+
+	philo = (t_list *)p;
+	pthread_join(philo->thread, 0);
+}
+
 int	init_table(t_data *data, int argc, char *argv[])
 {
 	int	i;
@@ -48,17 +56,14 @@ int	init_table(t_data *data, int argc, char *argv[])
 	data->num_meals = -1;
 	if (argc == 6)
 		data->num_meals = ft_atoi(argv[5]);
-	if (pthread_mutex_init(&data->wr_stdout, 0) != 0)
-		return (-1);
 	data->philos = NULL;
 	init_philos(data);
-	ft_lstiter(data->philos, data->num_philos, live);
+	ft_lstiter(data->philos, data->num_philos, wait_threads);
 	return (0);
 }
 
 int	free_table(t_data *data, char *msg)
 {
-	pthread_mutex_destroy(&data->wr_stdout);
 	if (data->philos)
 		ft_lstclear(&(data->philos), data->num_philos, free_philo);
 	if (msg != NULL)
