@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:38:00 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/09 14:55:43 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:55:06 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	check_arg(char *arg)
-{
-	int	i;
-	int	len;
-
-	len = 0;
-	while (arg[len])
-		len++;
-	if (len > 10)
-		return (0);
-	i = -1;
-	while (arg[++i])
-	{
-		if (arg[i] < '0' || arg[i] > '9' || \
-			(len == 10 && arg[i] > "2147483647"[i]))
-			return (0);
-	}
-	return (1);
-}
 
 void	wait_threads(void *p)
 {
@@ -56,8 +36,13 @@ int	init_table(t_data *data, int argc, char *argv[])
 	data->num_meals = -1;
 	if (argc == 6)
 		data->num_meals = ft_atoi(argv[5]);
+	pthread_mutex_init(&data->wr_stdout, 0);
+	pthread_mutex_init(&data->finished, 0);
 	data->philos = NULL;
 	init_philos(data);
+	pthread_mutex_lock(&data->finished);
+	while (data->num_philos != 0)
+		pthread_mutex_lock(&data->finished);
 	ft_lstiter(data->philos, data->num_philos, wait_threads);
 	return (0);
 }
@@ -66,6 +51,8 @@ int	free_table(t_data *data, char *msg)
 {
 	if (data->philos)
 		ft_lstclear(&(data->philos), data->num_philos, free_philo);
+	pthread_mutex_destroy(&data->wr_stdout);
+	pthread_mutex_destroy(&data->finished);
 	if (msg != NULL)
 		printf("%s\n", msg);
 	return (0);

@@ -1,14 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:42:27 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/08 19:02:45 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:44:25 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	check_arg(char *arg)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	while (arg[len])
+		len++;
+	if (len > 10)
+		return (0);
+	i = -1;
+	while (arg[++i])
+	{
+		if (arg[i] < '0' || arg[i] > '9' || \
+			(len == 10 && arg[i] > "2147483647"[i]))
+			return (0);
+	}
+	return (1);
+}
 
 int	ft_atoi(const char *str)
 {

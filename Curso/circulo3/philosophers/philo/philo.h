@@ -20,18 +20,13 @@
 # include <unistd.h>
 # include <string.h>
 
-typedef struct s_fork
-{
-	int				in_use;
-	pthread_mutex_t	hold;
-}	t_fork;
-
 typedef struct s_philo
 {
 	int				id;
+	int				num_meals;
 	void			*table;
 	pthread_mutex_t	wait;
-	t_fork			*fork;
+	pthread_mutex_t fork;
 	struct s_philo	*right;
 }	t_philo;
 
@@ -51,9 +46,11 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				num_meals;
 	pthread_mutex_t	wr_stdout;
+	pthread_mutex_t	finished;
 	t_list			*philos;
 }	t_data;
 
+int		check_arg(char *arg);
 int		ft_atoi(const char *str);
 
 t_list	*ft_lstnew(t_philo *content);
@@ -62,7 +59,7 @@ void	ft_lstclear(t_list **lst, int num_nodes, void (*del)(void *));
 void	ft_lstiter(t_list *lst, int num_nodes, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst, int num_nodes);
 
-void	live(void *p);
+void	*exist(void *p);
 void	init_philos(t_data *data);
 void	free_philo(void *p);
 

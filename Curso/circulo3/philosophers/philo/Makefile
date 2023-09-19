@@ -1,6 +1,6 @@
 NAME	=	philo
 
-SRC		=	main.c philo.c ft_atoi.c ft_list.c
+SRC		=	main.c philo.c utils.c ft_list.c
 #SRCB	=
 
 OBJ		=	$(SRC:.c=.o)
