@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcerrato <dcerrato@student.42madrid.es>    +#+  +:+       +#+        */
+/*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 21:18:21 by dcerrato          #+#    #+#             */
-/*   Updated: 2023/09/09 15:00:41 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:57:36 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_list	*ft_lstnew(t_philo *content)
 		return (NULL);
 	new_lst->content = content;
 	new_lst->next = NULL;
-	new_lst->prev = NULL;
 	return (new_lst);
 }
 
@@ -32,7 +31,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	if (*lst)
 	{
 		first = *lst;
-		first->prev = new;
 		new->content->right = first->content;
 		new->next = first;
 	}

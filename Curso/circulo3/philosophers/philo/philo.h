@@ -24,10 +24,11 @@ typedef struct s_philo
 {
 	int				id;
 	int				num_meals;
-	void			*table;
+	useconds_t		last_meal;
 	pthread_mutex_t	wait;
-	pthread_mutex_t fork;
+	pthread_mutex_t	fork;
 	struct s_philo	*right;
+	void			*table;
 }	t_philo;
 
 typedef struct s_list
@@ -35,32 +36,35 @@ typedef struct s_list
 	pthread_t		thread;
 	t_philo			*content;
 	struct s_list	*next;
-	struct s_list	*prev;
 }	t_list;
 
 typedef struct s_data
 {
 	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	int				num_meals;
+	int				complete_meals;
+	useconds_t		init_time;			
 	pthread_mutex_t	wr_stdout;
-	pthread_mutex_t	finished;
+	pthread_mutex_t	meal_completed;
 	t_list			*philos;
 }	t_data;
 
-int		check_arg(char *arg);
-int		ft_atoi(const char *str);
+int			check_arg(char *arg);
+int			ft_atoi(const char *str);
+useconds_t	get_time_in_ms(void);
+void		ft_usleep(long long time);
 
-t_list	*ft_lstnew(t_philo *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, int num_nodes, void (*del)(void *));
-void	ft_lstiter(t_list *lst, int num_nodes, void (*f)(void *));
-t_list	*ft_lstlast(t_list *lst, int num_nodes);
+t_list		*ft_lstnew(t_philo *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+void		ft_lstclear(t_list **lst, int num_nodes, void (*del)(void *));
+void		ft_lstiter(t_list *lst, int num_nodes, void (*f)(void *));
+t_list		*ft_lstlast(t_list *lst, int num_nodes);
 
-void	*exist(void *p);
-void	init_philos(t_data *data);
-void	free_philo(void *p);
+void		*exist(void *p);
+void		init_philos(t_data *data);
+void		free_philo(void *p);
 
 #endif
