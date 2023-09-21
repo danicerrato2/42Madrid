@@ -6,7 +6,7 @@
 /*   By: dcerrato <dcerrato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:42:27 by dcerrat2          #+#    #+#             */
-/*   Updated: 2023/09/20 20:50:38 by dcerrato         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:47:23 by dcerrato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_usleep(long long time)
 	useconds_t	init;
 	useconds_t	now;
 
-	init = get_time_in_ms() * 1000;  
+	init = get_time_in_ms() * 1000;
 	now = init;
 	while (now - init < time)
 	{

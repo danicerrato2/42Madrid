@@ -46,9 +46,9 @@ typedef struct s_data
 	long long		time_to_sleep;
 	int				num_meals;
 	int				complete_meals;
-	useconds_t		init_time;			
+	useconds_t		init_time;		
 	pthread_mutex_t	wr_stdout;
-	pthread_mutex_t	meal_completed;
+	pthread_mutex_t	dead;
 	t_list			*philos;
 }	t_data;
 
